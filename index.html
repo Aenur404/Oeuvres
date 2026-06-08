@@ -691,7 +691,7 @@ function startSmartSession() {
 let oeuvres = [];
 
 async function chargerOeuvresDepuisGithub() {
-  const githubUrl = "VOTRE_URL_RAW_GITHUB_ICI"; // N'oubliez pas de remettre votre lien !
+  const githubUrl = "https://raw.githubusercontent.com/Aenur404/Oeuvres/main/artflash_backup_2026-06-08.json";
   
   // 1. On vérifie si la base est déjà en mémoire pour cette session (Évite le lag aux rechargements)
   const cache = sessionStorage.getItem('artflash_github_cache');
