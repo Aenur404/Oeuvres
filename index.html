@@ -1342,15 +1342,36 @@ function renderCard() {
 function flipCard() { state.isFlipped = !state.isFlipped; document.getElementById('card-inner').classList.toggle('is-flipped', state.isFlipped); }
 
 function nextCard(acquired) {
+  // Si on essaie de passer à la suivante sans avoir retourné la carte (et qu'on n'est pas en Quiz)
+  if (!state.isFlipped && sessionConfig.displayMode !== 'quiz') {
+    showToast("⚠️ Retournez la carte pour voir la réponse avant de valider.");
+    flipCard(); // On la retourne automatiquement pour l'utilisateur
+    return; // On arrête là pour lui laisser le temps de voir la réponse
+  }
+
   const currentOeuvre = state.deck[state.currentIndex];
   updateCardProgress(currentOeuvre.id, acquired);
   if (acquired) state.score.acquis++; else state.score.arevoir++; updateScoreDisplay();
   state.currentIndex++;
-  if (state.currentIndex >= state.deck.length) { stopTimer(); showResults(); return; }
+  
+  if (state.currentIndex >= state.deck.length) { 
+    stopTimer(); 
+    showResults(); 
+    return; 
+  }
 
   stopTimer();
-  const wrapper = document.getElementById('card-wrapper'); wrapper.style.transition = 'opacity 0.2s ease'; wrapper.style.opacity = '0';
-  setTimeout(() => { const cardInner = document.getElementById('card-inner'); cardInner.classList.remove('is-flipped'); cardInner.removeAttribute('style'); state.isFlipped = false; renderCard(); }, 200);
+  const wrapper = document.getElementById('card-wrapper'); 
+  wrapper.style.transition = 'opacity 0.2s ease'; 
+  wrapper.style.opacity = '0';
+  
+  setTimeout(() => { 
+    const cardInner = document.getElementById('card-inner'); 
+    cardInner.classList.remove('is-flipped'); 
+    cardInner.removeAttribute('style'); 
+    state.isFlipped = false; 
+    renderCard(); 
+  }, 200);
 }
 
 function updateScoreDisplay() { const done = state.score.acquis + state.score.arevoir; document.getElementById('nav-score-text').textContent = `✓ ${state.score.acquis} / ${done}`; }
