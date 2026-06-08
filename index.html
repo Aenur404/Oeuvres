@@ -1,0 +1,1556 @@
+<!DOCTYPE html>
+<html lang="fr" class="scroll-smooth">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <title>ArtFlash — Révision Histoire de l'Art</title>
+  <meta name="description" content="Application de révision des œuvres d'art sous forme de flashcards pour concours de haut niveau." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      darkMode: 'class',
+      theme: {
+        extend: {
+          fontFamily: {
+            serif: ['Cormorant Garamond', 'Georgia', 'serif'],
+            sans: ['Inter', 'system-ui', 'sans-serif'],
+          },
+          colors: {
+            canvas: { 50: '#faf9f7', 100: '#f3f1ed', 200: '#e8e4dc', 300: '#d5cfc3', 400: '#bfb5a4', 500: '#a89980', 600: '#8f7d64', 700: '#756550', 800: '#5c4f3e', 900: '#3e342a', 950: '#201a14' },
+            ink: { 100: '#e8e6e2', 200: '#c5c2bb', 300: '#a09a8f', 400: '#7a7369', 500: '#4f4940', 600: '#363028', 700: '#201c17', 800: '#130f0b', 900: '#0a0805' },
+            gold: { 300: '#e8c96e', 400: '#d4a82a', 500: '#b8860b' }
+          },
+          animation: {
+            'fade-in': 'fadeIn 0.6s ease-out forwards',
+          },
+          keyframes: {
+            fadeIn: { from: { opacity: '0' }, to: { opacity: '1' } },
+          }
+        }
+      }
+    };
+  </script>
+  <style>
+    * { box-sizing: border-box; }
+    body { font-family: 'Inter', system-ui, sans-serif; min-height: 100vh; transition: background-color 0.4s, color 0.4s; }
+
+    .card-scene { perspective: 1400px; width: 100%; }
+    .card-inner { 
+      position: relative; width: 100%; height: 100%; 
+      transform-style: preserve-3d; transition: transform 0.75s cubic-bezier(0.4, 0.2, 0.2, 1); 
+    }
+    .card-inner.is-flipped { transform: rotateY(180deg); }
+    .card-face { 
+      position: absolute; inset: 0; width: 100%; height: 100%; 
+      backface-visibility: hidden; -webkit-backface-visibility: hidden; transform: translateZ(0); 
+    }
+    .card-face--back { transform: rotateY(180deg) translateZ(0); }
+    .card-wrapper { transition: opacity 0.35s ease; }
+    .progress-bar-inner { transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1); }
+
+    .card-surface { background: #ffffff; border: 1px solid #e8e4dc; box-shadow: 0 4px 24px rgba(0,0,0,0.07), 0 1px 4px rgba(0,0,0,0.05); border-radius: 16px; overflow: hidden; }
+    body.dark .card-surface { background: #1a1814; border-color: #2d2820; box-shadow: 0 4px 32px rgba(0,0,0,0.4), 0 1px 4px rgba(0,0,0,0.3); }
+
+    .image-overlay { background: linear-gradient(to top, rgba(0,0,0,0.55) 0%, rgba(0,0,0,0.1) 50%, transparent 100%); }
+    .consigne-badge { background: rgba(255,255,255,0.12); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.22); color: #fff; border-radius: 99px; padding: 8px 20px; font-family: 'Inter', sans-serif; font-size: 0.78rem; font-weight: 500; letter-spacing: 0.04em; text-transform: uppercase; }
+
+    .mode-card { cursor: pointer; border: 1px solid #e8e4dc; background: #fff; border-radius: 14px; padding: 28px 24px; transition: all 0.25s ease; position: relative; overflow: hidden; }
+    body.dark .mode-card { border-color: #2d2820; background: #1a1814; }
+    .mode-card:hover { transform: translateY(-4px); box-shadow: 0 12px 40px rgba(0,0,0,0.12); border-color: #b8860b; }
+    body.dark .mode-card:hover { box-shadow: 0 12px 40px rgba(0,0,0,0.5); border-color: #d4a82a; }
+    
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: transparent; }
+    ::-webkit-scrollbar-thumb { background: #d5cfc3; border-radius: 3px; }
+    body.dark ::-webkit-scrollbar-thumb { background: #3e342a; }
+
+    .answer-highlight { background: linear-gradient(135deg, #fef9ed 0%, #fdf3d0 100%); border: 1px solid #e8c96e; border-left: 4px solid #b8860b; border-radius: 10px; }
+    body.dark .answer-highlight { background: linear-gradient(135deg, #1f1b0f 0%, #251e0c 100%); border-color: #5a4a1a; border-left-color: #d4a82a; }
+
+    .info-box { border-radius: 10px; border: 1px solid #e8e4dc; background: #faf9f7; }
+    body.dark .info-box { border-color: #2d2820; background: #13110e; }
+    .info-box-blue { border-radius: 10px; border: 1px solid #dbeafe; background: #eff6ff; }
+    body.dark .info-box-blue { border-color: #1e3a5f; background: #0f1e35; }
+
+    .btn-primary { background: linear-gradient(135deg, #b8860b 0%, #d4a82a 100%); color: #fff; border-radius: 10px; padding: 12px 28px; font-weight: 600; font-size: 0.875rem; transition: all 0.2s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    .btn-primary:hover:not(:disabled) { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(184,134,11,0.35); }
+    .btn-primary:disabled { opacity: 0.7; cursor: not-allowed; }
+    .btn-secondary { background: transparent; color: #756550; border-radius: 10px; padding: 12px 28px; font-weight: 500; font-size: 0.875rem; transition: all 0.2s ease; border: 1px solid #d5cfc3; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 8px; }
+    body.dark .btn-secondary { color: #a09a8f; border-color: #3e342a; }
+    .btn-secondary:hover { background: #f3f1ed; border-color: #b8860b; color: #b8860b; }
+    body.dark .btn-secondary:hover { background: #201c17; }
+    
+    .btn-acquired { background: linear-gradient(135deg, #166534 0%, #15803d 100%); color: #fff; border-radius: 10px; padding: 12px 24px; font-weight: 600; font-size: 0.875rem; transition: all 0.2s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-acquired:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(22,101,52,0.3); }
+    .btn-review { background: linear-gradient(135deg, #92400e 0%, #b45309 100%); color: #fff; border-radius: 10px; padding: 12px 24px; font-weight: 600; font-size: 0.875rem; transition: all 0.2s ease; border: none; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; }
+    .btn-review:hover { transform: translateY(-1px); box-shadow: 0 6px 20px rgba(146,64,14,0.3); }
+    .btn-delete { border-radius: 8px; border: 1px solid #fecaca; background: #fef2f2; color: #dc2626; cursor: pointer; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; white-space: nowrap; }
+    .btn-delete:hover { background: #dc2626; color: #fff; border-color: #dc2626; }
+    body.dark .btn-delete { background: #2a1010; border-color: #7f1d1d; color: #f87171; }
+    body.dark .btn-delete:hover { background: #dc2626; color: #fff; }
+
+    .score-badge { background: linear-gradient(135deg, #b8860b20 0%, #d4a82a15 100%); border: 1px solid #e8c96e60; border-radius: 99px; padding: 4px 14px; font-size: 0.78rem; font-weight: 600; color: #b8860b; display: inline-flex; align-items: center; gap: 6px; }
+    body.dark .score-badge { color: #d4a82a; border-color: #5a4a1a; }
+    .result-ring { width: 130px; height: 130px; border-radius: 50%; background: conic-gradient(#b8860b var(--pct, 0%), #e8e4dc var(--pct, 0%)); display: flex; align-items: center; justify-content: center; position: relative; }
+    .result-ring::after { content: ''; width: 90px; height: 90px; border-radius: 50%; background: #faf9f7; position: absolute; }
+    body.dark .result-ring { background: conic-gradient(#d4a82a var(--pct, 0%), #2d2820 var(--pct, 0%)); }
+    body.dark .result-ring::after { background: #0f0e0b; }
+
+    #modal-overlay { position: fixed; inset: 0; z-index: 999; background: rgba(15,14,11,0.7); backdrop-filter: blur(6px); display: flex; align-items: flex-start; justify-content: center; padding: 24px 16px 48px; overflow-y: auto; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #modal-overlay.open { opacity: 1; pointer-events: all; }
+    #modal-box { background: #fff; border-radius: 20px; width: 100%; max-width: 760px; box-shadow: 0 24px 80px rgba(0,0,0,0.25); transform: translateY(24px); transition: transform 0.35s cubic-bezier(0.4,0,0.2,1); }
+    #modal-overlay.open #modal-box { transform: translateY(0); }
+    body.dark #modal-box { background: #1a1814; border: 1px solid #2d2820; }
+    
+    .form-label { display: block; font-size: 0.7rem; font-weight: 600; text-transform: uppercase; letter-spacing: 0.07em; color: #a09a8f; margin-bottom: 5px; }
+    .form-input { width: 100%; padding: 9px 13px; border-radius: 8px; border: 1px solid #e8e4dc; background: #faf9f7; font-size: 0.875rem; font-family: 'Inter', sans-serif; color: #201c17; outline: none; transition: border-color 0.2s, box-shadow 0.2s; }
+    .form-input:focus { border-color: #b8860b; box-shadow: 0 0 0 3px rgba(184,134,11,0.12); }
+    body.dark .form-input { background: #13110e; border-color: #2d2820; color: #e8e6e2; }
+    body.dark .form-input:focus { border-color: #d4a82a; box-shadow: 0 0 0 3px rgba(212,168,42,0.12); }
+    .form-input.error { border-color: #dc2626; box-shadow: 0 0 0 3px rgba(220,38,38,0.1); }
+    
+    #img-preview-wrap { border-radius: 10px; overflow: hidden; height: 130px; background: #1a1814; display: flex; align-items: center; justify-content: center; border: 1px dashed #3e342a; transition: border-color 0.2s; }
+    #img-preview-wrap.has-img { border-style: solid; border-color: #b8860b40; }
+    #img-preview { width: 100%; height: 100%; object-fit: cover; display: none; }
+    #img-preview.visible { display: block; }
+    
+    @keyframes modalShake { 0%,100% { transform: translateX(0); } 20%,60% { transform: translateX(-6px); } 40%,80% { transform: translateX(6px); } }
+    .modal-shake { animation: modalShake 0.4s ease; }
+
+    /* --- SAFE AREA & MOBILE --- */
+    body { padding-bottom: env(safe-area-inset-bottom, 0px); }
+    #app-nav { padding-top: env(safe-area-inset-top, 0px); }
+
+    /* Ensure card image fills properly on all sizes */
+    #card-image { width: 100%; height: 100%; object-fit: cover; display: block; }
+
+    /* Better touch targets on mobile */
+    @media (max-width: 640px) {
+      .btn-acquired, .btn-review { padding: 10px 16px; font-size: 0.82rem; }
+      .btn-primary { padding: 10px 20px; }
+      .btn-secondary { padding: 10px 16px; }
+      #screen-session { padding: 12px 12px 16px; }
+      .card-surface { border-radius: 12px; }
+      /* Prevent text overflow on card back info rows */
+      #card-verso .flex.gap-2.text-sm span:last-child { word-break: break-word; }
+      /* Manage grid: single column on phone */
+      #manage-grid { grid-template-columns: 1fr; }
+    }
+
+    /* Prevent horizontal scroll */
+    html, body { overflow-x: hidden; max-width: 100vw; }
+
+    /* Image loading state */
+    #card-image[src=""], #verso-image[src=""] { display: none; }
+    .img-loading { background: linear-gradient(90deg, #2d2820 0%, #3e342a 50%, #2d2820 100%); background-size: 200% 100%; animation: shimmer 1.4s infinite; }
+    @keyframes shimmer { 0% { background-position: 200% 0; } 100% { background-position: -200% 0; } }
+
+    /* Fix manage screen cards on mobile */
+    #manage-grid .info-box { word-break: break-word; }
+
+    /* Better modal on mobile */
+    @media (max-width: 640px) {
+      #modal-overlay { padding: 0; align-items: flex-end; }
+      #modal-box { border-radius: 20px 20px 0 0; max-height: 92vh; overflow-y: auto; }
+    }
+
+    /* Lightbox touch-friendly close */
+    @media (max-width: 640px) {
+      .lightbox-close { width: 48px; height: 48px; top: 12px; right: 12px; }
+    }
+    #lightbox-overlay { position: fixed; inset: 0; z-index: 1000; background: rgba(0,0,0,0.9); backdrop-filter: blur(8px); display: flex; align-items: center; justify-content: center; padding: 24px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #lightbox-overlay.open { opacity: 1; pointer-events: all; }
+    #lightbox-img { max-width: 100%; max-height: 100vh; object-fit: contain; border-radius: 8px; box-shadow: 0 10px 40px rgba(0,0,0,0.5); transform: scale(0.95); transition: transform 0.3s ease; }
+    #lightbox-overlay.open #lightbox-img { transform: scale(1); }
+    .lightbox-close { position: absolute; top: 20px; right: 20px; color: #fff; background: rgba(255,255,255,0.1); border-radius: 50%; width: 40px; height: 40px; display: flex; align-items: center; justify-content: center; cursor: pointer; transition: background 0.2s; }
+    .lightbox-close:hover { background: rgba(255,255,255,0.2); }
+
+    /* --- BLIND TEST --- */
+    #card-image.blind { filter: blur(var(--blur-amount, 28px)); transition: filter 1.2s ease; }
+    #card-image.blind.reveal-step-1 { filter: blur(18px); }
+    #card-image.blind.reveal-step-2 { filter: blur(9px); }
+    #card-image.blind.reveal-step-3 { filter: blur(3px); }
+    #card-image.blind.revealed { filter: blur(0px); }
+    .blind-reveal-btn { position: absolute; bottom: 60px; right: 16px; background: rgba(255,255,255,0.15); backdrop-filter: blur(12px); border: 1px solid rgba(255,255,255,0.3); color: #fff; border-radius: 99px; padding: 6px 16px; font-size: 0.75rem; font-weight: 600; cursor: pointer; z-index: 10; transition: all 0.2s; letter-spacing: 0.04em; display: none; }
+    .blind-reveal-btn:hover { background: rgba(255,255,255,0.25); }
+    .blind-progress { position: absolute; top: 8px; right: 12px; display: flex; gap: 4px; z-index: 10; }
+    .blind-dot { width: 7px; height: 7px; border-radius: 50%; background: rgba(255,255,255,0.3); transition: background 0.4s; }
+    .blind-dot.active { background: #e8c96e; }
+
+    /* --- TIMER --- */
+    #timer-ring-wrap { position: absolute; top: 10px; right: 10px; z-index: 20; display: none; }
+    .timer-ring { width: 48px; height: 48px; }
+    .timer-ring-bg { fill: none; stroke: rgba(255,255,255,0.15); stroke-width: 4; }
+    .timer-ring-fill { fill: none; stroke: #e8c96e; stroke-width: 4; stroke-linecap: round; stroke-dasharray: 126; stroke-dashoffset: 0; transition: stroke-dashoffset 1s linear, stroke 0.5s; transform: rotate(-90deg); transform-origin: 50% 50%; }
+    .timer-ring-fill.urgent { stroke: #ef4444; }
+    .timer-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.75rem; font-weight: 700; }
+
+    /* --- QUIZ MODE --- */
+    #quiz-options { display: none; padding: 12px 16px; gap: 10px; flex-direction: column; flex-shrink: 0; border-t: 1px solid #e8e4dc; }
+    body.dark #quiz-options { border-color: #2d2820; }
+    #quiz-options.visible { display: flex; }
+    .quiz-btn { width: 100%; padding: 11px 16px; border-radius: 10px; border: 1.5px solid #e8e4dc; background: #faf9f7; text-align: left; font-size: 0.875rem; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; }
+    body.dark .quiz-btn { background: #13110e; border-color: #2d2820; color: #e8e6e2; }
+    .quiz-btn:hover:not(:disabled) { border-color: #b8860b; background: #fef9ed; }
+    body.dark .quiz-btn:hover:not(:disabled) { background: #1f1b0f; }
+    .quiz-btn:disabled { cursor: default; }
+    .quiz-btn.correct { border-color: #16a34a; background: linear-gradient(135deg, #f0fdf4, #dcfce7); color: #166534; font-weight: 600; }
+    body.dark .quiz-btn.correct { background: linear-gradient(135deg, #052e16, #14532d); color: #86efac; border-color: #16a34a; }
+    .quiz-btn.wrong { border-color: #dc2626; background: linear-gradient(135deg, #fff1f2, #fecdd3); color: #991b1b; }
+    body.dark .quiz-btn.wrong { background: linear-gradient(135deg, #1a0a0a, #2d1010); color: #fca5a5; border-color: #dc2626; }
+    .quiz-letter { width: 26px; height: 26px; border-radius: 50%; background: #e8e4dc; color: #756550; font-size: 0.75rem; font-weight: 700; display: flex; align-items: center; justify-content: center; flex-shrink: 0; transition: all 0.2s; }
+    body.dark .quiz-letter { background: #2d2820; color: #a09a8f; }
+    .quiz-btn.correct .quiz-letter { background: #16a34a; color: #fff; }
+    .quiz-btn.wrong .quiz-letter { background: #dc2626; color: #fff; }
+
+    /* --- SESSION CONFIG MODAL --- */
+    #session-config-overlay { position: fixed; inset: 0; z-index: 998; background: rgba(15,14,11,0.6); backdrop-filter: blur(6px); display: flex; align-items: center; justify-content: center; padding: 16px; opacity: 0; pointer-events: none; transition: opacity 0.25s ease; }
+    #session-config-overlay.open { opacity: 1; pointer-events: all; }
+    #session-config-box { background: #fff; border-radius: 20px; width: 100%; max-width: 480px; box-shadow: 0 24px 80px rgba(0,0,0,0.2); transform: scale(0.96); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); padding: 28px; }
+    body.dark #session-config-box { background: #1a1814; border: 1px solid #2d2820; }
+    #session-config-overlay.open #session-config-box { transform: scale(1); }
+    .config-option { border: 2px solid #e8e4dc; border-radius: 12px; padding: 14px 18px; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap-x: 12px; }
+    body.dark .config-option { border-color: #2d2820; }
+    .config-option:hover { border-color: #b8860b; }
+    .config-option.selected { border-color: #b8860b; background: linear-gradient(135deg, #fef9ed 0%, #fdf3d0 100%); }
+    body.dark .config-option.selected { background: linear-gradient(135deg, #1f1b0f 0%, #251e0c 100%); }
+    .timer-chip { display: inline-flex; align-items: center; justify-content: center; border: 1.5px solid #e8e4dc; border-radius: 8px; padding: 8px 14px; cursor: pointer; font-size: 0.85rem; font-weight: 600; transition: all 0.2s; }
+    body.dark .timer-chip { border-color: #2d2820; color: #a09a8f; }
+    .timer-chip:hover { border-color: #b8860b; }
+    .timer-chip.selected { border-color: #b8860b; background: #b8860b; color: #fff; }
+  </style>
+</head>
+<body id="app-body" class="bg-[#faf9f7] text-[#201c17] dark:bg-[#0f0e0b] dark:text-[#e8e6e2]">
+
+<div id="app" class="min-h-screen flex flex-col">
+
+<div id="loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#faf9f7] dark:bg-[#0f0e0b] transition-opacity duration-500">
+    <div class="w-12 h-12 border-4 border-solid rounded-full animate-spin mb-4" style="border-color: #e8e4dc; border-top-color: #b8860b;"></div>
+    <p class="font-serif text-lg font-medium" style="color: #a09a8f;">Connexion à la base de données...</p>
+  </div>
+
+  <nav id="app-nav" class="hidden sticky top-0 z-50 border-b" style="background: rgba(250,249,247,0.85); backdrop-filter: blur(16px); border-color: #e8e4dc;">
+    <div class="max-w-5xl mx-auto px-4 py-3 flex items-center justify-between">
+      <button id="nav-home-btn" onclick="goHome()" class="flex items-center gap-3 group">
+        <span class="text-2xl" style="font-family: 'Cormorant Garamond', serif; font-weight: 600; letter-spacing: -0.01em;">ArtFlash</span>
+        <span class="text-xs font-medium px-2 py-0.5 rounded-full" style="background: #b8860b15; color: #b8860b; border: 1px solid #e8c96e60;">Révision</span>
+      </button>
+      <div class="flex items-center gap-2 md:gap-3">
+        <div id="nav-score" class="score-badge hidden"><span id="nav-score-text">0 / 0</span></div>
+        <button onclick="showManageScreen()" class="btn-secondary text-xs px-2 md:px-3 py-1.5 h-9">
+          <svg width="14" height="14" viewBox="0 0 16 16" fill="none" class="flex-shrink-0"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+          <span class="hidden sm:inline">Gérer les œuvres</span>
+        </button>
+        <button id="dark-toggle" onclick="toggleDark()" class="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110 flex-shrink-0" style="border: 1px solid #e8e4dc;">
+          <span id="dark-icon" class="text-base">🌙</span>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <main class="flex-1 flex flex-col">
+
+    <section id="screen-home" class="flex-1 flex flex-col">
+      <div class="relative overflow-hidden" style="background: linear-gradient(135deg, #1a1410 0%, #2d2215 40%, #1a1410 100%); min-height: 260px;">
+        <div class="absolute inset-0 opacity-10" style="background-image: repeating-linear-gradient(45deg, transparent, transparent 40px, rgba(255,255,255,0.03) 40px, rgba(255,255,255,0.03) 80px);"></div>
+        <div class="relative max-w-5xl mx-auto px-4 md:px-6 py-10 md:py-16 text-center">
+          <div class="inline-flex items-center gap-2 mb-4 md:mb-6 px-4 py-2 rounded-full text-xs font-medium tracking-widest uppercase" style="background: rgba(184,134,11,0.15); border: 1px solid rgba(212,168,42,0.3); color: #e8c96e;">
+            ✦ Concours Arts Plastiques
+          </div>
+          <h1 class="font-serif text-3xl md:text-6xl font-light text-white mb-4">
+            Révisez les œuvres<br/><em style="font-style: italic; color: #e8c96e;">majeures</em> de l'histoire de l'art
+          </h1>
+        </div>
+      </div>
+
+      <div class="flex-1 max-w-5xl mx-auto w-full px-4 md:px-6 py-8 md:py-12">
+        <h2 class="font-serif text-2xl md:text-3xl font-light mb-8">Choisissez votre mode de révision</h2>
+        
+        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3 md:gap-4 mb-8 md:mb-10">
+          <button onclick="startSmartSession()" class="w-full rounded-xl py-6 md:py-8 px-5 md:px-6 flex flex-col items-center justify-center transition-all hover:-translate-y-1 hover:shadow-2xl" style="background: linear-gradient(135deg, #166534 0%, #064e3b 100%); border: 1px solid #22c55e;">
+            <span class="text-3xl mb-3 text-white">🧠</span>
+            <h3 class="font-serif text-2xl font-medium text-white mb-2">Révision du jour</h3>
+            <p class="text-sm text-center" style="color: #bbf7d0;">Algorithme intelligent. Révisez ce que vous êtes sur le point d'oublier.</p>
+          </button>
+
+          <button onclick="openTagsScreen()" class="w-full rounded-xl py-6 md:py-8 px-5 md:px-6 flex flex-col items-center justify-center transition-all hover:-translate-y-1 hover:shadow-2xl" style="background: linear-gradient(135deg, #4f46e5 0%, #312e81 100%); border: 1px solid #6366f1;">
+            <span class="text-3xl mb-3 text-white">🔀</span>
+            <h3 class="font-serif text-2xl font-medium text-white mb-2">Filtres croisés</h3>
+            <p class="text-sm text-center" style="color: #c7d2fe;">Combinez thèmes, époques et notions pour un ciblage précis.</p>
+          </button>
+
+          <button onclick="openConfigModal(oeuvres, 'Mode Libre')" class="w-full rounded-xl py-6 md:py-8 px-5 md:px-6 flex flex-col items-center justify-center transition-all hover:-translate-y-1 hover:shadow-2xl" style="background: linear-gradient(135deg, #2d2215 0%, #1a1410 100%); border: 1px solid #b8860b;">
+            <span class="text-3xl mb-3 text-white">✦</span>
+            <h3 class="font-serif text-2xl font-medium text-white mb-2">Mode Libre</h3>
+            <p class="text-sm text-center" style="color: #e8c96e;">Toutes les œuvres en aléatoire. Identifiez l'auteur, titre et date.</p>
+          </button>
+        </div>
+
+        <h3 class="font-serif text-xl font-light mb-4">Révisions ciblées</h3>
+        <div id="mode-selection-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-8"></div>
+
+        <div class="flex flex-wrap items-center justify-center gap-6 mt-10 pt-8" style="border-top: 1px solid #e8e4dc;">
+          <div class="text-center"><div class="font-serif text-3xl font-light" style="color: #b8860b;" id="stat-total">0</div><div class="text-xs font-medium mt-1" style="color: #a09a8f;">Œuvres</div></div>
+          <div style="width: 1px; height: 36px; background: #e8e4dc;"></div>
+          <div class="text-center"><div class="font-serif text-3xl font-light" id="stat-epochs" style="color: #b8860b;">—</div><div class="text-xs font-medium mt-1" style="color: #a09a8f;">Époques</div></div>
+          <div style="width: 1px; height: 36px; background: #e8e4dc;"></div>
+          <div class="text-center"><div class="font-serif text-3xl font-light" id="stat-movements" style="color: #b8860b;">—</div><div class="text-xs font-medium mt-1" style="color: #a09a8f;">Mouvements</div></div>
+          <div style="width: 1px; height: 36px; background: #e8e4dc;"></div>
+          <div class="text-center"><div class="font-serif text-3xl font-light" id="stat-questions" style="color: #b8860b;">—</div><div class="text-xs font-medium mt-1" style="color: #a09a8f;">Questionnements</div></div>
+        </div>
+
+        <div id="stats-dashboard" class="mt-10 pt-8" style="border-top: 1px solid #e8e4dc;">
+          <h3 class="font-serif text-xl font-light mb-4">Vos Statistiques</h3>
+          <div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+            <div class="info-box p-4 text-center"><div id="stat-sessions" class="font-serif text-2xl" style="color: #b8860b;">0</div><div class="text-xs mt-1" style="color: #a09a8f;">Sessions terminées</div></div>
+            <div class="info-box p-4 text-center"><div id="stat-vues" class="font-serif text-2xl" style="color: #b8860b;">0</div><div class="text-xs mt-1" style="color: #a09a8f;">Cartes révisées</div></div>
+            <div class="info-box p-4 text-center"><div id="stat-taux" class="font-serif text-2xl" style="color: #b8860b;">0%</div><div class="text-xs mt-1" style="color: #a09a8f;">Taux de réussite global</div></div>
+          </div>
+        </div>
+<div class="mt-10 pt-8" style="border-top: 1px solid #e8e4dc;">
+          <div class="flex flex-col sm:flex-row items-center justify-between p-6 rounded-xl border border-gray-200 dark:border-[#2d2820] bg-white dark:bg-[#1a1814]">
+            <div>
+              <h3 class="font-serif text-xl font-light mb-1">Base de données des œuvres</h3>
+              <p class="text-sm" style="color: #a09a8f;">Visualisez, modifiez et ajoutez de nouvelles cartes (avec IA) à votre deck de révision.</p>
+            </div>
+            <button onclick="showManageScreen()" class="btn-secondary flex-shrink-0 mt-4 sm:mt-0">
+              <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mr-2"><path d="M2 4h12M2 8h12M2 12h12" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+              Gérer la base de données
+            </button>
+          </div>
+        </div>
+
+      </div>
+    </section>
+
+    <section id="screen-manage" class="hidden flex-1 flex-col max-w-5xl mx-auto w-full px-4 md:px-6 py-6 md:py-10">
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
+        <div>
+          <button onclick="goHome()" class="flex items-center gap-2 text-sm mb-4 transition-all hover:gap-3" style="color: #a09a8f;">
+            <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+            Retour à l'accueil
+          </button>
+          <h2 class="font-serif text-3xl font-light">Base de données des œuvres</h2>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <label class="btn-secondary flex-shrink-0 cursor-pointer m-0">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 1v9m-3-3l3 3 3-3m-5 4h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Importer JSON
+            <input type="file" accept=".json" class="hidden" onchange="importJSON(event)">
+          </label>
+          <button onclick="exportJSON()" class="btn-secondary flex-shrink-0">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 10V1m-3 3l3-3 3 3m-5 10h6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg>
+            Exporter JSON
+          </button>
+          <button onclick="openModal()" class="btn-primary flex-shrink-0">
+            <svg width="15" height="15" viewBox="0 0 15 15" fill="none"><path d="M7.5 2v11M2 7.5h11" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+            Ajouter une œuvre
+          </button>
+        </div>
+      </div>
+      <div id="manage-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4"></div>
+    </section>
+
+    <section id="screen-tags" class="hidden flex-1 flex-col max-w-5xl mx-auto w-full px-4 md:px-6 py-6 md:py-10">
+      <button onclick="goHome()" class="flex items-center gap-2 text-sm mb-8 transition-all hover:gap-3" style="color: #a09a8f;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Retour à l'accueil
+      </button>
+      <div class="flex flex-col md:flex-row items-start md:items-center justify-between mb-8 gap-4">
+        <div>
+          <h2 class="font-serif text-3xl font-light mb-2">Filtres croisés</h2>
+          <p class="text-sm" style="color: #a09a8f;">Sélectionnez plusieurs critères pour créer une session sur-mesure.</p>
+        </div>
+        <button id="btn-start-tags" onclick="startTaggedSession()" class="btn-primary flex-shrink-0" disabled>
+          Lancer la session (0)
+        </button>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white dark:bg-[#1a1814] p-6 rounded-xl border border-[#e8e4dc] dark:border-[#2d2820]">
+        <div><h3 class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: #b8860b;">Époques</h3><div id="tags-epoque" class="flex flex-wrap gap-2"></div></div>
+        <div><h3 class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: #b8860b;">Mouvements</h3><div id="tags-mouvement" class="flex flex-wrap gap-2"></div></div>
+        <div><h3 class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: #b8860b;">Thèmes</h3><div id="tags-theme" class="flex flex-wrap gap-2"></div></div>
+        <div><h3 class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: #b8860b;">Questionnements</h3><div id="tags-questionnement" class="flex flex-wrap gap-2"></div></div>
+        <div class="md:col-span-2"><h3 class="text-xs font-semibold tracking-widest uppercase mb-4" style="color: #b8860b;">Notions</h3><div id="tags-notions" class="flex flex-wrap gap-2"></div></div>
+      </div>
+    </section>
+
+    <section id="screen-subselect" class="hidden flex-1 max-w-5xl mx-auto w-full px-4 md:px-6 py-6 md:py-10">
+      <button onclick="goHome()" class="flex items-center gap-2 text-sm mb-8 transition-all hover:gap-3" style="color: #a09a8f;">
+        <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
+        Retour aux modes
+      </button>
+      <h2 id="subselect-title" class="font-serif text-2xl md:text-3xl font-light mb-2"></h2>
+      <p class="text-sm mb-8" style="color: #a09a8f;">Choisissez une valeur pour filtrer les œuvres de la session.</p>
+      <div id="subselect-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3"></div>
+    </section>
+
+    <section id="screen-session" class="hidden flex-1 flex flex-col max-w-4xl mx-auto w-full px-4 md:px-6 py-8">
+      <div class="flex items-center justify-between mb-6">
+        <button onclick="goHome()" class="flex items-center gap-2 text-sm transition-all hover:gap-3" style="color: #a09a8f;">
+          <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M10 3L5 8L10 13" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg> Quitter
+        </button>
+        <div class="flex items-center gap-4">
+          <span id="session-label" class="text-xs font-medium px-3 py-1 rounded-full" style="background: #b8860b15; color: #b8860b; border: 1px solid #e8c96e50;"></span>
+          <span id="session-counter" class="text-sm font-medium" style="color: #a09a8f;"></span>
+        </div>
+      </div>
+
+      <div class="w-full h-1 rounded-full mb-8" style="background: #e8e4dc;">
+        <div id="progress-bar" class="progress-bar-inner h-full rounded-full" style="background: linear-gradient(to right, #b8860b, #d4a82a); width: 0%;"></div>
+      </div>
+
+      <div class="card-scene w-full mb-8" style="height: clamp(480px, 75vh, 850px);">
+        <div id="card-wrapper" class="card-wrapper w-full h-full">
+          <div id="card-inner" class="card-inner">
+
+            <div class="card-face card-face--front" id="card-recto">
+              <div class="card-surface flex flex-col h-full w-full justify-start bg-white dark:bg-[#1a1814]">
+                
+                <div class="relative w-full overflow-hidden bg-[#1a1814]" style="height: clamp(220px, 52vh, 460px); flex-shrink: 0;">
+                  <img id="card-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover cursor-pointer hover:opacity-90 transition-opacity" onclick="flipCard()" title="Taper pour retourner" style="color: transparent;" />
+                  <div class="image-overlay absolute inset-0 pointer-events-none"></div>
+                  <div class="absolute top-4 left-4 pointer-events-none"><span id="recto-counter" class="text-xs font-medium text-white opacity-70"></span></div>
+                  <!-- BLIND REVEAL DOTS -->
+                  <div class="blind-progress" id="blind-dots"></div>
+                  <!-- TIMER RING -->
+                  <div id="timer-ring-wrap">
+                    <svg class="timer-ring" viewBox="0 0 48 48">
+                      <circle class="timer-ring-bg" cx="24" cy="24" r="20"/>
+                      <circle class="timer-ring-fill" id="timer-ring-fill" cx="24" cy="24" r="20"/>
+                    </svg>
+                    <div class="timer-text" id="timer-text">–</div>
+                  </div>
+                  <!-- BLIND REVEAL BUTTON -->
+                  <button class="blind-reveal-btn" id="blind-reveal-btn" onclick="revealBlind()">👁 Révéler</button>
+                  <div class="absolute bottom-0 left-0 right-0 p-6 flex flex-col items-center gap-3 pointer-events-none">
+                    <div class="consigne-badge" id="recto-consigne"></div>
+                  </div>
+                </div>
+                
+                <div class="px-4 md:px-6 py-3 md:py-4 flex justify-center items-center flex-shrink-0 border-t border-[#e8e4dc] dark:border-[#2d2820]" id="flip-btn-row">
+                  <button onclick="flipCard()" class="btn-primary shadow-sm hover:shadow-md transition-all">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8C2 4.686 4.686 2 8 2s6 2.686 6 6-2.686 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 6L8 8M8 8L6 6M8 8V2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Retourner la carte
+                  </button>
+                </div>
+                <!-- QUIZ OPTIONS (hidden in non-quiz mode) -->
+                <div id="quiz-options" class="bg-white dark:bg-[#1a1814]">
+                  <div id="quiz-question-label" class="text-xs font-semibold uppercase tracking-widest mb-2 px-1" style="color:#b8860b;"></div>
+                  <button class="quiz-btn" id="qbtn-0" onclick="answerQuiz(0)"><span class="quiz-letter">A</span><span class="quiz-text"></span></button>
+                  <button class="quiz-btn" id="qbtn-1" onclick="answerQuiz(1)"><span class="quiz-letter">B</span><span class="quiz-text"></span></button>
+                  <button class="quiz-btn" id="qbtn-2" onclick="answerQuiz(2)"><span class="quiz-letter">C</span><span class="quiz-text"></span></button>
+                  <button class="quiz-btn" id="qbtn-3" onclick="answerQuiz(3)"><span class="quiz-letter">D</span><span class="quiz-text"></span></button>
+                  <div id="quiz-next-row" class="hidden pt-2 flex gap-2">
+                    <button onclick="quizNext(true)" class="btn-acquired flex-1 justify-center text-sm py-2">✓ Acquis</button>
+                    <button onclick="quizNext(false)" class="btn-review flex-1 justify-center text-sm py-2">↺ À revoir</button>
+                  </div>
+                </div>
+                
+              </div>
+            </div>
+
+            <div class="card-face card-face--back" id="card-verso">
+              <div class="card-surface flex flex-col h-full w-full">
+                
+                <div class="flex-1 overflow-y-auto overflow-x-hidden">
+                  <div class="flex flex-col md:flex-row">
+                    <div class="md:w-56 flex-shrink-0 bg-[#1a1814] overflow-hidden relative cursor-pointer" style="height: clamp(160px, 28vw, 220px);" onclick="openLightbox(document.getElementById('verso-image').src)" title="Cliquez pour zoomer">
+                      <img id="verso-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover hover:opacity-90 transition-opacity" style="color: transparent;" />
+                    </div>
+                    <div class="flex-1 p-5 md:p-6 min-w-0">
+                      <div class="answer-highlight px-4 py-3 mb-4">
+                        <div class="text-xs font-semibold tracking-widest uppercase mb-1" style="color: #b8860b; opacity: 0.7;" id="answer-label"></div>
+                        <div class="font-serif text-lg font-semibold" id="answer-value" style="color: #b8860b; line-height: 1.3;"></div>
+                      </div>
+                      <div class="space-y-1.5 mb-4">
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Auteur</span><span id="verso-auteur" class="font-serif text-base font-medium truncate"></span></div>
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Titre</span><span id="verso-titre" class="font-serif italic text-base break-words"></span></div>
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Date</span><span id="verso-date"></span></div>
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Dimensions</span><span id="verso-dimensions" class="text-xs mt-0.5"></span></div>
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Matériaux</span><span id="verso-materiaux" class="text-xs mt-0.5 line-clamp-2"></span></div>
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Mouvement</span><span id="verso-mouvement" class="text-xs mt-0.5"></span></div>
+                        <div class="flex gap-2 text-sm"><span class="font-semibold w-20 flex-shrink-0" style="color: #a09a8f;">Notions</span><span id="verso-notions" class="text-xs mt-0.5" style="color: #b8860b;"></span></div>
+                      </div>
+                    </div>
+                  </div>
+
+                  <div class="px-5 md:px-6 pb-5 md:pb-6 grid grid-cols-1 md:grid-cols-2 gap-4">
+                    <div class="info-box p-4"><div class="flex items-center gap-2 mb-2"><span class="w-1.5 h-1.5 rounded-full" style="background: #b8860b; flex-shrink:0;"></span><span class="text-xs font-semibold tracking-widest uppercase" style="color: #b8860b;">Description Plastique</span></div><p id="verso-plastique" class="text-sm leading-relaxed" style="color: #756550;"></p></div>
+                    <div class="info-box-blue p-4"><div class="flex items-center gap-2 mb-2"><span class="w-1.5 h-1.5 rounded-full" style="background: #3b82f6; flex-shrink:0;"></span><span class="text-xs font-semibold tracking-widest uppercase" style="color: #3b82f6;">Description Sémantique</span></div><p id="verso-semantique" class="text-sm leading-relaxed" style="color: #375c8c;"></p></div>
+                  </div>
+
+                  <div class="px-5 md:px-6 pb-6" id="verso-extra-container">
+                    <div id="verso-problematique-wrap" class="hidden mb-4"><div class="p-4 rounded-lg" style="background: linear-gradient(135deg, #fef2f2 0%, #fefce8 100%); border-left: 4px solid #dc2626;"><div class="flex items-center gap-2 mb-1"><span class="text-lg">🎓</span><span class="text-xs font-bold tracking-widest uppercase" style="color: #991b1b;">Problématique Concours</span></div><p id="verso-problematique" class="text-sm font-medium font-serif italic" style="color: #7f1d1d;"></p></div></div>
+                    <div id="verso-citation-wrap" class="mb-4 hidden"><blockquote class="pl-4 border-l-4 italic text-sm" style="border-color: #b8860b;" id="verso-citation"></blockquote></div>
+                    <div id="verso-biblio-wrap" class="hidden text-xs"><span class="font-semibold uppercase tracking-widest" style="color: #a09a8f;">Bibliographie : </span><span id="verso-biblio" class="font-medium"></span></div>
+                  </div>
+                </div>
+
+                <div class="px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row gap-2 md:gap-3 justify-center flex-shrink-0 bg-white dark:bg-[#1a1814] border-t border-[#e8e4dc] dark:border-[#2d2820]">
+                  <button onclick="nextCard(true)" class="btn-acquired flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Suivant — Acquis</button>
+                  <button onclick="nextCard(false)" class="btn-review flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v5.5M8 11v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Suivant — À revoir</button>
+                </div>
+
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="screen-results" class="hidden flex-1 flex items-center justify-center px-6 py-12">
+      <div class="text-center max-w-lg w-full animate-fade-in">
+        <div class="flex justify-center mb-8"><div class="result-ring" id="result-ring"><div class="relative z-10 text-center"><div class="font-serif text-3xl font-light" id="result-score-display"></div><div class="text-xs mt-0.5" style="color: #a09a8f;">acquises</div></div></div></div>
+        <h2 class="font-serif text-3xl font-light mb-3">Session terminée</h2>
+        <p class="text-sm mb-2" id="result-subtitle" style="color: #a09a8f; line-height: 1.7;"></p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center mt-8">
+          <button id="result-retry-btn" class="btn-primary justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M14 8A6 6 0 1 0 2.5 12.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M2 14.5V12h2.5" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> Recommencer</button>
+          <button onclick="goHome()" class="btn-secondary justify-center">Choisir un autre mode</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer class="py-6 text-center text-xs" style="color: #c5c2bb; border-top: 1px solid #e8e4dc;">ArtFlash · Outil de révision pour concours · Histoire de l'art &amp; Arts plastiques</footer>
+</div>
+
+<div id="modal-overlay" role="dialog" aria-modal="true" aria-labelledby="modal-title" onclick="handleOverlayClick(event)">
+  <div id="modal-box">
+    <div class="flex items-center justify-between px-6 pt-6 pb-4" style="border-bottom: 1px solid #e8e4dc;">
+      <div><h2 id="modal-title" class="font-serif text-2xl font-light">Ajouter une œuvre</h2><p class="text-xs mt-1" style="color: #a09a8f;">Tous les champs marqués * sont obligatoires.</p></div>
+      <button onclick="closeModal()" id="modal-close-btn" class="w-9 h-9 rounded-full flex items-center justify-center transition-all hover:scale-110" style="border: 1px solid #e8e4dc; color: #a09a8f;" aria-label="Fermer"><svg width="14" height="14" viewBox="0 0 14 14" fill="none"><path d="M2 2l10 10M12 2L2 12" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/></svg></button>
+    </div>
+
+    <form id="add-oeuvre-form" onsubmit="submitNewOeuvre(event)" novalidate>
+      <div class="px-6 py-5 grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div class="sm:col-span-2 flex flex-col sm:flex-row items-end gap-3 p-4 rounded-xl mb-2" style="background: rgba(139, 92, 246, 0.05); border: 1px dashed rgba(139, 92, 246, 0.3);">
+          <div class="flex-1 w-full"><label class="form-label" for="f-auteur">Auteur *</label><input type="text" id="f-auteur" class="form-input" placeholder="ex : Marcel Duchamp" required /></div>
+          <div class="flex-1 w-full"><label class="form-label" for="f-titre">Titre *</label><input type="text" id="f-titre" class="form-input" placeholder="ex : Fontaine" required /></div>
+          <button type="button" onclick="autoFillWithAI()" id="btn-ai-fill" class="btn-primary flex-shrink-0 w-full sm:w-auto" style="background: linear-gradient(135deg, #8b5cf6 0%, #6d28d9 100%); margin-bottom: 1px;">✨ Remplir avec l'IA</button>
+        </div>
+
+        <div class="sm:col-span-2">
+          <label class="form-label" for="f-image">URL de l'image</label>
+          <div class="flex gap-3">
+            <div class="flex-1 flex flex-col gap-2">
+              <input type="url" id="f-image" class="form-input" placeholder="https://..." oninput="previewImage(this.value)" />
+              <button type="button" onclick="autoFillImageOnly()" id="btn-fetch-img" class="btn-secondary text-xs py-1.5 px-3 self-start" style="border-color: #d5cfc3;">
+                🖼️ Chercher l'image sur Wiki
+              </button>
+            </div>
+            <div id="img-preview-wrap" style="width: 180px; flex-shrink:0;">
+              <img id="img-preview" src="" alt="Aperçu" />
+              <span id="img-placeholder-text" class="text-xs" style="color:#5a4a2a;">Aperçu</span>
+            </div>
+          </div>
+        </div>
+        <div><label class="form-label" for="f-date">Date *</label><input type="text" id="f-date" class="form-input" placeholder="ex : 1917" required /></div>
+        <div><label class="form-label" for="f-dimensions">Dimensions</label><input type="text" id="f-dimensions" class="form-input" placeholder="ex : 36 × 48 cm" /></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-materiaux">Matériaux / Supports</label><input type="text" id="f-materiaux" class="form-input" placeholder="ex : Urinoir en faïence" /></div>
+        <div><label class="form-label" for="f-epoque">Époque *</label><input type="text" id="f-epoque" class="form-input" list="dl-epoque" placeholder="ex : XXe siècle" required /><datalist id="dl-epoque"></datalist></div>
+        <div><label class="form-label" for="f-mouvement">Mouvement *</label><input type="text" id="f-mouvement" class="form-input" list="dl-mouvement" placeholder="ex : Dadaïsme" required /><datalist id="dl-mouvement"></datalist></div>
+        <div><label class="form-label" for="f-theme">Thème *</label><input type="text" id="f-theme" class="form-input" list="dl-theme" placeholder="ex : Le statut de l'objet" required /><datalist id="dl-theme"></datalist></div>
+        <div><label class="form-label" for="f-questionnement">Questionnement *</label><input type="text" id="f-questionnement" class="form-input" list="dl-questionnement" placeholder="ex : Le statut de l'objet" required /><datalist id="dl-questionnement"></datalist></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-notions">Notions plastiques</label><input type="text" id="f-notions" class="form-input" placeholder="ex : Espace, Corps, Lumière..." /></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-plastique">Description Plastique</label><textarea id="f-plastique" class="form-input form-textarea" placeholder="Analyse de la forme, couleur, espace, matière…"></textarea></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-semantique">Description Sémantique</label><textarea id="f-semantique" class="form-input form-textarea" placeholder="Analyse du sens, portée, concepts…"></textarea></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-problematique">Problématique Concours (CAPES/Agrég)</label><input type="text" id="f-problematique" class="form-input" placeholder="ex : En quoi la rupture avec la perspective redéfinit-elle l'espace ?" /></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-citation">Citation clé (optionnel)</label><textarea id="f-citation" class="form-input" style="min-height: 50px;" placeholder="ex : C'est le regardeur qui fait l'œuvre"></textarea></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-citation-auteur">Auteur de la citation (optionnel)</label><input type="text" id="f-citation-auteur" class="form-input" placeholder="ex : Marcel Duchamp" /></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-bibliographie">Bibliographie / Référence (optionnel)</label><input type="text" id="f-bibliographie" class="form-input" placeholder="ex : E. Gombrich, Histoire de l'Art" /></div>
+      </div>
+      <div class="px-6 py-4 flex flex-col sm:flex-row items-center justify-between gap-3" style="border-top: 1px solid #e8e4dc;">
+        <p id="form-error-msg" class="text-xs text-red-500 hidden">Veuillez remplir tous les champs obligatoires (*).</p>
+        <div class="flex gap-3 w-full sm:w-auto">
+          <button type="button" onclick="closeModal()" class="btn-secondary flex-1 sm:flex-none justify-center">Annuler</button>
+          <button type="submit" id="form-submit-btn" class="btn-primary flex-1 sm:flex-none justify-center">Enregistrer l'œuvre</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>
+
+<div id="lightbox-overlay" onclick="closeLightbox()">
+  <div class="lightbox-close"><svg width="20" height="20" viewBox="0 0 20 20" fill="none"><path d="M3 3l14 14M17 3L3 17" stroke="currentColor" stroke-width="2" stroke-linecap="round"/></svg></div>
+  <img id="lightbox-img" src="" alt="Zoom" />
+</div>
+
+<!-- SESSION CONFIG MODAL -->
+<div id="session-config-overlay">
+  <div id="session-config-box">
+    <h2 class="font-serif text-2xl font-light mb-1" id="config-title">Configurer la session</h2>
+    <p class="text-sm mb-6" style="color:#a09a8f;" id="config-subtitle">Choisissez vos options avant de commencer.</p>
+
+    <div class="mb-5">
+      <div class="text-xs font-semibold uppercase tracking-widest mb-3" style="color:#b8860b;">Mode d'affichage</div>
+      <div class="grid grid-cols-1 gap-3">
+        <label class="config-option selected flex items-center gap-3 cursor-pointer" id="opt-normal">
+          <input type="radio" name="display-mode" value="normal" class="hidden" checked>
+          <span class="text-2xl">🃏</span>
+          <div>
+            <div class="font-semibold text-sm">Mode classique</div>
+            <div class="text-xs mt-0.5" style="color:#a09a8f;">L'image est visible, retournez la carte pour la réponse</div>
+          </div>
+        </label>
+        <label class="config-option flex items-center gap-3 cursor-pointer" id="opt-blind">
+          <input type="radio" name="display-mode" value="blind" class="hidden">
+          <span class="text-2xl">🌫️</span>
+          <div>
+            <div class="font-semibold text-sm">Blind Test</div>
+            <div class="text-xs mt-0.5" style="color:#a09a8f;">Image flouée, se révèle progressivement toutes les 5s</div>
+          </div>
+        </label>
+        <label class="config-option flex items-center gap-3 cursor-pointer" id="opt-quiz">
+          <input type="radio" name="display-mode" value="quiz" class="hidden">
+          <span class="text-2xl">🎯</span>
+          <div>
+            <div class="font-semibold text-sm">Mode Quiz (QCM)</div>
+            <div class="text-xs mt-0.5" style="color:#a09a8f;">Choisissez parmi 4 propositions, feedback immédiat</div>
+          </div>
+        </label>
+      </div>
+    </div>
+
+    <div class="mb-6" id="timer-section">
+      <div class="text-xs font-semibold uppercase tracking-widest mb-3" style="color:#b8860b;">Minuteur par carte</div>
+      <div class="flex flex-wrap gap-2" id="timer-chips">
+        <button class="timer-chip selected" data-val="0" onclick="selectTimer(this)">Sans limite</button>
+        <button class="timer-chip" data-val="20" onclick="selectTimer(this)">20s</button>
+        <button class="timer-chip" data-val="30" onclick="selectTimer(this)">30s</button>
+        <button class="timer-chip" data-val="45" onclick="selectTimer(this)">45s</button>
+        <button class="timer-chip" data-val="60" onclick="selectTimer(this)">60s</button>
+        <button class="timer-chip" data-val="90" onclick="selectTimer(this)">90s</button>
+      </div>
+    </div>
+
+    <div class="flex gap-3">
+      <button onclick="closeConfigModal()" class="btn-secondary flex-1 justify-center">Annuler</button>
+      <button onclick="launchConfiguredSession()" class="btn-primary flex-1 justify-center">Lancer ✦</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ================================================================
+   STATISTIQUES ET APPRENTISSAGE
+================================================================ */
+const STATS_KEY = 'artflash_stats';
+const PROGRESS_KEY = 'artflash_progress';
+const LS_KEY = 'artflash_custom_oeuvres';
+
+let userStats = { sessions: 0, cartesVues: 0, cartesAcquises: 0 };
+let learningProgress = {};
+const SRS_INTERVALS = [1, 3, 7, 15, 30]; 
+
+function loadStats() { try { const raw = localStorage.getItem(STATS_KEY); if (raw) userStats = JSON.parse(raw); } catch(e){} }
+function saveStats() { try { localStorage.setItem(STATS_KEY, JSON.stringify(userStats)); } catch(e){} }
+function renderStatsDashboard() {
+  document.getElementById('stat-sessions').textContent = userStats.sessions;
+  document.getElementById('stat-vues').textContent = userStats.cartesVues;
+  const taux = userStats.cartesVues > 0 ? Math.round((userStats.cartesAcquises / userStats.cartesVues) * 100) : 0;
+  document.getElementById('stat-taux').textContent = taux + '%';
+}
+
+function loadProgress() { try { const raw = localStorage.getItem(PROGRESS_KEY); if (raw) learningProgress = JSON.parse(raw); } catch(e){} }
+function saveProgress() { try { localStorage.setItem(PROGRESS_KEY, JSON.stringify(learningProgress)); } catch(e){} }
+
+function updateCardProgress(oeuvreId, isAcquired) {
+  if (!learningProgress[oeuvreId]) learningProgress[oeuvreId] = { level: 0, nextReview: 0 };
+  let p = learningProgress[oeuvreId]; const now = Date.now();
+  if (isAcquired) {
+    p.level += 1;
+    const intervalIndex = Math.min(p.level - 1, SRS_INTERVALS.length - 1);
+    p.nextReview = now + (SRS_INTERVALS[intervalIndex] * 24 * 60 * 60 * 1000); 
+  } else {
+    p.level = 0; p.nextReview = now; 
+  }
+  saveProgress();
+}
+
+function startSmartSession() {
+  const now = Date.now();
+  const dueCards = oeuvres.filter(o => { const p = learningProgress[o.id]; return !p || p.nextReview <= now; });
+  if (dueCards.length === 0) { showToast("🎉 Vous êtes à jour ! Revenez demain ou utilisez le mode libre."); return; }
+  const sessionCards = shuffle(dueCards).slice(0, 20);
+  state.currentMode = 'libre'; state.currentFilter = "Révision du jour";
+  openConfigModal(sessionCards, 'Révision du jour');
+}
+
+
+/* ================================================================
+   BASE DE DONNÉES DES ŒUVRES
+================================================================ */
+let oeuvres = [];
+
+async function chargerOeuvresDepuisGithub() {
+  const githubUrl = "VOTRE_URL_RAW_GITHUB_ICI"; // N'oubliez pas de remettre votre lien !
+  
+  // 1. On vérifie si la base est déjà en mémoire pour cette session (Évite le lag aux rechargements)
+  const cache = sessionStorage.getItem('artflash_github_cache');
+  if (cache) {
+    oeuvres = JSON.parse(cache);
+    return; // On arrête la fonction ici, c'est instantané !
+  }
+
+  // 2. Si elle n'est pas en mémoire, on va la chercher sur GitHub
+  try {
+    const reponse = await fetch(githubUrl);
+    if (!reponse.ok) throw new Error("Erreur réseau");
+    
+    const data = await reponse.json();
+    oeuvres = data;
+    
+    // 3. On sauvegarde la réponse en mémoire temporaire pour la prochaine fois
+    sessionStorage.setItem('artflash_github_cache', JSON.stringify(data));
+    
+  } catch (erreur) {
+    console.error("Impossible de charger les œuvres:", erreur);
+    showToast("⚠️ Impossible de charger la base de données officielle. Vérifiez votre connexion.");
+  }
+}
+
+/* ================================================================
+   ÉTAT ET MODES
+================================================================ */
+const state = { currentMode: null, currentFilter: null, deck: [], currentIndex: 0, score: { acquis: 0, arevoir: 0 }, isFlipped: false, darkMode: false };
+
+const MODES = [
+  { id: 'epoque', label: 'Par Époque', icon: '🏛️', description: 'Naviguez à travers les grandes périodes', key: 'epoque', consigne: () => `À quelle époque rattachez-vous cette œuvre ?`, answerLabel: 'Époque', answerKey: 'epoque' },
+  { id: 'theme', label: 'Par Thème', icon: '🎭', description: 'Entrées iconographiques et notions', key: 'theme', consigne: () => `Quel est le thème iconographique ?`, answerLabel: 'Thème', answerKey: 'theme' },
+  { id: 'questionnement', label: 'Par Questionnement', icon: '💡', description: 'Enjeux des programmes', key: 'questionnement', consigne: () => `À quel questionnement rattachez-vous cette œuvre ?`, answerLabel: 'Questionnement', answerKey: 'questionnement' },
+  { id: 'notions', label: 'Par Notions', icon: '📐', description: 'Lumière, espace, couleur, matière...', key: 'notions', consigne: () => `Quelles notions plastiques sont centrales ici ?`, answerLabel: 'Notions', answerKey: 'notions' },
+  { id: 'mouvement', label: 'Par Mouvement', icon: '🎨', description: 'Classez les œuvres par courants', key: 'mouvement', consigne: () => `À quel(s) mouvement(s) rattachez-vous cette œuvre ?`, answerLabel: 'Mouvement', answerKey: 'mouvement' },
+  { id: 'libre', label: 'Mode Libre', icon: '✦', description: 'Toutes les œuvres en aléatoire.', key: null, consigne: () => `Identifiez l'auteur, le titre et la date.`, answerLabel: 'Réponse attendue', answerKey: '__libre__' }
+];
+
+/* ================================================================
+   OUTILS & UTILITAIRES
+================================================================ */
+function getNextId() { return Math.max(0, ...oeuvres.map(o => o.id)) + 1; }
+function shuffle(arr) { const a = [...arr]; for (let i = a.length - 1; i > 0; i--) { const j = Math.floor(Math.random() * (i + 1)); [a[i], a[j]] = [a[j], a[i]]; } return a; }
+
+function getUniqValues(key) { 
+  const allValues = oeuvres.flatMap(o => {
+    if (!o[key]) return [];
+    if (typeof o[key] === 'string') return o[key].split(',').map(s => s.trim());
+    return o[key];
+  });
+  return [...new Set(allValues)].filter(Boolean).sort(); 
+}
+function getModeConfig() { return MODES.find(m => m.id === state.currentMode); }
+
+function toggleDark() {
+  state.darkMode = !state.darkMode; document.body.classList.toggle('dark', state.darkMode);
+  document.getElementById('dark-icon').textContent = state.darkMode ? '☀️' : '🌙';
+}
+
+function showScreen(id) {
+  ['screen-home', 'screen-subselect', 'screen-session', 'screen-results', 'screen-manage', 'screen-tags'].forEach(s => {
+    const el = document.getElementById(s); if (el) { el.classList.add('hidden'); el.classList.remove('flex', 'flex-1'); }
+  });
+  const target = document.getElementById(id); if (target) { target.classList.remove('hidden'); target.classList.add('flex', 'flex-1'); }
+  document.getElementById('app-nav').classList.toggle('hidden', id === 'screen-home');
+}
+
+/* ================================================================
+   IMPORT / EXPORT JSON
+================================================================ */
+function exportJSON() {
+  const customOeuvres = oeuvres.filter(o => o._custom);
+  if (customOeuvres.length === 0) { showToast("⚠️ Aucune œuvre personnalisée à exporter."); return; }
+  const dataStr = JSON.stringify(customOeuvres, null, 2);
+  const blob = new Blob([dataStr], { type: "application/json" });
+  const url = URL.createObjectURL(blob);
+  const a = document.createElement('a'); a.href = url; a.download = `artflash_backup_${new Date().toISOString().split('T')[0]}.json`;
+  document.body.appendChild(a); a.click(); document.body.removeChild(a); URL.revokeObjectURL(url);
+  showToast("✅ Exportation réussie !");
+}
+
+function importJSON(event) {
+  const file = event.target.files[0]; if (!file) return;
+  const reader = new FileReader();
+  reader.onload = function(e) {
+    try {
+      const importedData = JSON.parse(e.target.result);
+      if (!Array.isArray(importedData)) throw new Error("Format invalide.");
+      let addedCount = 0;
+      importedData.forEach(newOeuvre => {
+        const exists = oeuvres.some(o => o.titre === newOeuvre.titre && o.auteur === newOeuvre.auteur);
+        if (!exists) { newOeuvre._custom = true; newOeuvre.id = getNextId(); oeuvres.push(newOeuvre); addedCount++; }
+      });
+      if (addedCount > 0) { saveCustomOeuvres(); showManageScreen(); showToast(`✅ ${addedCount} œuvre(s) importée(s) !`); } 
+      else { showToast("⚠️ Aucune nouveauté (doublons ignorés)."); }
+    } catch (err) { showToast("❌ Erreur : le fichier n'est pas un JSON valide."); }
+    event.target.value = '';
+  };
+  reader.readAsText(file);
+}
+
+/* ================================================================
+   TAGS CROISÉS
+================================================================ */
+let activeTags = { epoque: [], mouvement: [], theme: [], questionnement: [], notions: [] };
+
+function openTagsScreen() {
+  activeTags = { epoque: [], mouvement: [], theme: [], questionnement: [], notions: [] };
+  const categories = ['epoque', 'mouvement', 'theme', 'questionnement', 'notions'];
+  categories.forEach(cat => {
+    const container = document.getElementById(`tags-${cat}`); container.innerHTML = '';
+    const values = getUniqValues(cat);
+    values.forEach(val => {
+      const btn = document.createElement('button');
+      btn.className = 'px-3 py-1.5 rounded-lg text-sm transition-all border';
+      btn.style.borderColor = state.darkMode ? '#3e342a' : '#e8e4dc'; btn.style.color = state.darkMode ? '#a09a8f' : '#756550'; btn.style.background = 'transparent';
+      btn.textContent = val; btn.onclick = () => toggleTag(btn, cat, val);
+      container.appendChild(btn);
+    });
+  });
+  updateTaggedCount(); showScreen('screen-tags');
+}
+
+function toggleTag(btn, category, value) {
+  const idx = activeTags[category].indexOf(value);
+  if (idx === -1) {
+    activeTags[category].push(value);
+    btn.style.background = 'linear-gradient(135deg, #b8860b20 0%, #d4a82a15 100%)'; btn.style.borderColor = state.darkMode ? '#d4a82a' : '#e8c96e'; btn.style.color = state.darkMode ? '#d4a82a' : '#b8860b';
+  } else {
+    activeTags[category].splice(idx, 1);
+    btn.style.background = 'transparent'; btn.style.borderColor = state.darkMode ? '#3e342a' : '#e8e4dc'; btn.style.color = state.darkMode ? '#a09a8f' : '#756550';
+  }
+  updateTaggedCount();
+}
+
+function getFilteredOeuvres() {
+  return oeuvres.filter(o => {
+    const checkMatch = (activeList, oeuvreValue) => {
+      if (activeList.length === 0) return true;
+      if (!oeuvreValue) return false;
+      const values = Array.isArray(oeuvreValue) ? oeuvreValue : oeuvreValue.split(',').map(s => s.trim());
+      return activeList.some(tag => values.includes(tag)); 
+    };
+    return checkMatch(activeTags.epoque, o.epoque) && checkMatch(activeTags.mouvement, o.mouvement) && checkMatch(activeTags.theme, o.theme) && checkMatch(activeTags.questionnement, o.questionnement) && checkMatch(activeTags.notions, o.notions);
+  });
+}
+
+function updateTaggedCount() {
+  const filtered = getFilteredOeuvres();
+  const btnStart = document.getElementById('btn-start-tags');
+  btnStart.textContent = `Lancer la session (${filtered.length})`;
+  const totalTags = Object.values(activeTags).reduce((sum, arr) => sum + arr.length, 0);
+  btnStart.disabled = filtered.length === 0 || totalTags === 0;
+}
+
+function startTaggedSession() {
+  const filtered = getFilteredOeuvres(); if (filtered.length === 0) return;
+  state.currentMode = 'libre'; state.currentFilter = "Session croisée";
+  openConfigModal(filtered, 'Session croisée');
+}
+
+/* ================================================================
+   IA (GEMINI)
+================================================================ */
+/**
+ * Récupère l'URL d'une image sur Wikimedia Commons à partir du nom d'une œuvre et de son auteur.
+ */
+async function fetchWikimediaImage(titre, auteur) {
+  const query = `${titre} ${auteur}`;
+  const userAgent = "ArtFlashApp/1.0"; // Identifiant pour l'API Wiki
+
+  try {
+    const searchUrl = `https://commons.wikimedia.org/w/api.php?action=query&list=search&srsearch=${encodeURIComponent(query)}&srnamespace=6&format=json&origin=*`;
+    const searchResponse = await fetch(searchUrl, { headers: { "Api-User-Agent": userAgent } });
+    const searchData = await searchResponse.json();
+    
+    if (!searchData.query.search || searchData.query.search.length === 0) return null;
+
+    const imageTitle = searchData.query.search[0].title; 
+    const infoUrl = `https://commons.wikimedia.org/w/api.php?action=query&titles=${encodeURIComponent(imageTitle)}&prop=imageinfo&iiprop=url&format=json&origin=*`;
+    
+    const infoResponse = await fetch(infoUrl, { headers: { "Api-User-Agent": userAgent } });
+    const infoData = await infoResponse.json();
+    
+    const pages = infoData.query.pages;
+    const pageId = Object.keys(pages)[0];
+    
+    if (pageId === "-1" || !pages[pageId].imageinfo) return null;
+
+    return pages[pageId].imageinfo[0].url;
+
+  } catch (error) {
+    console.error("Erreur lors de la requête Wikimedia:", error);
+    return null;
+  }
+}
+
+/**
+ * Cherche uniquement l'image sur Wikipédia et l'ajoute au formulaire
+ */
+async function autoFillImageOnly() {
+  const auteur = document.getElementById('f-auteur').value.trim();
+  const titre = document.getElementById('f-titre').value.trim();
+  
+  if (!auteur || !titre) {
+    showToast("⚠️ Saisissez d'abord l'Auteur et le Titre.");
+    return;
+  }
+
+  const btn = document.getElementById('btn-fetch-img');
+  const originalText = btn.innerHTML;
+  btn.innerHTML = '⏳ Recherche...';
+  btn.disabled = true;
+
+  try {
+    const realImageUrl = await fetchWikimediaImage(titre, auteur);
+    
+    if (realImageUrl) {
+      document.getElementById('f-image').value = realImageUrl;
+      previewImage(realImageUrl);
+      showToast("✨ Image trouvée avec succès !");
+    } else {
+      showToast("❌ Aucune image trouvée sur Wikimedia Commons.");
+    }
+  } catch (e) {
+    showToast("❌ Erreur de connexion avec Wikipédia.");
+  } finally {
+    btn.innerHTML = originalText;
+    btn.disabled = false;
+  }
+}
+
+async function autoFillWithAI() {
+  const auteur = document.getElementById('f-auteur').value.trim(); const titre = document.getElementById('f-titre').value.trim();
+  if (!auteur || !titre) { showToast("⚠️ Saisissez d'abord l'Auteur et le Titre."); return; }
+
+  let apiKey = localStorage.getItem('artflash_gemini_key');
+  if (!apiKey) { apiKey = prompt("Clé API Gemini (gratuite sur Google AI Studio) :"); if (!apiKey) return; localStorage.setItem('artflash_gemini_key', apiKey.trim()); }
+
+  const btn = document.getElementById('btn-ai-fill'); const originalText = btn.innerHTML; btn.innerHTML = '⏳...'; btn.disabled = true;
+
+  try {
+    const promptText = `En tant qu'expert en histoire de l'art (avec une attention rigoureuse à la distinction entre art moderne et art contemporain), expert en didactique des arts plastiques et membre du jury du CAPES/Agrégation, donne-moi les informations pour l'œuvre "${titre}" de l'artiste "${auteur}". 
+    Réponds UNIQUEMENT au format JSON strict avec ces clés (mets une chaîne vide "" si inconnu) :
+    { 
+      "date": "Année", 
+      "dimensions": "Dimensions", 
+      "materiaux": "Matériaux", 
+      "epoque": "L'époque exacte (ex: Époque moderne, Art contemporain, Renaissance...)", 
+      "mouvement": ["Mvt 1", "Mvt 2"], 
+      "theme": "Sélectionne parmi: 'La ressemblance', 'La narration visuelle', 'Catégories d\\'images et procédés de fabrication', 'Création, matérialité, statut, signification des images', 'Matériaux : qualités physiques', 'Couleur : matérialité et qualité', 'Transformation de la matière', 'L\\'autonomie du geste', 'Effets du geste et de l\\'instrument', 'Objets : inventions, fabrications, détournements, mise en scène', 'Objet - matériau', 'Objet - représentations/statuts', 'Espace en 3D', 'Mise en regard de l\\'espace', 'Présentation et présence matérielle de l\\'œuvre dans l\\'espace', 'Prise en compte spectateur/effet recherché', 'Relation au corps', 'Le dispositif', 'Réalité concrète d\\'une production/œuvre', 'Autonomie de l\\'œuvre', 'Hétérogénéité et cohérence plastique (2D/3D)', 'Conception, production, diffusion à l\\'ère du numérique', 'Métissage arts plastiques et technologie numérique'", 
+      "questionnement": ["Sélectionne 1 ou 2 parmi : 'C3: Représentations plastiques et dispositifs de présentation', 'C3: Fabrications et relation entre objet et espace', 'C3: Matérialité de la production et sensibilité aux constituants', 'C4: Représentation : image, réalité, fiction', 'C4: Matérialité : œuvre et objet', 'C4: Espace : œuvre, auteur, spectateur', 'Lycée: La représentation, ses langages, moyens plastiques et enjeux artistiques', 'Lycée: La matière, les matériaux et la matérialité de l\\'œuvre', 'Lycée: La présentation et la réception de l\\'œuvre', 'Lycée: L\\'idée, la réalisation et le travail de l\\'œuvre'"], 
+      "notions": ["Notions centrales parmi: forme, espace, lumière, couleur, matières, geste, support, outil, temps, corps"], 
+      "description_plastique": "Analyse formelle (3 phrases max)", 
+      "description_semantique": "Analyse du sens en citant explicitement l'interprétation d'un historien de l'art, d'un philosophe ou du mouvement lui-même (ex: 'Selon Rosalind Krauss...'). (3 phrases max)", 
+      "citation": "Uniquement le texte de la citation exacte (sans le nom de l'auteur)", 
+      "citation_auteur": "Nom et prénom de l'auteur de la citation", 
+      "bibliographie": "Ouvrage de référence précis justifiant l'analyse (Prénom Nom, Titre de l'ouvrage, année d'édition)", 
+      "problematique_concours": "Une question type problématique de leçon d'arts plastiques" 
+    }`;
+
+    const response = await fetch(`https://generativelanguage.googleapis.com/v1beta/models/gemini-3.1-flash-lite:generateContent?key=${apiKey}`, {
+      method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ contents: [{ parts: [{ text: promptText }] }], generationConfig: { response_mime_type: "application/json" } })
+    });
+
+    if (!response.ok) { if (response.status === 400 || response.status === 401 || response.status === 403) { localStorage.removeItem('artflash_gemini_key'); throw new Error("Clé API refusée. Elle a été effacée."); } throw new Error(`Erreur réseau API (${response.status})`); }
+    
+    const data = await response.json();
+    let textContent = data.candidates[0].content.parts[0].text; textContent = textContent.replace(/```json/g, '').replace(/```/g, '').trim();
+    const parsed = JSON.parse(textContent);
+
+    if(parsed.date) document.getElementById('f-date').value = parsed.date;
+    if(parsed.dimensions) document.getElementById('f-dimensions').value = parsed.dimensions;
+    if(parsed.materiaux) document.getElementById('f-materiaux').value = parsed.materiaux;
+    if(parsed.epoque) document.getElementById('f-epoque').value = parsed.epoque;
+    if(parsed.theme) document.getElementById('f-theme').value = parsed.theme;
+    if(parsed.description_plastique) document.getElementById('f-plastique').value = parsed.description_plastique;
+    if(parsed.description_semantique) document.getElementById('f-semantique').value = parsed.description_semantique;
+
+    const formArray = (arr) => Array.isArray(arr) ? arr.join(', ') : arr;
+    if(parsed.mouvement) document.getElementById('f-mouvement').value = formArray(parsed.mouvement);
+    if(parsed.questionnement) document.getElementById('f-questionnement').value = formArray(parsed.questionnement);
+    if(parsed.notions) document.getElementById('f-notions').value = formArray(parsed.notions);
+    
+    if(parsed.citation) document.getElementById('f-citation').value = parsed.citation;
+    if(parsed.citation_auteur) document.getElementById('f-citation-auteur').value = parsed.citation_auteur;
+    if(parsed.bibliographie) document.getElementById('f-bibliographie').value = parsed.bibliographie;
+    if(parsed.problematique_concours) document.getElementById('f-problematique').value = parsed.problematique_concours;
+
+    // --- NOUVEAU CODE API WIKIMEDIA ---
+    showToast("⏳ IA terminée. Recherche de l'image réelle...");
+    
+    // On utilise les variables 'titre' et 'auteur' déjà définies au début de votre fonction
+    const realImageUrl = await fetchWikimediaImage(titre, auteur);
+
+    if (realImageUrl) {
+      document.getElementById('f-image').value = realImageUrl;
+      previewImage(realImageUrl);
+      showToast("✨ Champs et image officielle récupérés !");
+    } else {
+      // Si Wikipédia ne trouve rien, on utilise ce que l'IA a généré (ou on laisse vide)
+      document.getElementById('f-image').value = parsed.image_url || '';
+      previewImage(parsed.image_url || '');
+      showToast("✨ Texte rempli, mais image introuvable sur l'API.");
+    }
+    // ----------------------------------
+  } catch (e) { showToast("❌ " + (e.message || "Erreur de génération.")); } finally { btn.innerHTML = originalText; btn.disabled = false; }
+}
+
+/* ================================================================
+   NAVIGATION ET GESTION DES CARTES
+================================================================ */
+function goHome() {
+  state.currentMode = null; state.currentFilter = null; state.deck = []; state.currentIndex = 0; state.score = { acquis: 0, arevoir: 0 }; state.isFlipped = false;
+  sessionConfig = { displayMode: 'normal', timerSeconds: 0 };
+  stopTimer(); clearBlindTest(); clearQuizMode();
+  document.getElementById('nav-score').classList.add('hidden'); renderHome(); showScreen('screen-home');
+}
+
+function renderHome() {
+  document.getElementById('stat-total').textContent = oeuvres.length;
+  document.getElementById('stat-epochs').textContent = getUniqValues('epoque').length;
+  document.getElementById('stat-movements').textContent = getUniqValues('mouvement').length;
+  document.getElementById('stat-questions').textContent = getUniqValues('questionnement').length;
+
+  const grid = document.getElementById('mode-selection-grid'); grid.innerHTML = '';
+  MODES.forEach(mode => {
+    if (mode.id === 'libre') return;
+    const count = getUniqValues(mode.key).length;
+    const card = document.createElement('div'); card.className = 'mode-card';
+    card.innerHTML = `<div class="flex items-start justify-between mb-4"><span class="text-3xl">${mode.icon}</span><span class="text-xs font-medium px-2 py-0.5 rounded-full" style="background: #b8860b10; color: #b8860b; border: 1px solid #e8c96e40;">${count} catégories</span></div><h3 class="font-serif text-xl font-medium mb-2">${mode.label}</h3><p class="text-sm leading-relaxed" style="color: #a09a8f;">${mode.description}</p>`;
+    card.onclick = () => selectMode(mode.id); grid.appendChild(card);
+  });
+  renderStatsDashboard();
+}
+
+function selectMode(modeId) {
+  state.currentMode = modeId; const modeConfig = getModeConfig();
+  if (modeId === 'libre') { openConfigModal(oeuvres, 'Mode Libre'); return; }
+  const values = getUniqValues(modeConfig.key); renderSubSelect(modeConfig, values); showScreen('screen-subselect');
+}
+
+function renderSubSelect(modeConfig, values) {
+  document.getElementById('subselect-title').textContent = modeConfig.label;
+  const grid = document.getElementById('subselect-grid'); grid.innerHTML = '';
+  const allCard = document.createElement('div'); allCard.className = 'mode-card';
+  allCard.innerHTML = `<div class="flex items-center justify-between"><div><div class="font-serif text-lg font-medium mb-1">Toutes les œuvres</div><div class="text-sm" style="color:#a09a8f;">${oeuvres.length} œuvres dans la base</div></div><span class="text-2xl">✦</span></div>`;
+  allCard.onclick = () => { state.currentFilter = null; openConfigModal(oeuvres, 'Toutes les œuvres'); }; grid.appendChild(allCard);
+
+  values.forEach(val => {
+    const filtered = oeuvres.filter(o => {
+      if (!o[modeConfig.key]) return false;
+      const v = Array.isArray(o[modeConfig.key]) ? o[modeConfig.key] : o[modeConfig.key].split(',').map(s=>s.trim());
+      return v.includes(val);
+    });
+    const card = document.createElement('div'); card.className = 'mode-card';
+    card.innerHTML = `<div class="flex items-center justify-between"><div><div class="font-serif text-lg font-medium mb-1">${val}</div><div class="text-sm" style="color:#a09a8f;">${filtered.length} œuvre(s)</div></div></div>`;
+    card.onclick = () => { state.currentFilter = val; openConfigModal(filtered, val); }; grid.appendChild(card);
+  });
+}
+
+/* ================================================================
+   SESSION CONFIG MODAL
+================================================================ */
+let pendingSessionOeuvres = null;
+let pendingSessionLabel = '';
+let sessionConfig = { displayMode: 'normal', timerSeconds: 0 };
+
+function openConfigModal(filteredOeuvres, label) {
+  pendingSessionOeuvres = filteredOeuvres;
+  pendingSessionLabel = label || 'Session';
+  document.getElementById('config-subtitle').textContent = filteredOeuvres.length + ' oeuvre(s) · Choisissez vos options';
+  document.querySelectorAll('[name="display-mode"]').forEach(r => { r.checked = r.value === 'normal'; });
+  document.querySelectorAll('.config-option').forEach(el => {
+    const inp = el.querySelector('input');
+    el.classList.toggle('selected', inp && inp.value === 'normal');
+  });
+  selectTimer(document.querySelector('.timer-chip[data-val="0"]'));
+  sessionConfig = { displayMode: 'normal', timerSeconds: 0 };
+  document.getElementById('session-config-overlay').classList.add('open');
+  document.body.style.overflow = 'hidden';
+}
+
+function closeConfigModal() {
+  document.getElementById('session-config-overlay').classList.remove('open');
+  document.body.style.overflow = '';
+}
+
+document.getElementById('session-config-overlay').addEventListener('click', e => {
+  if (e.target === document.getElementById('session-config-overlay')) closeConfigModal();
+});
+
+document.querySelectorAll('[name="display-mode"]').forEach(radio => {
+  radio.addEventListener('change', () => {
+    document.querySelectorAll('.config-option').forEach(el => el.classList.remove('selected'));
+    radio.closest('.config-option').classList.add('selected');
+    sessionConfig.displayMode = radio.value;
+  });
+});
+
+function selectTimer(btn) {
+  document.querySelectorAll('.timer-chip').forEach(c => c.classList.remove('selected'));
+  if (btn) { btn.classList.add('selected'); sessionConfig.timerSeconds = parseInt(btn.dataset.val); }
+}
+
+function launchConfiguredSession() {
+  const checked = document.querySelector('[name="display-mode"]:checked');
+  sessionConfig.displayMode = checked ? checked.value : 'normal';
+  closeConfigModal();
+  if (pendingSessionOeuvres) startSession(pendingSessionOeuvres);
+}
+
+/* ================================================================
+   BLIND TEST
+================================================================ */
+let blindInterval = null;
+let blindStep = 0;
+const BLIND_STEPS = ['reveal-step-1','reveal-step-2','reveal-step-3','revealed'];
+
+function initBlindTest() {
+  const img = document.getElementById('card-image');
+  const dotsEl = document.getElementById('blind-dots');
+  const btn = document.getElementById('blind-reveal-btn');
+  clearInterval(blindInterval); blindStep = 0;
+  img.classList.add('blind');
+  img.classList.remove('reveal-step-1','reveal-step-2','reveal-step-3','revealed');
+  dotsEl.innerHTML = BLIND_STEPS.map((_,i) => '<div class="blind-dot" id="bdot-'+i+'"></div>').join('');
+  btn.style.display = 'block';
+  blindInterval = setInterval(() => {
+    if (blindStep < BLIND_STEPS.length) {
+      img.classList.add(BLIND_STEPS[blindStep]);
+      const dot = document.getElementById('bdot-'+blindStep);
+      if (dot) dot.classList.add('active');
+      blindStep++;
+      if (blindStep >= BLIND_STEPS.length) { clearInterval(blindInterval); btn.style.display = 'none'; }
+    }
+  }, 5000);
+}
+
+function revealBlind() {
+  clearInterval(blindInterval);
+  const img = document.getElementById('card-image');
+  BLIND_STEPS.forEach(s => img.classList.remove(s));
+  img.classList.add('revealed');
+  BLIND_STEPS.forEach((_,i) => { const d = document.getElementById('bdot-'+i); if(d) d.classList.add('active'); });
+  blindStep = BLIND_STEPS.length;
+  document.getElementById('blind-reveal-btn').style.display = 'none';
+}
+
+function clearBlindTest() {
+  clearInterval(blindInterval);
+  const img = document.getElementById('card-image');
+  img.classList.remove('blind','reveal-step-1','reveal-step-2','reveal-step-3','revealed');
+  document.getElementById('blind-dots').innerHTML = '';
+  document.getElementById('blind-reveal-btn').style.display = 'none';
+}
+
+/* ================================================================
+   TIMER
+================================================================ */
+let timerInterval = null;
+let timerRemaining = 0;
+
+function startTimer(seconds) {
+  clearInterval(timerInterval);
+  timerRemaining = seconds;
+  const wrap = document.getElementById('timer-ring-wrap');
+  const fill = document.getElementById('timer-ring-fill');
+  const txt = document.getElementById('timer-text');
+  const circumference = 126;
+  wrap.style.display = 'block'; fill.classList.remove('urgent');
+  function tick() {
+    const pct = timerRemaining / seconds;
+    fill.style.strokeDashoffset = circumference * (1 - pct);
+    txt.textContent = timerRemaining;
+    if (timerRemaining <= 10) fill.classList.add('urgent');
+    if (timerRemaining <= 0) {
+      clearInterval(timerInterval); txt.textContent = '✕';
+      if (sessionConfig.displayMode !== 'quiz') setTimeout(() => { nextCard(false); }, 700);
+      return;
+    }
+    timerRemaining--;
+  }
+  tick(); timerInterval = setInterval(tick, 1000);
+}
+
+function stopTimer() {
+  clearInterval(timerInterval);
+  document.getElementById('timer-ring-wrap').style.display = 'none';
+}
+
+/* ================================================================
+   QUIZ MODE
+================================================================ */
+let quizCorrectIndex = -1;
+let quizAnswered = false;
+
+function generateQuizOptions(currentOeuvre) {
+  const modeConfig = getModeConfig() || MODES.find(m => m.id === 'libre');
+  const getVal = (o) => {
+    if (modeConfig.answerKey === '__libre__') return o.auteur + ' — ' + o.titre;
+    const v = o[modeConfig.answerKey];
+    return Array.isArray(v) ? v.join(' / ') : (v || '—');
+  };
+  const correctVal = getVal(currentOeuvre);
+  const others = shuffle(oeuvres.filter(o => o.id !== currentOeuvre.id));
+  const wrongVals = [];
+  for (const o of others) {
+    const v = getVal(o);
+    if (v !== correctVal && v && v !== '—' && !wrongVals.includes(v)) { wrongVals.push(v); }
+    if (wrongVals.length >= 3) break;
+  }
+  while (wrongVals.length < 3) wrongVals.push('Option ' + (wrongVals.length + 1));
+  const options = shuffle([correctVal, ...wrongVals]);
+  quizCorrectIndex = options.indexOf(correctVal);
+  return options;
+}
+
+function renderQuizOptions(currentOeuvre) {
+  const options = generateQuizOptions(currentOeuvre);
+  quizAnswered = false;
+  const modeConfig = getModeConfig() || MODES.find(m => m.id === 'libre');
+  document.getElementById('quiz-question-label').textContent = modeConfig.answerLabel || 'Identifiez';
+  const letters = ['A','B','C','D'];
+  options.forEach((opt, i) => {
+    const btn = document.getElementById('qbtn-'+i);
+    btn.querySelector('.quiz-text').textContent = opt;
+    btn.querySelector('.quiz-letter').textContent = letters[i];
+    btn.className = 'quiz-btn'; btn.disabled = false;
+  });
+  document.getElementById('quiz-next-row').classList.add('hidden');
+  document.getElementById('quiz-options').classList.add('visible');
+  document.getElementById('flip-btn-row').style.display = 'none';
+}
+
+function answerQuiz(idx) {
+  if (quizAnswered) return;
+  quizAnswered = true; stopTimer();
+  const isCorrect = idx === quizCorrectIndex;
+  for (let i = 0; i < 4; i++) {
+    const btn = document.getElementById('qbtn-'+i); btn.disabled = true;
+    if (i === quizCorrectIndex) btn.classList.add('correct');
+    else if (i === idx && !isCorrect) btn.classList.add('wrong');
+  }
+  document.getElementById('quiz-next-row').classList.remove('hidden');
+  setTimeout(() => { if (!state.isFlipped) flipCard(); }, 500);
+}
+
+function quizNext(acquired) { nextCard(acquired); }
+
+function clearQuizMode() {
+  document.getElementById('quiz-options').classList.remove('visible');
+  document.getElementById('flip-btn-row').style.display = '';
+  quizAnswered = false; quizCorrectIndex = -1;
+}
+
+function startSession(filteredOeuvres) {
+  state.deck = shuffle(filteredOeuvres); state.currentIndex = 0; state.score = { acquis: 0, arevoir: 0 }; state.isFlipped = false;
+  const modeConfig = getModeConfig() || MODES.find(m => m.id === 'libre');
+  document.getElementById('session-label').textContent = state.currentFilter ? state.currentFilter : modeConfig.label;
+  document.getElementById('nav-score').classList.remove('hidden');
+  updateScoreDisplay(); showScreen('screen-session'); renderCard();
+}
+
+function renderCard() {
+  const oeuvre = state.deck[state.currentIndex]; const modeConfig = getModeConfig() || MODES.find(m => m.id === 'libre');
+  const total = state.deck.length; const idx = state.currentIndex;
+
+  const cardInner = document.getElementById('card-inner'); cardInner.classList.remove('is-flipped'); cardInner.removeAttribute('style'); state.isFlipped = false;
+  document.getElementById('recto-consigne').textContent = modeConfig.consigne(state.currentFilter);
+  document.getElementById('recto-counter').textContent = `${idx + 1} / ${total}`; document.getElementById('session-counter').textContent = `${idx + 1} / ${total}`;
+
+  const placeholder = `https://placehold.co/900x600/1a1814/a09a8f?text=${encodeURIComponent(oeuvre.auteur)}`;
+  ['card-image', 'verso-image'].forEach(id => { 
+    const img = document.getElementById(id); 
+    img.classList.add('img-loading');
+    img.style.display = 'block';
+    img.src = ''; // reset first to trigger onload reliably
+    const newSrc = oeuvre.image_url;
+    img.onload = function() { this.classList.remove('img-loading'); };
+    img.onerror = function() { this.src = placeholder; this.onerror = null; this.classList.remove('img-loading'); };
+    img.src = newSrc;
+  });
+
+  let answerVal = (modeConfig.answerKey === '__libre__') ? `${oeuvre.auteur} — ${oeuvre.titre} (${oeuvre.date})` : oeuvre[modeConfig.answerKey];
+  document.getElementById('answer-label').textContent = modeConfig.answerLabel;
+  document.getElementById('answer-value').textContent = Array.isArray(answerVal) ? answerVal.join(' / ') : answerVal;
+
+  document.getElementById('verso-auteur').textContent = oeuvre.auteur; document.getElementById('verso-titre').textContent = oeuvre.titre;
+  document.getElementById('verso-date').textContent = oeuvre.date; document.getElementById('verso-dimensions').textContent = oeuvre.dimensions;
+  document.getElementById('verso-materiaux').textContent = oeuvre.materiaux; 
+  
+  const formatArray = (val) => { if (!val) return '—'; return Array.isArray(val) ? val.join(' / ') : val; };
+  document.getElementById('verso-mouvement').textContent = formatArray(oeuvre.mouvement);
+  document.getElementById('verso-notions').textContent = formatArray(oeuvre.notions);
+  document.getElementById('verso-plastique').textContent = oeuvre.description_plastique;
+  document.getElementById('verso-semantique').textContent = oeuvre.description_semantique;
+
+  const probWrap = document.getElementById('verso-problematique-wrap'); const probText = document.getElementById('verso-problematique');
+  if (oeuvre.problematique_concours && oeuvre.problematique_concours !== '—' && oeuvre.problematique_concours !== '') { probText.textContent = oeuvre.problematique_concours; probWrap.classList.remove('hidden'); } else { probWrap.classList.add('hidden'); }
+
+  const citWrap = document.getElementById('verso-citation-wrap'); 
+  const citText = document.getElementById('verso-citation');
+  
+  if (oeuvre.citation && oeuvre.citation !== '—' && oeuvre.citation !== '') { 
+    // On prépare le bout de code HTML pour l'auteur (s'il existe)
+    let auteurHTML = '';
+    if (oeuvre.citation_auteur && oeuvre.citation_auteur !== '—' && oeuvre.citation_auteur !== '') {
+      auteurHTML = `<br><span class="text-xs font-semibold opacity-80" style="color: inherit;">— ${oeuvre.citation_auteur}</span>`;
+    }
+    
+    // On injecte la citation + le bout de code HTML de l'auteur
+    citText.innerHTML = `« ${oeuvre.citation} » ${auteurHTML}`; 
+    citWrap.classList.remove('hidden'); 
+  } else { 
+    citWrap.classList.add('hidden'); 
+  }
+
+  const bibWrap = document.getElementById('verso-biblio-wrap'); const bibText = document.getElementById('verso-biblio');
+  if (oeuvre.bibliographie && oeuvre.bibliographie !== '—' && oeuvre.bibliographie !== '') { bibText.textContent = oeuvre.bibliographie; bibWrap.classList.remove('hidden'); } else { bibWrap.classList.add('hidden'); }
+
+  document.getElementById('progress-bar').style.width = ((idx / total) * 100) + '%';
+  const wrapper = document.getElementById('card-wrapper'); wrapper.style.transition = 'none'; wrapper.style.opacity = '0';
+  requestAnimationFrame(() => { requestAnimationFrame(() => { wrapper.style.transition = 'opacity 0.35s ease'; wrapper.style.opacity = '1'; }); });
+
+  // Apply session modes
+  clearBlindTest(); clearQuizMode(); stopTimer();
+  if (sessionConfig.displayMode === 'blind') {
+    // Wait for image to load before starting blind
+    const imgEl = document.getElementById('card-image');
+    const doInit = () => initBlindTest();
+    if (imgEl.complete && imgEl.naturalWidth > 0) doInit();
+    else imgEl.addEventListener('load', doInit, { once: true });
+  } else if (sessionConfig.displayMode === 'quiz') {
+    renderQuizOptions(oeuvre);
+  }
+  if (sessionConfig.timerSeconds > 0) {
+    setTimeout(() => startTimer(sessionConfig.timerSeconds), 300);
+  }
+}
+
+function flipCard() { state.isFlipped = !state.isFlipped; document.getElementById('card-inner').classList.toggle('is-flipped', state.isFlipped); }
+
+function nextCard(acquired) {
+  const currentOeuvre = state.deck[state.currentIndex];
+  updateCardProgress(currentOeuvre.id, acquired);
+  if (acquired) state.score.acquis++; else state.score.arevoir++; updateScoreDisplay();
+  state.currentIndex++;
+  if (state.currentIndex >= state.deck.length) { stopTimer(); showResults(); return; }
+
+  stopTimer();
+  const wrapper = document.getElementById('card-wrapper'); wrapper.style.transition = 'opacity 0.2s ease'; wrapper.style.opacity = '0';
+  setTimeout(() => { const cardInner = document.getElementById('card-inner'); cardInner.classList.remove('is-flipped'); cardInner.removeAttribute('style'); state.isFlipped = false; renderCard(); }, 200);
+}
+
+function updateScoreDisplay() { const done = state.score.acquis + state.score.arevoir; document.getElementById('nav-score-text').textContent = `✓ ${state.score.acquis} / ${done}`; }
+
+function showResults() {
+  userStats.sessions++; userStats.cartesVues += state.deck.length; userStats.cartesAcquises += state.score.acquis; saveStats(); renderStatsDashboard();
+  const total = state.deck.length; const acquis = state.score.acquis; const pct = total > 0 ? Math.round((acquis / total) * 100) : 0;
+  document.getElementById('result-score-display').textContent = `${acquis}/${total}`; document.getElementById('result-ring').style.setProperty('--pct', `${pct}%`);
+  document.getElementById('result-subtitle').textContent = (pct === 100) ? `Parfait !` : `Vous avez acquis ${pct}% de la session.`;
+  document.getElementById('result-retry-btn').onclick = () => {
+    const currentDeck = state.deck; state.currentIndex = 0; state.score = { acquis: 0, arevoir: 0 }; state.isFlipped = false; state.deck = shuffle(currentDeck);
+    document.getElementById('nav-score').classList.remove('hidden'); updateScoreDisplay(); showScreen('screen-session'); renderCard();
+  };
+  document.getElementById('progress-bar').style.width = '100%'; showScreen('screen-results');
+}
+
+/* ================================================================
+   MODAL ET GESTION
+================================================================ */
+let currentEditId = null;
+function loadCustomOeuvres() { try { const raw = localStorage.getItem(LS_KEY); if (!raw) return; const saved = JSON.parse(raw); if (Array.isArray(saved)) { saved.forEach(o => { const existingIdx = oeuvres.findIndex(x => x.id === o.id); if (existingIdx !== -1) oeuvres[existingIdx] = o; else oeuvres.push(o); }); } } catch(e){} }
+function saveCustomOeuvres() { const toSave = oeuvres.filter(o => o._custom === true || o._edited === true); try { localStorage.setItem(LS_KEY, JSON.stringify(toSave)); } catch(e){} }
+
+function showManageScreen() {
+  const grid = document.getElementById('manage-grid'); grid.innerHTML = '';
+  oeuvres.forEach(o => {
+    const card = document.createElement('div'); card.className = 'info-box p-4 flex flex-col';
+    const isBuiltIn = !o._custom;
+    const deleteBtn = isBuiltIn 
+      ? `<button onclick="showToast('⚠️ Les œuvres intégrées ne peuvent pas être supprimées. Modifiez-les si besoin.')" class="btn-delete px-3 py-2 text-xs opacity-50" title="Œuvre intégrée">🔒</button>`
+      : `<button onclick="deleteCustomOeuvre(${o.id})" class="btn-delete px-3 py-2 text-xs" title="Supprimer">🗑</button>`;
+    card.innerHTML = `
+      <div class="mb-3 rounded-lg overflow-hidden bg-[#1a1814]" style="height: 120px;">
+        <img src="${o.image_url}" class="w-full h-full object-cover" onerror="this.src='https://placehold.co/400x200/1a1814/a09a8f?text=${encodeURIComponent(o.auteur)}'; this.onerror=null;" loading="lazy" />
+      </div>
+      <div class="flex-1 min-w-0 mb-3">
+        <h4 class="font-serif font-semibold text-base leading-tight mb-0.5 line-clamp-2">${o.titre}</h4>
+        <p class="text-sm truncate" style="color: #a09a8f;">${o.auteur} · ${o.date}</p>
+        ${o._edited ? '<span class="text-xs px-2 py-0.5 rounded-full mt-1 inline-block" style="background:#b8860b15;color:#b8860b;border:1px solid #e8c96e40;">modifiée</span>' : ''}
+        ${isBuiltIn && !o._edited ? '<span class="text-xs px-2 py-0.5 rounded-full mt-1 inline-block" style="background:#e0e7ff;color:#4338ca;border:1px solid #c7d2fe;">intégrée</span>' : ''}
+      </div>
+      <div class="flex gap-2">
+        <button onclick="editOeuvre(${o.id})" class="btn-secondary flex-1 py-1.5 text-xs justify-center">✏️ Modifier</button>
+        ${deleteBtn}
+      </div>`;
+    grid.appendChild(card);
+  });
+  showScreen('screen-manage');
+}
+
+function openModal(data = null) {
+  fillDatalist('dl-epoque', 'epoque'); fillDatalist('dl-mouvement', 'mouvement'); fillDatalist('dl-theme', 'theme'); fillDatalist('dl-questionnement', 'questionnement');
+  document.getElementById('form-error-msg').classList.add('hidden'); document.querySelectorAll('.form-input.error').forEach(el => el.classList.remove('error'));
+  if (data) {
+    currentEditId = data.id; document.getElementById('modal-title').textContent = "Modifier l'œuvre";
+    document.getElementById('f-auteur').value = data.auteur; document.getElementById('f-titre').value = data.titre; document.getElementById('f-date').value = data.date;
+    document.getElementById('f-dimensions').value = data.dimensions || ''; document.getElementById('f-materiaux').value = data.materiaux || '';
+    document.getElementById('f-image').value = data.image_url; document.getElementById('f-epoque').value = data.epoque; document.getElementById('f-theme').value = data.theme;
+    
+    const formArray = (arr) => Array.isArray(arr) ? arr.join(', ') : arr;
+    document.getElementById('f-mouvement').value = formArray(data.mouvement); document.getElementById('f-questionnement').value = formArray(data.questionnement); document.getElementById('f-notions').value = formArray(data.notions);
+    
+    document.getElementById('f-plastique').value = data.description_plastique || ''; document.getElementById('f-semantique').value = data.description_semantique || '';
+    document.getElementById('f-citation').value = data.citation || ''; document.getElementById('f-citation-auteur').value = data.citation_auteur || ''; document.getElementById('f-bibliographie').value = data.bibliographie || ''; document.getElementById('f-problematique').value = data.problematique_concours || '';
+    previewImage(data.image_url);
+  } else {
+    currentEditId = null; document.getElementById('modal-title').textContent = "Ajouter une œuvre"; document.getElementById('add-oeuvre-form').reset(); previewImage('');
+  }
+  document.getElementById('modal-overlay').classList.add('open'); document.body.style.overflow = 'hidden';
+}
+
+function closeModal() { document.getElementById('modal-overlay').classList.remove('open'); document.body.style.overflow = ''; }
+function handleOverlayClick(e) { if (e.target === document.getElementById('modal-overlay')) closeModal(); }
+function fillDatalist(datalistId, key) { const dl = document.getElementById(datalistId); dl.innerHTML = ''; getUniqValues(key).forEach(val => { const opt = document.createElement('option'); opt.value = val; dl.appendChild(opt); }); }
+
+function previewImage(url) {
+  const img = document.getElementById('img-preview'); const wrap = document.getElementById('img-preview-wrap'); const placeholder = document.getElementById('img-placeholder-text');
+  if (!url || url.trim() === '') { img.classList.remove('visible'); placeholder.style.display = ''; wrap.classList.remove('has-img'); return; }
+  img.onload = () => { img.classList.add('visible'); placeholder.style.display = 'none'; wrap.classList.add('has-img'); }; img.src = url;
+}
+
+function editOeuvre(id) { const oeuvre = oeuvres.find(o => o.id === id); if (oeuvre) openModal(oeuvre); }
+
+function submitNewOeuvre(e) {
+  e.preventDefault(); const get = id => document.getElementById(id).value.trim();
+  const required = [ 'f-auteur', 'f-titre', 'f-date', 'f-epoque', 'f-mouvement', 'f-theme', 'f-questionnement' ];
+  let hasError = false;
+  required.forEach(id => { const el = document.getElementById(id); if (!el.value.trim()) { el.classList.add('error'); hasError = true; } else el.classList.remove('error'); });
+  if (hasError) { document.getElementById('form-error-msg').classList.remove('hidden'); return; }
+
+  const splitTags = (str) => str ? str.split(',').map(s => s.trim()).filter(Boolean) : [];
+  const newOeuvre = {
+    id: currentEditId || getNextId(),
+    auteur: get('f-auteur'), titre: get('f-titre'), date: get('f-date'),
+    dimensions: get('f-dimensions') || 'Non renseigné', materiaux: get('f-materiaux') || 'Non renseigné',
+    image_url: get('f-image') || `https://placehold.co/900x600/1a1814/a09a8f?text=${encodeURIComponent(get('f-auteur'))}`,
+    epoque: get('f-epoque'), theme: get('f-theme'),
+    questionnement: splitTags(get('f-questionnement')), mouvement: splitTags(get('f-mouvement')), notions: splitTags(get('f-notions')),
+    description_plastique: get('f-plastique') || '—', description_semantique: get('f-semantique') || '—',
+    citation: get('f-citation') || '—', 
+    citation_auteur: get('f-citation-auteur') || '—',
+    bibliographie: get('f-bibliographie') || '—', problematique_concours: get('f-problematique') || '—',
+    _custom: currentEditId ? (oeuvres.find(o => o.id === currentEditId)?._custom || false) : true,
+    _edited: currentEditId ? true : false
+  };
+
+  if (currentEditId) { const index = oeuvres.findIndex(o => o.id === currentEditId); if (index !== -1) oeuvres[index] = newOeuvre; } 
+  else { oeuvres.push(newOeuvre); }
+  saveCustomOeuvres(); closeModal();
+  if (!document.getElementById('screen-manage').classList.contains('hidden')) showManageScreen(); else renderHome(); showToast(`Action réussie.`);
+}
+
+function deleteCustomOeuvre(id) {
+  const idx = oeuvres.findIndex(o => o.id === id); if (idx === -1) return;
+  oeuvres.splice(idx, 1); saveCustomOeuvres();
+  if (!document.getElementById('screen-manage').classList.contains('hidden')) showManageScreen(); else renderHome(); showToast(`Suppression effectuée.`);
+}
+
+function openLightbox(src) { if (!src) return; document.getElementById('lightbox-img').src = src; document.getElementById('lightbox-overlay').classList.add('open'); }
+function closeLightbox() { document.getElementById('lightbox-overlay').classList.remove('open'); }
+
+let toastTimeout = null;
+function showToast(msg) {
+  let toast = document.getElementById('app-toast');
+  if (!toast) { toast = document.createElement('div'); toast.id = 'app-toast'; toast.style.cssText = 'position:fixed;bottom:28px;left:50%;transform:translateX(-50%) translateY(20px);background:#1a1814;color:#e8c96e;border:1px solid #5a4a1a;border-radius:99px;padding:10px 22px;font-size:0.82rem;font-weight:500;box-shadow:0 8px 32px rgba(0,0,0,0.3);z-index:9999;transition:opacity 0.3s ease, transform 0.3s ease;opacity:0;pointer-events:none'; document.body.appendChild(toast); }
+  toast.textContent = msg; toast.style.opacity = '1'; toast.style.transform = 'translateX(-50%) translateY(0)';
+  clearTimeout(toastTimeout); toastTimeout = setTimeout(() => { toast.style.opacity = '0'; toast.style.transform = 'translateX(-50%) translateY(20px)'; }, 3500);
+}
+
+document.addEventListener('keydown', (e) => {
+  if (e.key === 'Escape') {
+    if(document.getElementById('lightbox-overlay').classList.contains('open')){ closeLightbox(); return; }
+    if(document.getElementById('modal-overlay').classList.contains('open')){ closeModal(); return; }
+    if(document.getElementById('session-config-overlay').classList.contains('open')){ closeConfigModal(); return; }
+  }
+  const sessionVisible = !document.getElementById('screen-session').classList.contains('hidden'); if (!sessionVisible) return;
+  if (e.key === ' ' || e.key === 'Enter') { e.preventDefault(); if (!state.isFlipped && sessionConfig.displayMode !== 'quiz') flipCard(); }
+  if (state.isFlipped) { if (e.key === 'ArrowRight' || e.key === 'ArrowUp') nextCard(true); if (e.key === 'ArrowLeft' || e.key === 'ArrowDown') nextCard(false); }
+});
+
+/* ================================================================
+   GESTION DU TACTILE (SWIPE SUR MOBILE)
+================================================================ */
+let touchStartX = 0;
+let touchStartY = 0;
+let touchEndX = 0;
+let touchEndY = 0;
+
+document.addEventListener('touchstart', e => {
+  touchStartX = e.changedTouches[0].screenX;
+  touchStartY = e.changedTouches[0].screenY;
+}, { passive: true });
+
+document.addEventListener('touchend', e => {
+  touchEndX = e.changedTouches[0].screenX;
+  touchEndY = e.changedTouches[0].screenY;
+  handleSwipe();
+}, { passive: true });
+
+function handleSwipe() {
+  if (document.getElementById('screen-session').classList.contains('hidden')) return;
+  if (document.getElementById('lightbox-overlay').classList.contains('open')) return;
+
+  const swipeX = touchEndX - touchStartX;
+  const swipeY = touchEndY - touchStartY;
+  const minSwipeDistance = 60;
+
+  // Ignore if more vertical than horizontal (user is scrolling)
+  if (Math.abs(swipeY) > Math.abs(swipeX)) return;
+
+  if (state.isFlipped) {
+    if (swipeX > minSwipeDistance) {
+      nextCard(true); // Swipe Droite -> Acquis
+    } else if (swipeX < -minSwipeDistance) {
+      nextCard(false); // Swipe Gauche -> À revoir
+    }
+  } else {
+    // On recto: tap/swipe up to flip
+    if (Math.abs(swipeX) < 20 && !state.isFlipped) return; // small movement, ignore
+    if (swipeY < -minSwipeDistance) flipCard(); // swipe up to flip
+  }
+}
+
+(async function init() {
+  await chargerOeuvresDepuisGithub(); 
+  loadCustomOeuvres(); 
+  loadStats(); 
+  loadProgress();
+  
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) { 
+    state.darkMode = true; 
+    document.body.classList.add('dark'); 
+    document.getElementById('dark-icon').textContent = '☀️'; 
+  }
+  
+  renderHome(); 
+  showScreen('screen-home');
+
+  // --- NOUVEAU : On cache l'écran de chargement en douceur ---
+  const loadingScreen = document.getElementById('loading-screen');
+  loadingScreen.style.opacity = '0';
+  setTimeout(() => {
+    loadingScreen.style.display = 'none';
+  }, 500); // 500ms pour laisser l'animation de fondu se faire
+})();
+</script>
+</body>
+</html>
