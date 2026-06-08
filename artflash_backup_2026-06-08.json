@@ -1,0 +1,1383 @@
+[
+  {
+    "id": 3,
+    "auteur": "Léonard de Vinci",
+    "titre": "La Cène",
+    "date": "1495-1498",
+    "dimensions": "460 cm × 880 cm",
+    "materiaux": "Tempéra et huile sur gesso, poix et mastic",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/08/Leonardo_da_Vinci_%281452-1519%29_-_The_Last_Supper_%281495-1498%29.jpg",
+    "epoque": "Renaissance",
+    "theme": "La narration visuelle",
+    "questionnement": [
+      "Lycée: La représentation",
+      "ses langages",
+      "moyens plastiques et enjeux artistiques"
+    ],
+    "mouvement": [
+      "Renaissance italienne",
+      "Haute Renaissance"
+    ],
+    "notions": [
+      "Espace",
+      "Perspective",
+      "Lumière",
+      "Composition"
+    ],
+    "description_plastique": "L'œuvre repose sur une perspective linéaire monoculaire convergente dont le point de fuite absolu coïncide avec la tête du Christ. Les douze apôtres sont répartis de façon symétrique en quatre groupes de trois, insufflant un rythme ondulatoire et dynamique de part et d'autre de la figure centrale immobile. La lumière provient d'une source latérale gauche fictive, accusant les expressions dramatiques et l'individualité de chaque protagoniste.",
+    "description_semantique": "L'œuvre capture la stase temporelle et le tumulte psychologique nés de la parole christique annonçant la trahison, illustrant magistralement les théories léonardiennes sur la traduction visuelle des mouvements de l'âme. Selon l'historien de l'art Daniel Arasse, la rigueur géométrique spatialise le mystère eucharistique en ordonnant le chaos humain sous les lois de la Providence divine. L'espace feint de la fresque prolonge de manière illusionniste l'espace réel du réfectoire, instaurant un dialogue direct avec la communauté des frères.",
+    "citation": "Le bon peintre a deux choses principales à peindre : l'homme et l'état de son âme.",
+    "citation_auteur": "Léonard de Vinci",
+    "bibliographie": "Daniel Arasse, Léonard de Vinci : le rythme du monde, 1997.",
+    "problematique_concours": "Dans quelle mesure la construction perspective de l'espace pictural peut-elle s'instituer comme le vecteur privilégié d'une dramaturgie narrative et théologique ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 4,
+    "auteur": "Diego Vélasquez",
+    "titre": "Les Ménines",
+    "date": "1656",
+    "dimensions": "318 cm × 276 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/31/Las_Meninas%2C_by_Diego_Vel%C3%A1zquez%2C_from_Prado_in_Google_Earth.jpg",
+    "epoque": "Époque moderne",
+    "theme": "Prise en compte spectateur/effet recherché",
+    "questionnement": [
+      "C4: Représentation : image",
+      "réalité",
+      "fiction",
+      "Lycée: La représentation",
+      "ses langages",
+      "moyens plastiques et enjeux artistiques"
+    ],
+    "mouvement": [
+      "Baroque",
+      "Siècle d'or espagnol"
+    ],
+    "notions": [
+      "Espace",
+      "Regard",
+      "Mise en abyme",
+      "Dispositif",
+      "Plan"
+    ],
+    "description_plastique": "La scène s'articule dans un vaste atelier où se croisent de multiples vecteurs de regards divergents, fracturant l'étanchéité du plan pictural. Un miroir positionné sur le mur du fond reflète le couple royal espagnol, lequel occupe théoriquement la place physique extérieure du spectateur. Le peintre s'est représenté à gauche en pleine création, partiellement dissimulé derrière un immense châssis retourné qui fait écran.",
+    "description_semantique": "L'œuvre constitue une spéculation ontologique sur l'acte pictural, la visibilité et la mise en scène du pouvoir monarchique. Le philosophe Michel Foucault analyse la toile comme le paradigme de la représentation classique, où le sujet regardant est immédiatement converti en objet regardé. Cette réversibilité du regard instaure un vide central qui déstabilise la certitude du spectateur quant à sa propre place au sein du dispositif.",
+    "citation": "Où est le tableau ? C’est la théologie de la peinture.",
+    "citation_auteur": "Luca Giordano",
+    "bibliographie": "Michel Foucault, Les Mots et les Choses, 1966.",
+    "problematique_concours": "En quoi l'organisation de la réversibilité des regards et le dispositif du miroir transforment-ils l'espace du tableau en un laboratoire de la déconstruction critique de la représentation ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 5,
+    "auteur": "Gian Lorenzo Bernini (dit Le Bernin)",
+    "titre": "L'Extase de sainte Thérèse",
+    "date": "1647-1652",
+    "dimensions": "Environ 350 cm de hauteur",
+    "materiaux": "Marbre blanc, stuc doré, bronze, verre coloré",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/6/6b/Ecstasy_of_Saint_Teresa_September_2015-2a.jpg",
+    "epoque": "Époque moderne (Baroque)",
+    "theme": "Présentation et présence matérielle de l'œuvre dans l'espace",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Baroque",
+      "Contre-Réforme"
+    ],
+    "notions": [
+      "espace",
+      "lumière",
+      "corps",
+      "matières"
+    ],
+    "description_plastique": "Le Bernin orchestre un dispositif théâtral où le marbre semble perdre sa rigidité minérale pour rendre la fluidité des étoffes et la tension des chairs. L'usage de rayons dorés en bronze et d'une source lumineuse naturelle zénithale accentue le caractère dramatique et l'irréalité de la scène. L'ensemble occupe une niche architecturale qui projette les figures vers le spectateur, abolissant la limite entre l'espace sacré et le monde réel.",
+    "description_semantique": "Selon Rudolf Wittkower, cette œuvre représente l'union mystique totale entre le divin et l'humain, où l'extase religieuse est indissociable de la sensation physique. L'historien souligne que l'art baroque utilise ici le spectateur comme témoin oculaire, transformant la contemplation en une expérience sensorielle immersive. C'est le triomphe de la 'bel composto', l'intégration parfaite de la sculpture, de l'architecture et de la peinture.",
+    "citation": "On ne peut pas, en vérité, dire si c'est un ange ou un homme, car la statue possède une beauté qui dépasse les limites de la nature humaine.",
+    "citation_auteur": "Filippo Baldinucci",
+    "bibliographie": "Rudolf Wittkower, Bernini: The Sculptor of the Roman Baroque, 1955",
+    "problematique_concours": "Comment l'œuvre d'art, par la mise en scène de sa matérialité, peut-elle transformer le statut du spectateur en acteur d'une expérience sensible ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 6,
+    "auteur": "Théodore Géricault",
+    "titre": "Le Radeau de la Méduse",
+    "date": "1818-1819",
+    "dimensions": "491 cm × 716 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQeGJGdFXhlZHAYvW7MZI45FPHA-tCcgf22XA&s",
+    "epoque": "Époque moderne",
+    "theme": "La narration visuelle",
+    "questionnement": [
+      "C4: Représentation : image",
+      "réalité",
+      "fiction"
+    ],
+    "mouvement": [
+      "Romantisme"
+    ],
+    "notions": [
+      "Composition",
+      "Lumière",
+      "Corps",
+      "Couleur",
+      "Geste"
+    ],
+    "description_plastique": "L'espace pictural s'articule autour de deux structures pyramidales asymétriques dont la ligne de force culmine dans le geste désespéré d'un naufragé noir. Une palette chromatique sombre, saturée de tons rompus, terreux et bitumineux, est transpercée par un clair-obscur d'une violence dramatique. Le cadrage abrupt pousse le premier plan au bord extrême de la toile, projetant virtuellement le spectateur sur l'embarcation de fortune.",
+    "description_semantique": "Inspirée d'un naufrage tragique et d'un scandale d'État contemporain, l'œuvre s'émancipe de l'anecdote historique pour s'élever au rang d'allégorie universelle de l'agonie et du destin humain. L'historien Jules Michelet y décelait le miroir politique d'une nation en crise : 'C'est notre société tout entière qui est embarquée sur ce radeau de la Méduse'. Géricault subvertit le genre académique du grand format en octroyant la noblesse héroïque de la peinture d'histoire à des parias et des anonymes.",
+    "citation": "C'est notre société tout entière qui est embarquée sur ce radeau de la Méduse.",
+    "citation_auteur": "Jules Michelet",
+    "bibliographie": "Lorenz Eitner, Géricault : sa vie et son œuvre, 1983.",
+    "problematique_concours": "Dans quelle mesure la peinture d'histoire peut-elle subvertir les codes de la monumentalité classique pour ériger le fait divers contemporain en mythe plastique universel ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 7,
+    "auteur": "Auguste Rodin",
+    "titre": "Les Bourgeois de Calais",
+    "date": "1884-1889",
+    "dimensions": "209,5 x 244 x 190,5 cm",
+    "materiaux": "Bronze",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/0/01/%28Venice%29_Auguste_Rodin_-The_Burghers_of_Calais_-_Ca%27_Pesaro_-_Galleria_Internazionale_d%27Arte_Moderna.jpg",
+    "epoque": "Époque moderne",
+    "theme": "Présentation et présence matérielle de l'œuvre dans l'espace",
+    "questionnement": [
+      "C3: Fabrications et relation entre objet et espace",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Symbolisme",
+      "Réalisme"
+    ],
+    "notions": [
+      "corps",
+      "espace",
+      "matières"
+    ],
+    "description_plastique": "Rodin rejette la composition pyramidale classique et le piédestal traditionnel pour placer les six figures au sol, sur le même plan que le spectateur. Cette disposition brise la distance contemplative, imposant une déambulation qui révèle l'hétérogénéité des états psychologiques à travers une modélisation expressive des corps. La surface tourmentée du bronze capte la lumière de manière fragmentée, accentuant la tension dramatique de chaque silhouette.",
+    "description_semantique": "Selon Rainer Maria Rilke, cette œuvre ne traite pas d'un exploit héroïque figé, mais d'une humanité tragique et isolée dans son intériorité. Le sculpteur traduit la douleur par une vérité anatomique qui s'affranchit du monument commémoratif convenu pour incarner la condition humaine dans sa précarité. Rodin transforme ainsi l'espace public en un lieu de rencontre frontale et psychologique avec le sacrifice.",
+    "citation": "Il n'y a pas de monument qui ait été conçu dans un esprit plus antimonumental.",
+    "citation_auteur": "Albert Elsen",
+    "bibliographie": "Antoinette Le Normand-Romain, Rodin, 2013",
+    "problematique_concours": "Comment la suppression du socle modifie-t-elle la relation entre le spectateur et la sculpture en tant que dispositif d'espace ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 8,
+    "auteur": "Paul Cézanne",
+    "titre": "La Montagne Sainte-Victoire vue des Lauves",
+    "date": "1904-1906",
+    "dimensions": "65 cm × 81 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/a/ac/Paul_C%C3%A9zanne_-_Mont_Sainte-Victoire_-_Google_Art_Project.jpg",
+    "epoque": "Époque moderne",
+    "theme": "Couleur : matérialité et qualité",
+    "questionnement": [
+      "Lycée: La matière",
+      "les matériaux et la matérialité de l'œuvre",
+      "C3: Matérialité de la production et sensibilité aux constituants"
+    ],
+    "mouvement": [
+      "Postimpressionnisme",
+      "Pré-cubisme"
+    ],
+    "notions": [
+      "Couleur",
+      "Touche",
+      "Espace",
+      "Forme",
+      "Matière"
+    ],
+    "description_plastique": "L'espace pictural se structure par la juxtaposition de facettes chromatiques planes et géométriques, opérant une synthèse entre dessin et couleur. La perspective atmosphérique traditionnelle s'efface au profit du principe de la 'tache-passage' où les plans s'interpénètrent de façon modulaire. Les réserves de toile vierge laissées apparentes rythment la composition en faisant vibrer la matérialité du support.",
+    "description_semantique": "Cézanne substitue à l'imitation servile de la nature une 'construction d'après nature', affirmant l'autonomie souveraine du plan de la toile. Le philosophe Maurice Merleau-Ponty écrit dans *Le Doute de Cézanne* que l'artiste s'efforce de donner à voir la perception primitive du monde avant que l'intellect ne la fige en objets distincts. L'œuvre bascule ainsi vers la modernité en révélant la peinture comme un acte d'engendrement du monde et non comme son reflet.",
+    "citation": "Je veux faire de l'impressionnisme quelque chose de solide et de durable comme l'art des musées.",
+    "citation_auteur": "Paul Cézanne",
+    "bibliographie": "Maurice Merleau-Ponty, Sens et non-sens, 1948.",
+    "problematique_concours": "Dans quelle mesure l'autonomisation de la touche colorée peut-elle déconstruire la mimétique spatiale pour fonder une nouvelle ontologie de la surface picturale ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 9,
+    "auteur": "Le Corbusier",
+    "titre": "Villa Savoye",
+    "date": "1928-1931",
+    "dimensions": "Environ 450 m² sur trois niveaux",
+    "materiaux": "Béton armé, verre, acier, plâtre",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsiYy63eyKj5lgK0UkqsEC6z9Rc21qe1x6zA&s",
+    "epoque": "Époque moderne",
+    "theme": "Espace en 3D",
+    "questionnement": [
+      "C3: Fabrications et relation entre objet et espace",
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur"
+    ],
+    "mouvement": [
+      "Mouvement moderne",
+      "Purisme"
+    ],
+    "notions": [
+      "forme",
+      "espace",
+      "lumière"
+    ],
+    "description_plastique": "La villa repose sur des pilotis en béton libérant le rez-de-chaussée pour la circulation, tandis que le plan libre et la façade libre permettent une organisation spatiale indépendante de la structure porteuse. Les fenêtres en longueur et le toit-terrasse jardin accentuent la fluidité et l'ouverture de la structure géométrique vers l'extérieur. Le jeu de contrastes entre les masses blanches épurées et les lignes horizontales définit une esthétique de la précision industrielle.",
+    "description_semantique": "Selon Le Corbusier, la maison est une 'machine à habiter' où la rigueur géométrique doit répondre aux besoins fonctionnels de l'homme moderne. Cette approche rejette l'ornement au profit d'une rationalité constructive visant l'efficacité spatiale et l'harmonie universelle. L'historien William Curtis souligne que la Villa Savoye incarne une synthèse monumentale entre les principes de la machine et une poétique architecturale classique et ordonnée.",
+    "citation": "La maison est une machine à habiter.",
+    "citation_auteur": "Le Corbusier",
+    "bibliographie": "William Curtis, L'Architecture moderne depuis 1900, 2006",
+    "problematique_concours": "Comment l'organisation de l'espace architectural peut-elle transformer la relation entre le corps du spectateur et son environnement quotidien ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 10,
+    "auteur": "Robert Smithson",
+    "titre": "Spiral Jetty",
+    "date": "1970",
+    "dimensions": "Longueur : 457 m, largeur : 4,6 m",
+    "materiaux": "Roches de basalte, cristaux de sel, boue, eau",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bd/Viewing_Robert_Smithson%27s_Spiral_Jetty_on_June_18th%2C_2018.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Transformation de la matière",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Lycée: La matière",
+      "les matériaux et la matérialité de l'œuvre"
+    ],
+    "mouvement": [
+      "Land Art",
+      "Art conceptuel"
+    ],
+    "notions": [
+      "Espace",
+      "Matière",
+      "Temps",
+      "Site",
+      "Échelle"
+    ],
+    "description_plastique": "L'œuvre se déploie sous la forme d'une immense jetée d'envergure territoriale s'enroulant de manière antihoraire dans les eaux salines saturées du Grand Lac Salé. Construite par le biais d'un terrassement massif de blocs de basalte noir, elle s'inscrit au sein d'une horizontalité topographique absolue. La configuration visuelle est soumise aux fluctuations du niveau lacustre, aux précipitations salines blanches et aux micro-organismes modifiant la chromaticité de l'eau.",
+    "description_semantique": "Cette intervention emblématique matérialise le concept physique d'entropie théorisé par Smithson, postulant l'acceptation de la dégradation inéluctable et de la réabsorption de la forme par son milieu. Pour le théoricien Gilles A. Tiberghien, l'œuvre récuse la neutralité anhistorique de la galerie d'art pour lier sa matérialité au temps géologique et cosmique. La figure archétypale de la spirale devient ici un parcours de perception à l'échelle du paysage, décentrant le regard anthropocentrique.",
+    "citation": "Une œuvre d'art quand elle est installée dans un site n'est pas seulement placée là, elle fait corps avec le lieu.",
+    "citation_auteur": "Robert Smithson",
+    "bibliographie": "Gilles A. Tiberghien, Land Art, 1993.",
+    "problematique_concours": "En quoi l'inscription in situ de l'œuvre territoriale et l'exposition de ses matériaux à l'entropie remettent-elles en cause la pérennité de l'objet esthétique et l'autonomie de la production d'art ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 11,
+    "auteur": "Nam June Paik",
+    "titre": "Electronic Superhighway: Continental U.S., Alaska, Hawaii",
+    "date": "1995",
+    "dimensions": "467 x 1239 x 101 cm",
+    "materiaux": "336 téléviseurs, 50 lecteurs DVD, néons, structure en acier",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/bb/South_Korean_President_Park_visits_Smithsonian_American_Art_Museum.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Métissage arts plastiques et technologie numérique",
+    "questionnement": [
+      "C3: Représentations plastiques et dispositifs de présentation",
+      "Lycée: La matière",
+      "les matériaux et la matérialité de l'œuvre"
+    ],
+    "mouvement": [
+      "Fluxus",
+      "Video Art"
+    ],
+    "notions": [
+      "espace",
+      "lumière",
+      "temps",
+      "matières"
+    ],
+    "description_plastique": "L'œuvre se compose d'une immense structure murale intégrant 336 moniteurs diffusant des boucles vidéo, le tout souligné par un tracé complexe de néons colorés. Ces derniers dessinent les contours de la carte des États-Unis, transformant le support technologique en une cartographie lumineuse monumentale. L'accumulation des écrans crée une hétérogénéité visuelle où chaque fragment vidéo participe à une mosaïque médiatique globale.",
+    "description_semantique": "Selon Edith Decker-Phillips, cette œuvre incarne la vision prophétique de Paik sur l'autoroute de l'information, où l'électronique abolit les distances géographiques. L'artiste fragmente l'identité nationale à travers le prisme du flux télévisuel, révélant la médiation technologique comme nouvelle structure du réel. La structure monumentale devient une métaphore physique de la complexité réticulaire du monde contemporain.",
+    "citation": "The real is becoming exactly like the TV image.",
+    "citation_auteur": "Nam June Paik",
+    "bibliographie": "Edith Decker-Phillips, Paik Video, 1998",
+    "problematique_concours": "Comment l'usage de la technologie dans l'œuvre plastique redéfinit-il le statut de l'image et sa relation à l'espace physique ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 12,
+    "auteur": "Michel-Ange",
+    "titre": "Plafond de la chapelle Sixtine",
+    "date": "1508-1512",
+    "dimensions": "40,93 m x 13,41 m",
+    "materiaux": "Fresque (pigments sur enduit de chaux)",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSPvCsm97q8S4fWY4NCLhKm4FX_-VwnVr6Edq_SRXRrhAVecfTSs5oXFP4&s=10",
+    "epoque": "Renaissance",
+    "theme": "La narration visuelle",
+    "questionnement": [
+      "C4: Représentation : image",
+      "réalité",
+      "fiction",
+      "Lycée: La représentation",
+      "ses langages",
+      "moyens plastiques et enjeux artistiques"
+    ],
+    "mouvement": [
+      "Haute Renaissance",
+      "Maniérisme naissant"
+    ],
+    "notions": [
+      "forme",
+      "espace",
+      "corps"
+    ],
+    "description_plastique": "L'œuvre déploie une structure architecturale feinte complexe, organisant un récit biblique en plusieurs registres autour de la voûte en berceau. La puissance des anatomies, marquées par le modelé vigoureux et une torsion dynamique (figura serpentinata), confère aux figures une présence monumentale et sculpturale. La gamme chromatique vive, révélée par la restauration, souligne la netteté des formes et la profondeur spatiale des scènes.",
+    "description_semantique": "Selon Giorgio Vasari, ce plafond est le témoin d'une prouesse technique et intellectuelle inégalée, transformant la surface plane en une architecture céleste où le corps humain devient l'échelle de mesure de la divinité. L'historien souligne comment Michel-Ange a libéré la figure humaine de ses contraintes spatiales pour manifester l'aspiration spirituelle. Cette tension entre la lourdeur de la matière peinte et l'immatérialité du souffle divin définit, pour Vasari, l'apogée de l'art de la Renaissance.",
+    "citation": "On peut dire que cette œuvre est la véritable lanterne de notre art, qui a apporté tant de lumière à la peinture qu'elle a éclairé un monde resté plongé dans les ténèbres pendant tant de centaines d'années.",
+    "citation_auteur": "Giorgio Vasari",
+    "bibliographie": "Giorgio Vasari, Les Vies des meilleurs peintres, sculpteurs et architectes, 1568",
+    "problematique_concours": "Dans quelle mesure la représentation du corps humain dans l'espace architectural de la voûte redéfinit-elle les limites de la narration visuelle ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 13,
+    "auteur": "Le Caravage",
+    "titre": "La Vocation de saint Matthieu",
+    "date": "1599-1600",
+    "dimensions": "322 cm × 340 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/7/77/0_%27La_Vocation_de_saint_Matthieu%27_de_Le_Caravage_-_fr2.JPG",
+    "epoque": "Époque moderne (Baroque)",
+    "theme": "La narration visuelle",
+    "questionnement": [
+      "C4: Représentation : image",
+      "réalité",
+      "fiction",
+      "Lycée: La représentation",
+      "ses langages",
+      "moyens plastiques et enjeux artistiques"
+    ],
+    "mouvement": [
+      "Baroque",
+      "Ténébrisme"
+    ],
+    "notions": [
+      "lumière",
+      "espace",
+      "temps"
+    ],
+    "description_plastique": "Le tableau utilise une composition rigoureuse structurée par une ligne de force horizontale où s'inscrit la gestuelle des personnages. Le clair-obscur dramatique, ou ténébrisme, sculpte les corps et détache les figures du fond indistinct. La lumière, venant de la droite, fonctionne comme un vecteur narratif et métaphysique qui fige l'instant de la conversion.",
+    "description_semantique": "Selon Roberto Longhi, le Caravage opère ici une révolution en transposant le sacré dans la contingence du réel quotidien. Le geste de la main du Christ, citation du doigt de Dieu dans 'La Création d'Adam' de Michel-Ange, relie le temps humain de la perception immédiate au temps divin de l'appel. L'œuvre marque le passage de la peinture de contemplation à une peinture d'action théâtrale adressée directement au spectateur.",
+    "citation": "La lumière, dans la Vocation, n'est pas un accessoire décoratif, mais le véhicule du verbe divin qui déchire l'obscurité du péché.",
+    "citation_auteur": "Roberto Longhi",
+    "bibliographie": "Roberto Longhi, Le Caravage, 1927",
+    "problematique_concours": "Comment la lumière et la mise en scène du geste transforment-elles la narration picturale en une expérience sensible pour le spectateur ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "auteur": "Caspar David Friedrich",
+    "titre": "Le Voyageur contemplant une mer de nuages",
+    "date": "1818",
+    "dimensions": "94,8 cm × 74,8 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b9/Caspar_David_Friedrich_-_Wanderer_above_the_sea_of_fog.jpg",
+    "epoque": "Époque moderne",
+    "mouvement": [
+      "Romantisme allemand"
+    ],
+    "theme": "Prise en compte spectateur/effet recherché",
+    "questionnement": [
+      "C4: Espace : œuvre, auteur, spectateur",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "notions": [
+      "Espace",
+      "Regard",
+      "Composition",
+      "Échelle",
+      "Plan"
+    ],
+    "description_plastique": "L'espace est rigoureusement structuré par une figure de dos placée au premier plan sur un rocher sombre en silhouette, constituant le point focal absolu. Les plans intermédiaires et lointains s'estompent dans un dégradé de ciels et de brumes aux tonalités pastel et lumineuses, abolissant les repères géométriques traditionnels. Le cadrage vertical renforce la tension entre la verticalité de l'homme et l'horizontalité infinie du paysage.",
+    "description_semantique": "L'utilisation de la *Rückenfigur* (figure de dos) sert de vecteur identificatoire, projetant le spectateur à la place même du personnage face à l'immensité du monde. Werner Hofmann explique que ce procédé transforme le paysage physique en un paysage intérieur, métaphysique et spirituel, propre au sentiment du Sublime romantique. L'œuvre n'est plus une description objective de la nature, mais la mise en abyme de l'acte même de contemplation.",
+    "problematique_concours": "Comment l'introduction de la figure de dos reconfigure-t-elle le plan pictural pour transformer la perception du paysage en une expérience phénoménologique de l'infini ?",
+    "citation": "Le peintre ne doit pas peindre seulement ce qu'il voit devant lui, mais aussi ce qu'il voit en lui-même.",
+    "citation_auteur": "Caspar David Friedrich",
+    "bibliographie": "Werner Hofmann, Caspar David Friedrich, 2000.",
+    "_custom": true,
+    "id": 14
+  },
+  {
+    "id": 15,
+    "auteur": "Claude Monet",
+    "titre": "Impression, soleil levant",
+    "date": "1872",
+    "dimensions": "48 cm × 63 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/5/59/Monet_-_Impression%2C_Sunrise.jpg",
+    "epoque": "Époque moderne",
+    "theme": "L'autonomie du geste",
+    "questionnement": [
+      "C3: Matérialité de la production et sensibilité aux constituants"
+    ],
+    "mouvement": [
+      "Impressionnisme"
+    ],
+    "notions": [
+      "Geste",
+      "Touche",
+      "Lumière",
+      "Couleur",
+      "Matière"
+    ],
+    "description_plastique": "La surface picturale est saturée de touches rapides, juxtaposées et apparentes, qui rompent avec le lissage académique traditionnel. Le motif du port du Havre se dissout dans une atmosphère vaporeuse où l'eau et le ciel s'interpénètrent par des variations de gris, de bleus et d'orangés purs. Le disque solaire orange éclate de manière autonome, affirmant sa présence par l'immédiateté de la matière colorée déposée.",
+    "description_semantique": "L'œuvre privilégie la saisie instantanée du phénomène lumineux et de la sensation rétinienne au détriment de la description anatomique du réel. L'historien d'art Richard Shiff démontre que la touche impressionniste devient l'indice physique de la perception de l'artiste en temps réel, fusionnant le sujet et l'objet. Ce déplacement du regard marque l'acte de naissance d'une peinture qui se donne d'abord à voir comme matérialité de pigments.",
+    "citation": "Je voulais simplement dire mon impression face au paysage.",
+    "citation_auteur": "Claude Monet",
+    "bibliographie": "Richard Shiff, Cézanne and the End of Impressionism, 1984.",
+    "problematique_concours": "Dans quelle mesure l'émancipation de la touche picturale par rapport au contour mimétique favorise-t-elle l'avènement de la sensation pure comme fondement de la modernité ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "auteur": "Pablo Picasso",
+    "titre": "Les Demoiselles d'Avignon",
+    "date": "1907",
+    "dimensions": "243,9 cm × 233,7 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/en/4/4c/Les_Demoiselles_d%27Avignon.jpg",
+    "epoque": "Époque moderne",
+    "mouvement": [
+      "Cubisme",
+      "Primitivisme"
+    ],
+    "theme": "Hétérogénéité et cohérence plastique (2D/3D)",
+    "questionnement": [
+      "C4: Représentation : image, réalité, fiction",
+      "Lycée: La représentation, ses langages, moyens plastiques et enjeux artistiques"
+    ],
+    "notions": [
+      "Forme",
+      "Espace",
+      "Plan",
+      "Déconstruction",
+      "Perspective"
+    ],
+    "description_plastique": "L'espace tridimensionnel est violemment rabattu sur la bidimensionnalité de la surface par l'usage de formes anguleuses, brisées et de plans facettés. La perspective albertienne est totalement abolie au profit d'une simultanéité de points de vue hétérogènes sur les corps des cinq figures féminines. La palette chromatique juxtapose des ocres et des roses charnels à des aplats bleus angulaires, créant une planéité agressive.",
+    "description_semantique": "L'œuvre opère une rupture anthropologique et esthétique majeure en assimilant les leçons des arts extra-occidentaux (notamment les masques africains) pour briser le canon de la beauté classique. L'historien Leo Steinberg analyse le tableau comme un espace de confrontation directe et sexuelle, où le regard des femmes prend à partie le spectateur de manière frontale. C'est le passage d'un espace de la vision passive à un espace d'action plastique pure.",
+    "problematique_concours": "Comment la déconstruction géométrique du corps et l'éclatement de la perspective unifiée permettent-ils d'instaurer le plan de la toile comme le lieu autonome de la crise de la représentation ?",
+    "citation": "Je peins les objets comme je les pense, non comme je les vois.",
+    "citation_auteur": "Pablo Picasso",
+    "bibliographie": "Leo Steinberg, The Philosophical Brothel, 1972.",
+    "_custom": true,
+    "id": 16
+  },
+  {
+    "id": 17,
+    "auteur": "Kazimir Malevitch",
+    "titre": "Carré noir sur fond blanc",
+    "date": "1915",
+    "dimensions": "79,5 cm × 79,5 cm",
+    "materiaux": "Huile sur toile",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/d/d9/%D0%A7%D1%91%D1%80%D0%BD%D1%8B%D0%B9_%D1%81%D1%83%D0%BF%D1%80%D0%B5%D0%BC%D0%B0%D1%82%D0%B8%D1%87%D0%B5%D1%81%D0%BA%D0%B8%D0%B9_%D0%BA%D0%B2%D0%B0%D0%B4%D1%80%D0%B0%D1%82._1915._%D0%93%D0%A2%D0%93.png",
+    "epoque": "Époque moderne",
+    "theme": "Autonomie de l'œuvre",
+    "questionnement": [
+      "Lycée: L'idée",
+      "la réalisation et le travail de l'œuvre",
+      "C4: Matérialité : œuvre et objet"
+    ],
+    "mouvement": [
+      "Suprématisme",
+      "Abstraction"
+    ],
+    "notions": [
+      "Forme",
+      "Couleur",
+      "Support",
+      "Vide",
+      "Zéro de la forme"
+    ],
+    "description_plastique": "L'œuvre présente une forme quadrangulaire noire peinte au centre d'un cadre de toile blanc, générant un contraste binaire absolu. La matérialité de la couche picturale révèle un réseau dense de craquelures et d'irrégularités de texture qui attestent du geste physique du peintre. La forme n'est pas parfaitement géométrique ni parallèle aux bords, introduisant une tension dynamique subtile au sein de la planéité.",
+    "description_semantique": "Malevitch proclame à travers cette toile le 'zéro de la forme', libérant définitivement la peinture de tout asservissement à la figuration ou à la narration. Pour l'historien de l'art Jean-Claude Marcadé, le suprématisme institue une sensibilité pure non objective, transformant le tableau en une icône moderne de la présence spirituelle. Le carré noir n'est pas le vide, mais l'affirmation de la couleur et de la forme existant par et pour elles-mêmes.",
+    "citation": "Je me suis transformé dans le zéro de la forme et j'ai repêché le bien du gouffre de l'art académique.",
+    "citation_auteur": "Kazimir Malevitch",
+    "bibliographie": "Jean-Claude Marcadé, Le Suprématisme, 2007.",
+    "problematique_concours": "En quoi l'épuration radicale de la forme et du motif pictural permet-elle de fonder l'autonomie absolue de la peinture en tant que pure présence énergétique ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 18,
+    "auteur": "Jackson Pollock",
+    "titre": "Number 1A, 1948",
+    "date": "1948",
+    "dimensions": "172,7 x 264,2 cm",
+    "materiaux": "Peinture à l'huile, émail et peinture à l'aluminium sur toile",
+    "image_url": "https://www.moma.org/media/W1siZiIsIjQ3NzIxMyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg?sha=5781e3be575ea954",
+    "epoque": "Art contemporain",
+    "theme": "L'autonomie du geste",
+    "questionnement": [
+      "C3: Matérialité de la production et sensibilité aux constituants",
+      "Lycée: La matière",
+      "les matériaux et la matérialité de l'œuvre"
+    ],
+    "mouvement": [
+      "Expressionnisme abstrait",
+      "Action Painting"
+    ],
+    "notions": [
+      "geste",
+      "matières",
+      "espace",
+      "corps"
+    ],
+    "description_plastique": "L'œuvre se compose d'un réseau dense et complexe de lignes sinueuses formées par le coulage et la projection de peinture industrielle. Le geste ample et rythmé du peintre, travaillant au sol, abolit la distinction entre la figure et le fond. La stratification des couches crée une profondeur optique qui refuse toute perspective traditionnelle au profit d'une surface vibrante.",
+    "description_semantique": "Selon Harold Rosenberg, cette œuvre incarne l'avènement de l'action painting où la toile n'est plus un support de représentation mais une arène dans laquelle se joue un événement. L'acte de peindre devient une existentialisation de l'artiste, où chaque trait enregistre la trace physique d'un instant fugace. L'œuvre manifeste ainsi une libération totale de la forme vis-à-vis des contraintes de la figuration.",
+    "citation": "At a certain moment the canvas began to appear to one American painter after another as an arena in which to act—rather than as a space in which to reproduce, re-design, analyze or 'express' an object, actual or imagined.",
+    "citation_auteur": "Harold Rosenberg",
+    "bibliographie": "Harold Rosenberg, The Tradition of the New, 1959",
+    "problematique_concours": "En quoi le geste et sa trace modifient-ils le statut de la surface et la réception de l'espace pictural dans l'art de la seconde moitié du XXe siècle ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 19,
+    "auteur": "Yves Klein",
+    "titre": "Le Vide",
+    "date": "1958",
+    "dimensions": "Variable (espace de la galerie Iris Clert)",
+    "materiaux": "Espace vide, peinture blanche, protocole",
+    "image_url": "https://storage.canalblog.com/09/67/191716/83184312_o.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Présentation et présence matérielle de l'œuvre dans l'espace",
+    "questionnement": [
+      "C3: Représentations plastiques et dispositifs de présentation",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Nouveau Réalisme",
+      "Fluxus"
+    ],
+    "notions": [
+      "espace",
+      "corps",
+      "temps"
+    ],
+    "description_plastique": "L'œuvre consiste en la mise à nu totale de la galerie Iris Clert dont les murs ont été repeints en blanc immaculé. Par ce dispositif, Klein neutralise les caractéristiques architecturales du lieu pour créer une vacuité matérielle absolue. L'espace lui-même devient le médium, invitant le spectateur à une expérience de la pureté.",
+    "description_semantique": "Selon Pierre Restany, Le Vide est une expérience ontologique qui marque la mutation de l'art de l'objet vers une phénoménologie de la présence. Il s'agit de rendre manifeste la sensibilité pure, libérée de toute contrainte figurative ou matérielle. L'œuvre opère un basculement où l'artiste ne crée plus une forme, mais un état de conscience pur.",
+    "citation": "Le vide, moi, je l'ai déjà rencontré dans ma vie, c'est un très bel être vivant, d'une grande sensibilité.",
+    "citation_auteur": "Yves Klein",
+    "bibliographie": "Pierre Restany, Yves Klein : Le monochrome, 1974",
+    "problematique_concours": "Comment l'absence de matérialité dans l'œuvre peut-elle constituer une proposition plastique et modifier le statut du spectateur ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 20,
+    "auteur": "Donald Judd",
+    "titre": "Untitled (stack)",
+    "date": "1967",
+    "dimensions": "363 cm × 101,6 cm × 78,7 cm (au total)",
+    "materiaux": "Acier galvanisé et plexiglas vert teinté",
+    "image_url": "https://www.moma.org/media/W1siZiIsIjMxMTkwNyJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg?sha=e107ee064af43450",
+    "epoque": "Art contemporain",
+    "theme": "Objets : inventions, fabrications, détournements, mise en scène",
+    "questionnement": [
+      "C4: Matérialité : œuvre et objet",
+      "C3: Fabrications et relation entre objet et espace"
+    ],
+    "mouvement": [
+      "Minimalisme"
+    ],
+    "notions": [
+      "Objet",
+      "Espace",
+      "Série",
+      "Structure",
+      "Matière"
+    ],
+    "description_plastique": "L'œuvre se compose de dix modules parallélépipédiques identiques en acier et plexiglas fixés verticalement au mur à intervalles réguliers égaux à leur hauteur. La structure rejette tout principe d'assemblage artisanal ou de composition subjective au profit d'une progression arithmétique rigoureuse et impersonnelle. Les propriétés physiques des matériaux industriels combinent l'opacité métallique et la transparence colorée réfléchissante du plexiglas.",
+    "description_semantique": "Judd refuse la distinction traditionnelle entre peinture et sculpture pour imposer le concept de 'Specific Object' (objet spécifique), existant de manière autonome dans son espace réel. Le critique de l'art Rosalind Krauss démontre que le minimalisme récuse l'illusionnisme et l'intériorité psychologique pour concentrer la perception sur la présence littérale de l'objet. L'œuvre ne fait pas signe vers autre chose qu'elle-même, engageant un rapport d'échelle direct avec le corps du regardeur.",
+    "citation": "Une œuvre d'art n'a pas besoin d'avoir un grand nombre de choses à regarder, elle a juste besoin d'être en elle-même une entité.",
+    "citation_auteur": "Donald Judd",
+    "bibliographie": "Donald Judd, Specific Objects, 1965.",
+    "problematique_concours": "En quoi l'adoption d'une structure sérielle industrielle et l'élimination de la composition subjective redéfinissent-elles le statut de la sculpture face à l'espace architectural ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 21,
+    "auteur": "Olafur Eliasson",
+    "titre": "The Weather Project",
+    "date": "2003",
+    "dimensions": "Installation in situ, dimensions du Turbine Hall (Tate Modern)",
+    "materiaux": "Lampes à vapeur de sodium mono-fréquence, miroirs, brumisateurs (eau et sucre), feuille d'aluminium",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/3/3a/Tate.modern.weather.project.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Prise en compte spectateur/effet recherché",
+    "questionnement": [
+      "Lycée: La présentation et la réception de l'œuvre",
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur"
+    ],
+    "mouvement": [
+      "Art relationnel",
+      "Installation collective"
+    ],
+    "notions": [
+      "Lumière",
+      "Espace",
+      "Atmosphère",
+      "Spectateur",
+      "Dispositif"
+    ],
+    "description_plastique": "L'œuvre s'approprie le volume architectural monumental du hall d'exposition en y installant un immense demi-disque lumineux composé de centaines de lampes à sodium jaunes. Un plafond de miroirs géant redouble verticalement l'espace, transformant le demi-disque en un soleil sphérique parfait tout en reflétant la silhouette des spectateurs au sol. Une brume artificielle dense obscurcit l'espace, modifiant la diffraction de la lumière et saturant l'atmosphère d'une teinte monochrome.",
+    "description_semantique": "L'installation simule un phénomène météorologique à l'intérieur de l'institution pour interroger les notions d'artifice, de communauté et de perception collective en milieu urbain. Le théoricien Nicolas Bourriaud analyse ce type d'interventions comme des générateurs d'art relationnel, où l'œuvre produit des espaces de socialisation et de contemplation partagée. Le spectateur est poussé à s'allonger sur le sol pour s'inscrire physiquement dans le paysage artificiel créé par le dispositif.",
+    "citation": "L'art ne consiste pas à regarder un objet, mais à faire l'expérience du monde à travers un dispositif.",
+    "citation_auteur": "Olafur Eliasson",
+    "bibliographie": "Nicolas Bourriaud, Esthétique relationnelle, 1998.",
+    "problematique_concours": "Comment l'immersion phénoménologique du public au sein d'un dispositif atmosphérique artificiel déplace-t-elle l'enjeu esthétique de la contemplation de l'objet vers la conscience collective de la perception ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 22,
+    "auteur": "Daniel Buren",
+    "titre": "Les Deux Plateaux",
+    "date": "1986",
+    "dimensions": "3000 m² (Installation in situ)",
+    "materiaux": "Marbre blanc de Carrare, marbre noir des Pyrénées, asphalte, eau, grillage",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/c/cd/Palais_Royal_et_les_Colonnes_de_Buren.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Présentation et présence matérielle de l'œuvre dans l'espace",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Art conceptuel",
+      "Minimalisme",
+      "Art in situ"
+    ],
+    "notions": [
+      "Espace",
+      "In situ",
+      "Outil visuel",
+      "Échelle",
+      "Rythme"
+    ],
+    "description_plastique": "L'œuvre s'inscrit dans la cour d'honneur du Palais-Royal en substituant au parking existant un maillage géométrique de 260 colonnes tronquées de hauteurs variables. Ces cylindres sont systématiquement rayés de bandes verticales alternées blanches et noires de 8,7 cm de large, motif signature de l'artiste appelé « outil visuel ». L'installation se déploie sur deux niveaux, intégrant un plan d'eau souterrain visible à travers des grilles au ras du sol.",
+    "description_semantique": "Conçue de manière strictement in situ, l'œuvre n'existe qu'en fonction de son contexte architectural, révélant les proportions et la structure classique du palais par un effet de contraste contemporain. Pour l'historien d'art Yves Michaud, Buren opère une déconstruction institutionnelle en transformant un espace de pouvoir fermé en un lieu de déambulation ludique et ouvert au public. Le spectateur devient l'activateur de l'espace, sa progression physique générant de multiples perspectives cinétiques.",
+    "citation": "L'œuvre in situ n'a de sens que dans et pour le lieu pour lequel elle a été conçue.",
+    "citation_auteur": "Daniel Buren",
+    "bibliographie": "Yves Michaud, L'Art à l'état gazeux, 2003.",
+    "problematique_concours": "Comment l'intervention plastique in situ et l'usage d'un motif systématique peuvent-ils révéler et subvertir la charge historique et symbolique d'un espace architectural ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 23,
+    "auteur": "Roman Opalka",
+    "titre": "1 – ∞",
+    "date": "1965-2011",
+    "dimensions": "196 cm × 135 cm (par Détail)",
+    "materiaux": "Acrylique sur toile, enregistrement sonore, photographie",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/83/Roman_Opalka_%281995%29.png",
+    "epoque": "Art contemporain",
+    "theme": "Réalité concrète d'une production/œuvre",
+    "questionnement": [
+      "Lycée: L'idée",
+      "la réalisation et le travail de l'œuvre"
+    ],
+    "mouvement": [
+      "Art conceptuel"
+    ],
+    "notions": [
+      "Temps",
+      "Trace",
+      "Série",
+      "Processus",
+      "Geste"
+    ],
+    "description_plastique": "Chaque tableau, nommé « Détail », est recouvert de nombres peints en blanc à l'aide d'un pinceau fin, ordonnés chronologiquement de haut en bas et de gauche à droite. À chaque nouvelle toile, le fond noir originel de 1965 est éclairci de 1 %, menant progressivement à une saturation visuelle où le blanc s'efface dans le blanc (blanc sur blanc, ou blanc mérité). Le dispositif s'accompagne d'un enregistrement vocal de l'artiste prononçant les nombres et d'un autoportrait photographique à chaque fin de séance.",
+    "description_semantique": "Ce projet existentiel radical matérialise l'écoulement irréversible de la durée et l'approche inéluctable de la mort par la captation picturale de l'instant. Le critique d'art Bernard Blistène observe que le temps n'est plus ici le sujet d'une représentation allégorique, mais la matière même d'un processus performatif continu. L'œuvre abolit la distinction entre la vie de l'artiste et sa production, érigeant l'acte de peindre en une ascèse temporelle absolue.",
+    "citation": "Toute mon œuvre est une seule chose, la description du nombre un.",
+    "citation_auteur": "Roman Opalka",
+    "bibliographie": "Bernard Blistène, Une histoire de l'art du XXe siècle, 2002.",
+    "problematique_concours": "Dans quelle mesure l'assujettissement du geste pictural à un protocole conceptuel strict permet-il de matérialiser plastiquement la notion d'irréversibilité temporelle ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 24,
+    "auteur": "Sol LeWitt",
+    "titre": "Wall Drawing #260",
+    "date": "1975",
+    "dimensions": "Dimensions variables (en fonction du mur)",
+    "materiaux": "Craie blanche sur mur peint en noir",
+    "image_url": "https://www.moma.org/media/W1siZiIsIjEzNzQwNiJdLFsicCIsImNvbnZlcnQiLCItcXVhbGl0eSA5MCAtcmVzaXplIDIwMDB4MjAwMFx1MDAzZSJdXQ.jpg?sha=852deb235f7655e8",
+    "epoque": "Art contemporain",
+    "theme": "Le dispositif",
+    "questionnement": [
+      "Lycée: L'idée",
+      "la réalisation et le travail de l'œuvre",
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur"
+    ],
+    "mouvement": [
+      "Art conceptuel",
+      "Minimalisme"
+    ],
+    "notions": [
+      "Protocole",
+      "Ligne",
+      "Espace",
+      "Auteur",
+      "Série"
+    ],
+    "description_plastique": "L'œuvre se compose d'un réseau aléatoire d'arcs de cercle tracés à la craie blanche se détachant violemment sur un fond mural sombre. La densité, l'emplacement exact et l'entrelacement des lignes ne sont pas figés, générant un all-over graphique dont l'échelle est directement subordonnée à la taille de la cimaise. L'exécution physique n'est pas assurée par l'artiste lui-même mais par des assistants ou dessinateurs appliquant strictement un protocole écrit.",
+    "description_semantique": "En déléguant la réalisation de son œuvre via des instructions textuelles comparables à une partition musicale ou à un algorithme, LeWitt dissocie l'idée originelle de son exécution matérielle. L'historien de l'art Benjamin H. D. Buchloh souligne que cette dépersonnalisation de la touche artisanale marque l'apogée de l'esthétique administrative de l'art conceptuel. L'œuvre interroge l'unicité de la création artistique en postulant que l'idée en elle-même est une machine qui fait de l'art.",
+    "citation": "L'idée devient une machine qui fait l'art.",
+    "citation_auteur": "Sol LeWitt",
+    "bibliographie": "Benjamin H. D. Buchloh, Art conceptuel : une utopie concrète, 1993.",
+    "problematique_concours": "Comment la dissociation entre la conception protocolaire et l'exécution déléguée de l'œuvre murale remet-elle en cause les notions d'auctorialité et d'unicité matérielle ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 25,
+    "auteur": "Vera Molnár",
+    "titre": "Des)Ordres",
+    "date": "1974",
+    "dimensions": "Variable",
+    "materiaux": "Tracé par traceur (plotter) sur papier",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSIW87mI6hY5RRKLulEIKk8rt2W4dD3Rm4Xwx8T5CIyPQ&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Conception, production, diffusion à l'ère du numérique",
+    "questionnement": [
+      "C3: Représentations plastiques et dispositifs de présentation",
+      "Lycée: La matière",
+      "les matériaux et la matérialité de l'œuvre"
+    ],
+    "mouvement": [
+      "Art cinétique",
+      "Art algorithmique"
+    ],
+    "notions": [
+      "forme",
+      "temps",
+      "outil"
+    ],
+    "description_plastique": "L'œuvre présente une grille géométrique dont la rigueur structurelle est systématiquement altérée par des décalages aléatoires calculés par ordinateur. Cette déformation progressive des lignes crée une vibration optique qui déstabilise la perception de la trame initiale. Le résultat est une tension plastique entre l'ordre géométrique rigide et le désordre cinétique engendré par l'algorithme.",
+    "description_semantique": "Selon l'historienne de l'art Margit Rosen, le travail de Vera Molnár explore la dialectique entre la rationalité de la machine et l'imprévisibilité de l'intervention humaine. Elle souligne que l'introduction du 'désordre' (ou aléatoire) dans le système de la 'grille' n'est pas une négation de la forme, mais une extension des possibilités créatives offertes par l'outil numérique. Cette démarche s'inscrit dans une quête esthétique où l'ordinateur devient un partenaire de réflexion sur la genèse de l'image.",
+    "citation": "Il faut introduire une dose de désordre pour obtenir un ordre supérieur.",
+    "citation_auteur": "Vera Molnár",
+    "bibliographie": "Margit Rosen, A Computer Mind: Vera Molnár, 2015",
+    "problematique_concours": "Dans quelle mesure l'utilisation de l'outil numérique permet-elle de repenser les relations entre le geste créateur, le système et le hasard ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 26,
+    "auteur": "Manfred Mohr",
+    "titre": "Cubic Limit",
+    "date": "1973-1976",
+    "dimensions": "Dimensions variables (impression numérique ou traceur)",
+    "materiaux": "Algorithme (Fortran), traceur à plume sur papier",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQAk243Hr6ZAuFRLHuxZa9ryxcAvxIMMmA2xZN67ubH7VIMyFgBH1Ns9NU&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Métissage arts plastiques et technologie numérique",
+    "questionnement": [
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique",
+      "Lycée: La représentation",
+      "ses langages",
+      "moyens plastiques et enjeux artistiques"
+    ],
+    "mouvement": [
+      "Art numérique",
+      "Algoriste"
+    ],
+    "notions": [
+      "Espace",
+      "Code",
+      "Forme",
+      "Dimension",
+      "Processus"
+    ],
+    "description_plastique": "La série est composée d'un vocabulaire formel exclusivement généré à partir des douze arêtes d'un cube tridimensionnel projeté sur une surface plane. Le programme informatique calcule des rotations, des suppressions d'arêtes ou des transformations continues qui sont ensuite retranscrites par le bras mécanique du traceur. L'accumulation de ces signes anguleux crée une syntaxe visuelle qui évoque un alphabet inconnu ou une chorégraphie géométrique pure.",
+    "description_semantique": "Mohr substitue à l'intuition du peintre la rationalité d'une logique combinatoire écrite en code informatique pour épuiser les possibles d'une structure mathématique. L'historien de l'art Edmond Couchot explique que cette démarche consacre le passage de l'image optique à l'« image calculée », redéfinissant l'ontologie même de la représentation plastique. Le cube perd sa réalité volumétrique pour devenir un concept opératoire, une matrice générative de signes.",
+    "citation": "Mon art n'est pas mathématique, il est logique.",
+    "citation_auteur": "Manfred Mohr",
+    "bibliographie": "Edmond Couchot, La Technologie dans l'art, 1998.",
+    "problematique_concours": "Dans quelle mesure la programmation algorithmique des propriétés spatiales d'un volume peut-elle engendrer une nouvelle syntaxe du dessin bidimensionnel ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 27,
+    "auteur": "Ryoji Ikeda",
+    "titre": "data.matics",
+    "date": "2006",
+    "dimensions": "Installation immersive, dimensions variables",
+    "materiaux": "Projections vidéo multicanales, son génératif, ordinateurs",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSmch_VANDuooa5aU7M95KqffPmOTP3HERlMXHqms8c8pON01c7NfWSJ88&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Le dispositif",
+    "questionnement": [
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique",
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur"
+    ],
+    "mouvement": [
+      "Art numérique",
+      "Art conceptuel",
+      "Glitch art"
+    ],
+    "notions": [
+      "Lumière",
+      "Espace",
+      "Code",
+      "Temps",
+      "Son"
+    ],
+    "description_plastique": "L'installation plonge le spectateur dans l'obscurité totale, traversée par des projections stroboscopiques monumentales de flux de données numériques (codes-barres, coordonnées spatiales, pixels). La vitesse d'affichage dépasse la capacité de persistance rétinienne humaine, générant un bombardement visuel cinétique en noir, blanc et gris. La bande sonore, composée de hautes fréquences et de clics électroniques synchronisés aux images, renforce l'immersion sensorielle physique.",
+    "description_semantique": "Ikeda donne une forme sensible et architecturale à l'invisible de notre monde contemporain : l'océan de métadonnées (big data) qui structure notre réalité. Selon le critique d'art Lev Manovich, l'œuvre relève de l'esthétique des bases de données, où l'artiste ne peint plus avec des pigments mais sculpte des flux d'informations algorithmiques. Le dispositif génère une expérience de sublime technologique, écrasant l'échelle humaine sous l'incommensurabilité mathématique.",
+    "citation": "Je compose avec les données comme d'autres composent avec des notes de musique.",
+    "citation_auteur": "Ryoji Ikeda",
+    "bibliographie": "Lev Manovich, Le Langage des nouveaux médias, 2001.",
+    "problematique_concours": "Comment la traduction plastique et sonore de flux de données invisibles permet-elle de repenser la matérialité de l'espace immersif à l'ère numérique ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 28,
+    "auteur": "Miguel Chevalier",
+    "titre": "Sur-Natures",
+    "date": "2004",
+    "dimensions": "Installation générative interactive in situ",
+    "materiaux": "Vidéoprojection, capteurs de présence, programme informatique, mur",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSo4-acn6Lz9Xuqf74Ghm_PdCRDvR7KQMLzf_mW_7AHPOljaHbM-XBuVFPm&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Métissage arts plastiques et technologie numérique",
+    "questionnement": [
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Art numérique",
+      "Art génératif",
+      "Art interactif"
+    ],
+    "notions": [
+      "Interaction",
+      "Lumière",
+      "Évolution",
+      "Dispositif",
+      "Virtualité"
+    ],
+    "description_plastique": "Une immense projection murale révèle un jardin botanique virtuel aux formes hybrides et luminescentes inspirées de l'esthétique filaire et de la modélisation 3D. Les plantes virtuelles naissent, croissent, s'épanouissent et meurent selon un cycle biologique simulé par l'algorithme. Des capteurs optiques détectent les mouvements physiques des spectateurs, déclenchant l'inclinaison des tiges végétales vers eux ou la chute de feuilles numériques.",
+    "description_semantique": "L'œuvre questionne la frontière poreuse entre le biologique et l'artifice en substituant à la peinture de paysage classique un environnement autonome et réactif. Le théoricien Jean-Paul Fargier note que l'artiste instaure ici une co-paternité de l'œuvre : le programme donne le cadre, mais la gestuelle du regardeur actualise et modifie la composition plastique en temps réel. Cette nature de synthèse interroge notre rapport écologique à une biosphère de plus en plus artificialisée.",
+    "citation": "L'ordinateur est pour moi un outil de création au même titre que le pinceau et la toile l'étaient pour les impressionnistes.",
+    "citation_auteur": "Miguel Chevalier",
+    "bibliographie": "Christiane Paul, L'Art numérique, 2004.",
+    "problematique_concours": "En quoi l'interactivité d'un environnement végétal algorithmique transforme-t-elle le spectateur passif en co-auteur cinétique de l'espace pictural virtuel ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 29,
+    "auteur": "Christo et Jeanne-Claude",
+    "titre": "Le Pont Neuf empaqueté",
+    "date": "1985",
+    "dimensions": "Plus de 40 000 m² de toile, 13 000 m de corde",
+    "materiaux": "Toile de polyamide couleur grès tissée, cordes, câbles d'acier, pont en pierre",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSnL93QBIqiaH3Y_YFLNjBJUIBoohRg_ihGk64ebtxRFQ&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Mise en regard de l'espace",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "C3: Fabrications et relation entre objet et espace"
+    ],
+    "mouvement": [
+      "Land Art",
+      "Art in situ"
+    ],
+    "notions": [
+      "Échelle",
+      "In situ",
+      "Volume",
+      "Détournement",
+      "Éphémère"
+    ],
+    "description_plastique": "Le monument historique parisien dans son intégralité (arches, parapets, candélabres) est recouvert d'une toile synthétique ocre dont la teinte s'accorde avec les pierres de taille de Paris. Le tissu est maintenu et plissé par un réseau structuré de cordages qui soulignent la géométrie de l'ouvrage d'art tout en masquant ses détails architecturaux. L'intervention occulte le minéral au profit d'une texture souple qui réagit de manière cinétique aux variations de lumière et de vent.",
+    "description_semantique": "Par ce geste paradoxal de dissimulation, les artistes opèrent une révélation sculpturale de la forme monumentale : en cachant le pont, ils obligent le public à le voir de nouveau. La critique d'art Anne Cauquelin souligne que cette démarche monumentale et éphémère est aussi une entreprise sociologique qui transforme la gestion administrative de l'espace urbain en matière première du projet artistique. L'œuvre abolit momentanément la fonction purement utilitaire du pont pour l'ériger en objet d'art pur, transitoire.",
+    "citation": "Nos œuvres ne sont pas faites pour durer, elles expriment la liberté.",
+    "citation_auteur": "Jeanne-Claude",
+    "bibliographie": "Anne Cauquelin, L'Art contemporain, 1992.",
+    "problematique_concours": "Dans quelle mesure le geste d'occultation et l'échelle monumentale de l'empaquetage permettent-ils de transmuter l'architecture patrimoniale en un volume plastique contemporain ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 30,
+    "auteur": "Gordon Matta-Clark",
+    "titre": "Conical Intersect",
+    "date": "1975",
+    "dimensions": "Trou conique d'environ 4 mètres de diamètre",
+    "materiaux": "Deux bâtiments du XVIIe siècle en voie de démolition, outils de découpe",
+    "image_url": "https://d2zy2h1755x359.cloudfront.net/public/DigitalAsset/203058/65771c74a92abb8939a4a564a97ea1f6/full/large/0/default.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Mise en regard de l'espace",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "C3: Fabrications et relation entre objet et espace"
+    ],
+    "mouvement": [
+      "Anarchitecture",
+      "Art in situ"
+    ],
+    "notions": [
+      "Vide",
+      "Architecture",
+      "Déconstruction",
+      "Point de vue",
+      "In situ"
+    ],
+    "description_plastique": "L'artiste réalise une découpe monumentale de forme conique à travers la structure de deux immeubles haussmanniens mitoyens situés près du futur Centre Pompidou, alors en construction. Cette percée physique éventre les façades, les planchers et les murs porteurs, dévoilant à l'air libre la stratigraphie interne de l'habitation (papiers peints, boiseries). Le vide opéré agit comme un objectif d'appareil photo, créant un cadrage inattendu entre l'intérieur domestique et le paysage urbain en mutation.",
+    "description_semantique": "En introduisant le concept d'« anarchitecture », Matta-Clark utilise la soustraction matérielle comme moyen de dessin dans l'espace urbain tridimensionnel. L'historien de l'art Hal Foster démontre que l'artiste opère une autopsie critique de l'architecture, exposant les entrailles de l'intimité bourgeoise face à l'aseptisation de la rénovation urbaine. La découpe détruit l'intégrité fonctionnelle de la bâtisse pour la métamorphoser en une gigantesque sculpture publique faite de vide et de lumière.",
+    "citation": "Un bâtiment peut être traité comme n'importe quel autre matériau de sculpture.",
+    "citation_auteur": "Gordon Matta-Clark",
+    "bibliographie": "Hal Foster, Le Retour du réel, 1996.",
+    "problematique_concours": "Comment l'intervention plastique par soustraction matérielle et la mise à nu de la structure architecturale redéfinissent-elles la frontière entre espace privé et espace public ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 31,
+    "auteur": "Felix Gonzalez-Torres",
+    "titre": "Untitled (Portrait of Ross in L.A.)",
+    "date": "1991",
+    "dimensions": "Dimensions variables, poids idéal : 79,4 kg",
+    "materiaux": "Bonbons emballés dans de la cellophane multicolore",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/4/4a/%22Untitled%22_%28Portrait_of_Ross_in_L.A.%29%2C_Felix_Gonzalez-Torres%2C_Hide_and_Seek.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Prise en compte spectateur/effet recherché",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Art relationnel",
+      "Art conceptuel",
+      "Minimalisme"
+    ],
+    "notions": [
+      "Corps",
+      "Spectateur",
+      "Dispositif",
+      "Éphémère",
+      "Matière"
+    ],
+    "description_plastique": "L'installation se présente sous la forme d'un monticule étincelant de bonbons multicolores déversé à même le sol dans un coin de la salle d'exposition. L'amas initial correspond théoriquement au poids corporel du partenaire de l'artiste (79,4 kg). Le public est invité par le dispositif muséal à se servir librement et à consommer les éléments matériels constituant la sculpture, entraînant son amenuisement progressif.",
+    "description_semantique": "Sous une apparente grammaire minimaliste et ludique, Gonzalez-Torres élabore une allégorie tragique de la perte liée à la maladie du sida. Nicolas Bourriaud, dans son approche de l'esthétique relationnelle, souligne que l'ingestion de l'œuvre par le public agit comme une métaphore physique de la communion et du dépérissement du corps de l'être aimé. La sculpture refuse la pérennité monumentale : elle exige l'intervention destructrice et réparatrice (par son réapprovisionnement institutionnel) du spectateur pour exister plastiquement et sémantiquement.",
+    "citation": "Je voulais faire une œuvre d'art qui disparaîtrait complètement.",
+    "citation_auteur": "Felix Gonzalez-Torres",
+    "bibliographie": "Nicolas Bourriaud, Esthétique relationnelle, 1998.",
+    "problematique_concours": "En quoi la participation consumériste du spectateur et la dissolution programmée de la matière sculpturale instaurent-elles une nouvelle forme de portrait métaphorique et relationnel ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 32,
+    "auteur": "Bill Viola",
+    "titre": "The Crossing",
+    "date": "1996",
+    "dimensions": "Installation vidéo, projection à échelle humaine",
+    "materiaux": "Vidéo double canal, projections recto-verso sur grand écran suspendu, son stéréo",
+    "image_url": "https://smarthistory.org/wp-content/uploads/2015/08/BillViolaCrossing.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Le dispositif",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique"
+    ],
+    "mouvement": [
+      "Art vidéo"
+    ],
+    "notions": [
+      "Temps",
+      "Image",
+      "Éléments",
+      "Corps",
+      "Ralenti"
+    ],
+    "description_plastique": "L'installation s'articule autour d'un grand écran double face suspendu au centre de la pièce, présentant deux boucles vidéo simultanées à échelle humaine. Sur une face, un homme marchant vers le spectateur est progressivement consumé par des flammes jaillissant du sol ; sur l'autre, la même silhouette est anéantie par un déluge d'eau tombant du haut. L'utilisation magistrale du ralenti extrême (high-speed film) dilate la temporalité, soulignant le réalisme pictural des fluides et le stoïcisme absolu du corps.",
+    "description_semantique": "En chorégraphiant la confrontation entre le corps humain et la violence primordiale des éléments naturels, Viola réinvestit l'espace technologique de la vidéo d'une dimension sacrée. L'historienne de l'art Anne-Marie Duguet explicite que le ralentissement temporel extrême déréalise la violence pour transformer l'action en un rituel contemplatif de purification et de métamorphose. Le dispositif double face contraint le spectateur à la déambulation physique, lui interdisant d'appréhender les deux processus d'annihilation lumineuse et sonore de manière simultanée.",
+    "citation": "Le temps est la matière première du médium vidéo.",
+    "citation_auteur": "Bill Viola",
+    "bibliographie": "Anne-Marie Duguet, Déjouer l'image : Créations électroniques et art contemporain, 2002.",
+    "problematique_concours": "Comment l'utilisation plastique du ralenti vidéo et la spatialisation bi-frontale du dispositif transfigurent-elles l'image en mouvement en une expérience de contemplation spirituelle ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 33,
+    "auteur": "Christian Boltanski",
+    "titre": "Personnes",
+    "date": "2010",
+    "dimensions": "Variable (installation in situ, ex: Grand Palais, 13 500 m²)",
+    "materiaux": "Vêtements usagés, grue mécanique, haut-parleurs, sons de battements de cœur",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTi5wRq-swEPD6-RQzRa0jO17bFOXaWjb68JgHLG0wE69I4ahVJ69KTFkg&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Présentation et présence matérielle de l'œuvre dans l'espace",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Installation",
+      "Art conceptuel"
+    ],
+    "notions": [
+      "espace",
+      "temps",
+      "corps",
+      "matières"
+    ],
+    "description_plastique": "L'œuvre consiste en un vaste tapis de vêtements usagés accumulés sur le sol, surplombé par une pince mécanique prélevant ces textiles de manière aléatoire. Une bande-son diffuse des battements de cœur amplifiés, transformant l'espace en une architecture sonore et immersive. La scénographie souligne la disparition humaine par le vide laissé par les corps absents.",
+    "description_semantique": "Selon Georges Didi-Huberman, Boltanski ne cherche pas à représenter la mort, mais à confronter le spectateur à la persistance de la trace matérielle de l'individu disparu. L'œuvre fonctionne comme un monument à l'anonymat, où le tas de vêtements devient la métaphore d'une humanité interchangeable et vouée à l'oubli. La grue agit comme un instrument du destin, rappelant la mécanisation de la mémoire et la finitude inéluctable.",
+    "citation": "Je ne travaille pas sur la mort, je travaille sur la disparition.",
+    "citation_auteur": "Christian Boltanski",
+    "bibliographie": "Georges Didi-Huberman, Essayer voir, Minuit, 2014",
+    "problematique_concours": "Comment l'installation contemporaine, par le détournement d'objets usuels, parvient-elle à transformer le statut du spectateur en témoin d'une mémoire collective ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 34,
+    "auteur": "Marina Abramović",
+    "titre": "The Artist is Present",
+    "date": "2010",
+    "dimensions": "Durée : 736 heures et 30 minutes, installation dans un atrium",
+    "materiaux": "Performance, deux chaises, une table (puis sans table), corps de l'artiste et des spectateurs",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/b/b5/Marina_Abramovi%C4%87%2C_The_Artist_Is_Present%2C_2010Marina_Abramovi%C4%87%2C_The_Artist_Is_Present%2C_2010_%284422516908%29.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Relation au corps",
+    "questionnement": [
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Art performance",
+      "Body art"
+    ],
+    "notions": [
+      "Corps",
+      "Regard",
+      "Temps",
+      "Présence",
+      "Dispositif"
+    ],
+    "description_plastique": "L'œuvre s'appuie sur une scénographie extrêmement épurée située dans le vaste atrium du MoMA : un carré lumineux au centre duquel trônent deux chaises en bois face à face. Pendant près de trois mois, l'artiste est assise immobile, muette et vêtue d'une robe unie à la coupe religieuse, son visage neutre offrant un contact visuel soutenu. Le dispositif invite chaque spectateur, à tour de rôle, à s'asseoir face à l'artiste pour une durée indéterminée d'échange silencieux.",
+    "description_semantique": "Cette performance repousse les limites de l'endurance corporelle et mentale pour ériger le silence et la pure présence au rang de médium esthétique souverain. L'historienne de l'art RoseLee Goldberg indique que le corps de l'artiste cesse d'être un instrument de narration théâtrale pour devenir une surface de projection émotionnelle, un miroir pour le regardeur. L'œuvre bascule la frontière entre créateur et public, le véritable matériau plastique résidant dans la tension de l'espace interstitiel du regard partagé.",
+    "citation": "Le public est comme un miroir, et je suis le miroir du public.",
+    "citation_auteur": "Marina Abramović",
+    "bibliographie": "RoseLee Goldberg, La Performance : Du futurisme à nos jours, 2001.",
+    "problematique_concours": "Comment le dépouillement radical de la scénographie au profit de l'immobilité du corps et du regard instaure-t-il l'empathie comme constituant plastique de l'œuvre performative ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 35,
+    "auteur": "Krzysztof Wodiczko",
+    "titre": "Homeless Projection",
+    "date": "1986",
+    "dimensions": "Projections lumineuses monumentales in situ",
+    "materiaux": "Projecteurs à diapositives haute puissance (Xénon), architecture publique (Monuments de Boston)",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSfSzIAlpEWLABAFPFpJ1oZRXXeAZiFj0slRMBCG80WAWnZ_GiGCc81rtz3&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Métissage arts plastiques et technologie numérique",
+    "questionnement": [
+      "C3: Représentations plastiques et dispositifs de présentation",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Art contextuel",
+      "Art engagé"
+    ],
+    "notions": [
+      "Lumière",
+      "Architecture",
+      "Détournement",
+      "In situ",
+      "Image"
+    ],
+    "description_plastique": "Le dispositif utilise la nuit urbaine pour projeter des images fixes photographiques monumentales sur les façades ou les statues de monuments commémoratifs du centre-ville. Les images épousent les reliefs de l'architecture, superposant par exemple des sacs plastiques, des bandages ou des chariots de supermarché remplis de déchets sur la stature de personnages historiques de pierre. La projection lumineuse agit comme un placage bidimensionnel qui déforme la tridimensionnalité du bâtiment support.",
+    "description_semantique": "Wodiczko conçoit ses projections comme un acte d'« acupuncture urbaine » visant à révéler les tensions sociales enfouies sous l'esthétique glorificatrice du patrimoine architectural. Le critique d'art Miwon Kwon souligne que l'intervention in situ ne décore pas le lieu, mais instrumentalise l'architecture publique pour forcer la visibilité politique des sans-abris, habituellement invisibilisés. La dématérialisation technologique de l'image lumineuse s'oppose avec force à la pérennité minérale de la sculpture classique.",
+    "citation": "Le but est d'éclairer l'architecture non pas pour la rendre belle, mais pour la faire parler.",
+    "citation_auteur": "Krzysztof Wodiczko",
+    "bibliographie": "Miwon Kwon, One Place after Another, 2002.",
+    "problematique_concours": "En quoi l'hybridation de l'image lumineuse projetée et de l'architecture commémorative permet-elle le détournement critique de la monumentalité dans l'espace urbain ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 36,
+    "auteur": "Jeffrey Shaw",
+    "titre": "The Legible City",
+    "date": "1989-1991",
+    "dimensions": "Installation interactive numérique",
+    "materiaux": "Vélo fixe, écran géant, projecteur vidéo, ordinateur, logiciel de réalité virtuelle",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSP1diN242ezw89yu0ST4fCetDx8CdLrnVoULWgszoMdcc7JKYzw815BJ5&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Métissage arts plastiques et technologie numérique",
+    "questionnement": [
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique",
+      "Lycée: La présentation et la réception de l'œuvre"
+    ],
+    "mouvement": [
+      "Art numérique",
+      "Réalité virtuelle",
+      "Art interactif"
+    ],
+    "notions": [
+      "Virtuel",
+      "Interaction",
+      "Corps",
+      "Espace",
+      "Architecture"
+    ],
+    "description_plastique": "Le dispositif place le spectateur (devenu interacteur) sur une vraie bicyclette immobile ancrée face à un grand écran de projection de synthèse. En pédalant et en tournant le guidon, l'usager navigue en temps réel dans une modélisation tridimensionnelle des rues de Manhattan, Amsterdam ou Karlsruhe. Les édifices architecturaux de cette métropole virtuelle ont été entièrement remplacés par des architectures textuelles, formées de lettres et de mots géants en 3D.",
+    "description_semantique": "Pionnier de la réalité virtuelle en art, Shaw matérialise physiquement l'acte de lecture en le transformant en une exploration kinesthésique et spatiale. Edmond Couchot analyse cette installation comme un paradigme de l'interactivité forte, où l'image n'est plus un tableau fixe à regarder, mais un environnement calculé qui ne s'actualise que par l'effort corporel du cycliste. La substitution du béton urbain par la trame narrative questionne la manière dont nos espaces urbains sont d'abord des constructions sémantiques.",
+    "citation": "L'espace virtuel devient un lieu pratiquable par le corps.",
+    "citation_auteur": "Jeffrey Shaw",
+    "bibliographie": "Edmond Couchot, La Technologie dans l'art, 1998.",
+    "problematique_concours": "Comment l'intégration de l'effort physique du spectateur au sein d'une modélisation architecturale textuelle modifie-t-elle le paradigme de l'immersion et de la représentation de l'espace ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 37,
+    "auteur": "Rafael Lozano-Hemmer",
+    "titre": "Pulse Room",
+    "date": "2006",
+    "dimensions": "Installation lumineuse interactive in situ",
+    "materiaux": "De 100 à 300 ampoules à incandescence de 100 W, capteur de rythme cardiaque, ordinateur",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRq4JKT2XEXZzQMf5nRB7LGL1Lms6Sv-Qdv49vvdgXp_cIxbP8tKyb6w_8&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Le dispositif",
+    "questionnement": [
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique",
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur"
+    ],
+    "mouvement": [
+      "Art numérique",
+      "Art interactif",
+      "Biométrie"
+    ],
+    "notions": [
+      "Lumière",
+      "Temps",
+      "Corps",
+      "Dispositif",
+      "Traces"
+    ],
+    "description_plastique": "Un vaste espace obscurci est plafonné d'un impressionnant quadrillage d'ampoules à incandescence nues suspendues par leurs fils. À l'entrée de l'installation se trouve un capteur biométrique que le spectateur serre à deux mains pour enregistrer les battements de son cœur, provoquant le clignotement instantané d'une première ampoule à ce rythme précis. Dès qu'il lâche le capteur, cette pulsation lumineuse se décale dans le maillage, rejoignant la cacophonie visuelle des enregistrements des centaines de visiteurs précédents.",
+    "description_semantique": "Lozano-Hemmer déploie une technologie de la surveillance biométrique pour la détourner vers une matérialisation poétique et chorale de la vie intime. Selon l'historienne de l'art Christiane Paul, le dispositif traduit des données biologiques invisibles en pulsations lumineuses tangibles, créant un paysage cinétique et communautaire. L'œuvre constitue ainsi une architecture de la mémoire vivante, où le battement unique de l'individu est absorbé par la symphonie mécanique de la foule.",
+    "citation": "Je suis intéressé par la technologie comme moyen de révéler notre propre présence matérielle et sociale.",
+    "citation_auteur": "Rafael Lozano-Hemmer",
+    "bibliographie": "Christiane Paul, L'Art numérique, 2004.",
+    "problematique_concours": "En quoi l'interface biométrique et la multiplication sérielle d'une source lumineuse triviale transforment-elles la trace biologique éphémère en un monument cinétique et participatif ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 38,
+    "auteur": "Sophie Calle",
+    "titre": "Suite Vénitienne",
+    "date": "1980",
+    "dimensions": "Livre d'artiste et installations photographiques (dimensions variables)",
+    "materiaux": "Photographies noir et blanc, textes dactylographiés",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR4Dn357Rp9CTudV7XLJ34vShfE5E_MNtFVxq7QhcxNwTlziMw6LGqr-j0b&s=10",
+    "epoque": "Art contemporain",
+    "theme": "La narration visuelle",
+    "questionnement": [
+      "C4: Représentation : image",
+      "réalité",
+      "fiction",
+      "Lycée: L'idée",
+      "la réalisation et le travail de l'œuvre"
+    ],
+    "mouvement": [
+      "Art conceptuel",
+      "Art sociologique"
+    ],
+    "notions": [
+      "Trace",
+      "Protocole",
+      "Image",
+      "Texte",
+      "Fiction"
+    ],
+    "description_plastique": "L'œuvre prend la forme d'un montage rigoureux articulant des photographies gélatino-argentiques à l'esthétique vernaculaire du documentaire filature, souvent floues ou mal cadrées. Sous chaque image ou groupe d'images figurent des fragments de texte au style froid et clinique consignant des horaires, des trajectoires et des observations. La juxtaposition du verbe et de l'iconographie construit une chronologie linéaire de l'espace labyrinthique de la ville de Venise.",
+    "description_semantique": "À partir d'un protocole arbitraire (suivre un inconnu croisé à Paris jusqu'à Venise), Calle questionne la frontière entre investigation policière, voyeurisme et quête existentielle. Le philosophe Jean Baudrillard, qui préface la publication, analyse ce processus comme une séduction de l'absence, où suivre l'autre revient à effacer sa propre trace. La dimension plastique de l'œuvre ne réside pas dans la qualité formelle de la photographie, mais dans la création d'une mythologie personnelle via la mécanique de l'enquête.",
+    "citation": "S'approcher de lui, le perdre de vue, le retrouver, le filer à nouveau. Et le photographier à son insu.",
+    "citation_auteur": "Sophie Calle",
+    "bibliographie": "Jean Baudrillard (Préface), Sophie Calle, Suite Vénitienne, 1983.",
+    "problematique_concours": "Comment l'assujettissement de l'appareil photographique à un protocole comportemental et son couplage avec le texte permettent-ils l'effacement de l'auteur au profit d'une fiction documentaire ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 39,
+    "auteur": "Pierre Huyghe",
+    "titre": "Untilled",
+    "date": "2012",
+    "dimensions": "Installation in situ, biotope (Parc de Karlsaue, documenta 13)",
+    "materiaux": "Chien blanc à la patte peinte, sculpture en béton ornée d'un essaim d'abeilles vivantes, plantes toxiques, boue",
+    "image_url": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSlP_PB1C_0KWNzfPR3mwrvohFs0_rMKnbBnxq5_WnQ34-mk3DXe11wX58&s=10",
+    "epoque": "Art contemporain",
+    "theme": "Réalité concrète d'une production/œuvre",
+    "questionnement": [
+      "C4: Matérialité : œuvre et objet",
+      "Lycée: L'idée",
+      "la réalisation et le travail de l'œuvre"
+    ],
+    "mouvement": [
+      "Art contextuel",
+      "Bio-art"
+    ],
+    "notions": [
+      "Temps",
+      "Vivant",
+      "Écosystème",
+      "Processus",
+      "In situ"
+    ],
+    "description_plastique": "Dans une friche compostée du parc, l'artiste réunit une multiplicité d'éléments hétérogènes échappant au contrôle humain : plantes psychotropes, fourmis, et un chien lévrier blanc dont une patte est peinte en rose vif. L'élément central est la copie en béton d'une sculpture académique classique (femme couchée) dont la tête est entièrement recouverte et occultée par un essaim foisonnant d'abeilles vivantes. L'espace n'est ni clôturé ni balisé, fusionnant de manière organique la boue, le climat réel et le mouvement aléatoire des animaux.",
+    "description_semantique": "Huyghe crée non pas une installation scénographique finie, mais un écosystème ouvert, autonome et autopoïétique où le biologique s'empare du culturel. L'historienne de l'art Amelia Jones observe que l'œuvre marque l'apogée d'un art post-anthropocentrique, où l'artiste se retire en tant que maître d'œuvre pour laisser agir l'intelligence animale et végétale. La sculpture devient un organisme symbiotique qui croît, palpite et échappe à l'emprise de la consommation rétinienne traditionnelle.",
+    "citation": "Je ne veux pas exposer quelque chose à quelqu'un, je veux l'exposer à ce qui est là.",
+    "citation_auteur": "Pierre Huyghe",
+    "bibliographie": "Amelia Jones, Art and the Body, 2016.",
+    "problematique_concours": "Dans quelle mesure la substitution du matériau inerte par des composantes biologiques vivantes et autonomes permet-elle de destituer l'auteur de son statut de contrôleur absolu de la forme ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 40,
+    "auteur": "TeamLab",
+    "titre": "Borderless",
+    "date": "2018",
+    "dimensions": "Musée numérique de 10 000 m², immersif",
+    "materiaux": "520 ordinateurs, 470 projecteurs vidéo, capteurs infrarouges, miroirs, son",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/8/82/TeamLab_Borderless%2C_Odaiba%2C_Tokyo%2C_Japan_%2849070645226%29.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Le dispositif",
+    "questionnement": [
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique",
+      "C4: Espace : œuvre",
+      "auteur",
+      "spectateur"
+    ],
+    "mouvement": [
+      "Art numérique",
+      "Art immersif"
+    ],
+    "notions": [
+      "Immersion",
+      "Virtualité",
+      "Interaction",
+      "Espace",
+      "Lumière"
+    ],
+    "description_plastique": "L'espace d'exposition est un labyrinthe noir saturé de projections numériques à 360 degrés recouvrant le sol, les murs et les plafonds sans délimitation de cadre. Les algorithmes génèrent en temps réel des flots de cascades, des fleurs écloses ou des animaux lumineux dont les formes mutent de manière fluide sans jamais se répéter. Les capteurs détectent le toucher ou la position des visiteurs : l'eau virtuelle s'écarte sous leurs pas, et les fleurs se dispersent si on les frôle.",
+    "description_semantique": "Ce collectif interdisciplinaire japonais abroge les frontières classiques entre l'œuvre, la pièce d'exposition et le public, forgeant une esthétique de l'hyper-immersion technologique. Dominique Moulon, critique des arts numériques, indique que l'expérience fusionne le divertissement technologique et la contemplation métaphysique zen en plongeant l'individu dans un tout organique continu. L'absence d'images préenregistrées souligne l'impermanence de l'art génératif, célébrant une beauté cinétique et participative exclusive à l'instant présent.",
+    "citation": "Les frontières ne sont que des illusions créées par l'homme.",
+    "citation_auteur": "TeamLab",
+    "bibliographie": "Dominique Moulon, Art contemporain nouveaux médias, 2011.",
+    "problematique_concours": "Comment le recours massif aux calculateurs en temps réel et aux capteurs spatialisés abolit-il la limite physique du cadre pour instaurer une interdépendance fusionnelle entre le corps et l'image ?",
+    "_custom": true,
+    "_edited": true
+  },
+  {
+    "id": 41,
+    "auteur": "Jon Rafman",
+    "titre": "9-Eyes",
+    "date": "2008-en cours",
+    "dimensions": "Dimensions variables (impressions photographiques, écrans)",
+    "materiaux": "Captures d'écran provenant de Google Street View",
+    "image_url": "https://louisiana.dk/wp-content/uploads/2025/08/Jon-Rafman-Nine-Eyes-og-Google-Street-View-2008-1.jpg",
+    "epoque": "Art contemporain",
+    "theme": "Catégories d'images et procédés de fabrication",
+    "questionnement": [
+      "C4: Représentation : image",
+      "réalité",
+      "fiction",
+      "Conception",
+      "production",
+      "diffusion à l'ère du numérique"
+    ],
+    "mouvement": [
+      "Art post-Internet",
+      "Appropriationnisme"
+    ],
+    "notions": [
+      "Image",
+      "Point de vue",
+      "Détournement",
+      "Archive",
+      "Auteur"
+    ],
+    "description_plastique": "Le travail prend la forme d'un immense corpus curatorial d'images isolées, recadrées ou capturées telles quelles depuis la base de données gigantesque de Google Street View. Ces images présentent une esthétique du glitch ou du vernaculaire : ciels déformés par les lentilles, accidents urbains isolés, visages anonymes floutés algorithmiquement. La présence persistante de l'interface numérique ou du compas de navigation atteste de la nature automatisée et mécanique de la prise de vue initiale.",
+    "description_semantique": "L'artiste redéfinit la pratique photographique : il n'arpente plus l'espace physique, mais flâne (à la manière d'un cyber-flâneur baudelairien) dans la cartographie exhaustive enregistrée par une machine (les 9 objectifs de la Google Car). Le philosophe du numérique Boris Groys explique que cet acte d'appropriation transforme l'indifférence glaciale du regard robotique en une poésie troublante de la condition humaine mondialisée. L'œuvre remet frontalement en question la posture moderniste de l'instant décisif, privilégiant la fouille archéologique dans les flux de données.",
+    "citation": "L'artiste d'aujourd'hui ne produit pas de nouvelles images, il crée du sens dans le flux des images existantes.",
+    "citation_auteur": "Jon Rafman",
+    "bibliographie": "Boris Groys, In the Flow, 2016.",
+    "problematique_concours": "En quoi l'appropriation sélective d'images produites par des dispositifs cartographiques algorithmiques redéfinit-elle le geste photographique documentaire à l'ère post-Internet ?",
+    "_custom": true,
+    "_edited": true
+  }
+]
