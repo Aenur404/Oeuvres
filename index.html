@@ -530,8 +530,9 @@
                   <button class="quiz-btn" id="qbtn-2" onclick="answerQuiz(2)"><span class="quiz-letter">C</span><span class="quiz-text"></span></button>
                   <button class="quiz-btn" id="qbtn-3" onclick="answerQuiz(3)"><span class="quiz-letter">D</span><span class="quiz-text"></span></button>
                   <div id="quiz-next-row" class="hidden pt-2 flex gap-2">
-                    <button onclick="quizNext()" class="btn-primary flex-1 justify-center text-sm py-2">Carte suivante →</button>
-                  </div>
+  <button onclick="flipCard()" class="btn-secondary flex-1 justify-center text-sm py-2">Voir le verso</button>
+  <button onclick="quizNext()" class="btn-primary flex-1 justify-center text-sm py-2">Carte suivante →</button>
+                </div>
                 </div>
                 
               </div>
@@ -575,13 +576,14 @@
                 </div>
 
                 <div class="px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row gap-2 md:gap-3 justify-center flex-shrink-0 bg-white dark:bg-[#1a1814] border-t border-[#e8e4dc] dark:border-[#2d2820]">
-                  <button onclick="flipCard()" class="btn-secondary flex-1 sm:flex-none justify-center">
-                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mr-2"><path d="M4 8l4-4m0 0l4 4m-4-4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 
-                    Voir le recto
-                  </button>
-                  <button onclick="nextCard(true)" class="btn-acquired flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Suivant — Acquis</button>
-                  <button onclick="nextCard(false)" class="btn-review flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v5.5M8 11v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Suivant — À revoir</button>
-                </div>
+  <button onclick="flipCard()" class="btn-secondary flex-1 sm:flex-none justify-center">
+    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mr-2"><path d="M4 8l4-4m0 0l4 4m-4-4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 
+    Voir le recto
+  </button>
+  <button id="btn-verso-acquis" onclick="nextCard(true)" class="btn-acquired flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Suivant — Acquis</button>
+  <button id="btn-verso-arevoir" onclick="nextCard(false)" class="btn-review flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v5.5M8 11v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Suivant — À revoir</button>
+  <button id="btn-verso-next-quiz" onclick="quizNext()" class="btn-primary flex-1 sm:flex-none justify-center hidden">Carte suivante →</button>
+</div>
 
               </div>
             </div>
@@ -1611,6 +1613,18 @@ function renderCard() {
 
   // Apply session modes
   clearBlindTest(); clearQuizMode(); stopTimer();
+  // Affichage conditionnel des boutons du verso selon le mode
+  if (sessionConfig.displayMode === 'quiz') {
+    document.getElementById('btn-verso-acquis').style.display = 'none';
+    document.getElementById('btn-verso-arevoir').style.display = 'none';
+    document.getElementById('btn-verso-next-quiz').style.display = 'flex';
+    document.getElementById('btn-verso-next-quiz').classList.remove('hidden');
+  } else {
+    document.getElementById('btn-verso-acquis').style.display = 'flex';
+    document.getElementById('btn-verso-arevoir').style.display = 'flex';
+    document.getElementById('btn-verso-next-quiz').style.display = 'none';
+    document.getElementById('btn-verso-next-quiz').classList.add('hidden');
+  }
   
   if (sessionConfig.displayMode === 'blind') {
     const imgEl = document.getElementById('card-image');
