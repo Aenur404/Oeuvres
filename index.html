@@ -521,9 +521,21 @@
     Retourner la carte
   </button>
   <button id="btn-free-write-recto" onclick="openFreeInputModal()" class="btn-primary shadow-sm hover:shadow-md transition-all hidden">
-    ✍️ Saisir ma réponse
-  </button>
-</div>
+          ✍️ Saisir ma réponse
+        </button>
+      </div>
+
+      <div id="free-input-inline" class="hidden flex-col w-full bg-white dark:bg-[#1a1814] border-t border-[#e8e4dc] dark:border-[#2d2820]">
+        <div class="px-4 md:px-6 py-3 flex flex-col sm:flex-row gap-3">
+          <input type="text" id="inline-free-artiste" class="form-input flex-1" placeholder="Artiste" autocomplete="off" />
+          <input type="text" id="inline-free-titre" class="form-input flex-1" placeholder="Titre de l'œuvre" autocomplete="off" />
+        </div>
+        <div class="px-4 md:px-6 pb-4 flex gap-2">
+          <button onclick="nextCard(false)" class="btn-secondary flex-1 justify-center text-sm py-2">Passer</button>
+          <button onclick="submitInlineFreeInput()" class="btn-primary flex-1 justify-center text-sm py-2">Vérifier</button>
+        </div>
+      </div>
+  
                 <!-- QUIZ OPTIONS -->
                 <div id="quiz-options" class="bg-white dark:bg-[#1a1814]">
                   <div id="quiz-question-label" class="text-xs font-semibold uppercase tracking-widest mb-2 px-1" style="color:#b8860b;"></div>
@@ -1486,6 +1498,41 @@ function submitFreeInput() {
   const inputArtiste = document.getElementById('free-input-artiste').value.trim();
   const inputTitre = document.getElementById('free-input-titre').value.trim();
   const oeuvre = state.deck[state.currentIndex];
+
+  function submitInlineFreeInput() {
+  const inputArtiste = document.getElementById('inline-free-artiste').value.trim();
+  const inputTitre = document.getElementById('inline-free-titre').value.trim();
+  const oeuvre = state.deck[state.currentIndex];
+
+  // Préparer la réponse correcte
+  const correctAnswer = `${oeuvre.auteur} — ${oeuvre.titre} (${oeuvre.date})`;
+  
+  // Évaluation : comparaison souple (sans casse, sans accents stricts)
+  const normalize = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
+  const userAnswer = normalize(inputArtiste) + ' ' + normalize(inputTitre);
+  const refAuteur = normalize(oeuvre.auteur);
+  const refTitre = normalize(oeuvre.titre);
+  
+  const auteurOk = userAnswer.includes(refAuteur) || refAuteur.split(' ').some(w => w.length > 3 && normalize(inputArtiste).includes(w));
+  const titreOk = normalize(inputTitre).includes(refTitre.slice(0, Math.floor(refTitre.length * 0.6)));
+  const isClose = auteurOk && titreOk;
+
+  // Afficher le résultat
+  document.getElementById('free-result-icon').textContent = isClose ? '✅' : '🔍';
+  document.getElementById('free-result-title').textContent = isClose ? 'Bien vu !' : 'Vérifiez votre réponse';
+  document.getElementById('free-result-answer').textContent = correctAnswer;
+  document.getElementById('free-result-user').innerHTML = `
+    <span class="font-semibold" style="color: #a09a8f;">Votre réponse :</span><br>
+    <span>Artiste : <em>${inputArtiste || '—'}</em></span><br>
+    <span>Titre : <em>${inputTitre || '—'}</em></span>
+  `;
+  
+  const resultOverlay = document.getElementById('free-result-overlay');
+  resultOverlay.style.opacity = '1';
+  resultOverlay.style.pointerEvents = 'all';
+  document.getElementById('free-result-box').style.transform = 'scale(1) translateY(0)';
+  document.body.style.overflow = 'hidden';
+}
   
   // Fermer le modal de saisie
   const overlay = document.getElementById('free-input-overlay');
@@ -1635,18 +1682,29 @@ function renderCard() {
     else imgEl.addEventListener('load', doInit, { once: true });
   } else if (sessionConfig.displayMode === 'quiz') {
     renderQuizOptions(oeuvre);
-  } else if (sessionConfig.displayMode === 'free-write') {
-    // En mode saisie libre: afficher le bouton pour ouvrir manuellement la pop-up
-    document.getElementById('flip-btn-row').style.display = 'flex';
-    document.getElementById('btn-flip-recto').style.display = 'none';
-    document.getElementById('btn-free-write-recto').style.display = 'inline-flex';
-    document.getElementById('btn-free-write-recto').classList.remove('hidden');
+ const inlineFreeInput = document.getElementById('free-input-inline');
+  
+  if (sessionConfig.displayMode === 'free-write') {
+    // Affiche les champs de saisie intégrés et masque le bouton "Retourner la carte"
+    document.getElementById('flip-btn-row').style.display = 'none';
+    inlineFreeInput.classList.remove('hidden');
+    inlineFreeInput.classList.add('flex');
+    
+    // On vide les champs à chaque nouvelle carte
+    document.getElementById('inline-free-artiste').value = '';
+    document.getElementById('inline-free-titre').value = '';
+    
+    // Petit focus automatique sur le champ artiste (pratique sur PC)
+    setTimeout(() => document.getElementById('inline-free-artiste').focus(), 100);
   } else {
-    // Pour tous les autres modes, on restaure le bouton de retournement normal
+    // Cache la zone de saisie pour les autres modes
+    inlineFreeInput.classList.remove('flex');
+    inlineFreeInput.classList.add('hidden');
+    
+    // Restaure le bouton classique
     if (document.getElementById('btn-flip-recto')) {
+      document.getElementById('flip-btn-row').style.display = 'flex';
       document.getElementById('btn-flip-recto').style.display = 'inline-flex';
-      document.getElementById('btn-free-write-recto').style.display = 'none';
-      document.getElementById('btn-free-write-recto').classList.add('hidden');
     }
   }
   
