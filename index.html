@@ -205,7 +205,7 @@
     .timer-text { position: absolute; inset: 0; display: flex; align-items: center; justify-content: center; color: #fff; font-size: 0.75rem; font-weight: 700; }
 
     /* --- QUIZ MODE --- */
-    #quiz-options { display: none; padding: 12px 16px; gap: 8px; flex-direction: column; flex: 1; overflow-y: auto; border-t: 1px solid #e8e4dc; }
+    #quiz-options { display: none; padding: 12px 16px; gap: 8px; flex-direction: column; flex: 1; overflow-y: auto; border-top: 1px solid #e8e4dc; }
     body.dark #quiz-options { border-color: #2d2820; background: #1a1814; }
     #quiz-options.visible { display: flex; }
     .quiz-btn { width: 100%; padding: 9px 14px; border-radius: 10px; border: 1.5px solid #e8e4dc; background: #faf9f7; text-align: left; font-size: 0.875rem; font-family: 'Inter', sans-serif; cursor: pointer; transition: all 0.2s; display: flex; align-items: center; gap: 10px; color: #201c17; }
@@ -243,7 +243,8 @@
     .timer-chip.selected { border-color: #b8860b; background: #b8860b; color: #fff; }
 
     /* --- SAISIE LIBRE (Révision du Jour) --- */
-#free-input-overlay { position: fixed; inset: 0; z-index: 997; background: rgba(15,14,11,0.4); backdrop-filter: blur(3px); display: flex; align-items: flex-end; justify-content: center; padding: 16px 16px 5vh 16px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }    #free-input-overlay.open { opacity: 1; pointer-events: all; }
+    #free-input-overlay { position: fixed; inset: 0; z-index: 997; background: rgba(15,14,11,0.4); backdrop-filter: blur(3px); display: flex; align-items: flex-end; justify-content: center; padding: 16px 16px 5vh 16px; opacity: 0; pointer-events: none; transition: opacity 0.3s ease; }
+    #free-input-overlay.open { opacity: 1; pointer-events: all; }
     #free-input-box { background: #fff; border-radius: 20px; width: 100%; max-width: 500px; padding: 32px; box-shadow: 0 24px 80px rgba(0,0,0,0.3); transform: scale(0.96); transition: transform 0.25s cubic-bezier(0.4,0,0.2,1); }
     body.dark #free-input-box { background: #1a1814; border: 1px solid #2d2820; }
     body.dark #free-input-box h3 { color: #e8e6e2; }
@@ -288,7 +289,7 @@
 
 <div id="app" class="min-h-screen flex flex-col">
 
-<div id="loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#faf9f7] dark:bg-[#0f0e0b] transition-opacity duration-500">
+  <div id="loading-screen" class="fixed inset-0 z-[9999] flex flex-col items-center justify-center bg-[#faf9f7] dark:bg-[#0f0e0b] transition-opacity duration-500">
     <div class="w-12 h-12 border-4 border-solid rounded-full animate-spin mb-4" style="border-color: #e8e4dc; border-top-color: #b8860b;"></div>
     <p class="font-serif text-lg font-medium" style="color: #a09a8f;">Connexion à la base de données...</p>
   </div>
@@ -497,7 +498,6 @@
               <div class="card-surface flex flex-col h-full w-full justify-start bg-white dark:bg-[#1a1814]">
                 
                 <div class="relative w-full overflow-hidden bg-[#1a1814]" style="height: clamp(180px, 42vh, 460px); flex-shrink: 0;">
-                  <!-- FIX 2: Image recto cliquable pour lightbox -->
                   <img id="card-image" src="" alt="" class="absolute inset-0 w-full h-full object-cover cursor-zoom-in hover:opacity-90 transition-opacity" onclick="openLightboxFromRecto()" title="Cliquer pour agrandir" style="color: transparent;" />
                   <div class="image-overlay absolute inset-0 pointer-events-none"></div>
                   <div class="absolute top-4 left-4 pointer-events-none"><span id="recto-counter" class="text-xs font-medium text-white opacity-70"></span></div>
@@ -516,25 +516,22 @@
                 </div>
                 
                 <div class="px-4 md:px-6 py-3 md:py-4 flex justify-center items-center flex-shrink-0 border-t border-[#e8e4dc] dark:border-[#2d2820]" id="flip-btn-row">
-  <button id="btn-flip-recto" onclick="flipCard()" class="btn-primary shadow-sm hover:shadow-md transition-all">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8C2 4.686 4.686 2 8 2s6 2.686 6 6-2.686 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 6L8 8M8 8L6 6M8 8V2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
-    Retourner la carte
-  </button>
-  <button id="btn-free-write-recto" onclick="openFreeInputModal()" class="btn-primary shadow-sm hover:shadow-md transition-all hidden">
-          ✍️ Saisir ma réponse
-        </button>
-      </div>
+                  <button id="btn-flip-recto" onclick="flipCard()" class="btn-primary shadow-sm hover:shadow-md transition-all">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M2 8C2 4.686 4.686 2 8 2s6 2.686 6 6-2.686 6-6 6" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/><path d="M10 6L8 8M8 8L6 6M8 8V2" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round"/></svg>
+                    Retourner la carte
+                  </button>
+                </div>
 
-      <div id="free-input-inline" class="hidden flex-col w-full bg-white dark:bg-[#1a1814] border-t border-[#e8e4dc] dark:border-[#2d2820]">
-        <div class="px-4 md:px-6 py-3 flex flex-col sm:flex-row gap-3">
-          <input type="text" id="inline-free-artiste" class="form-input flex-1" placeholder="Artiste" autocomplete="off" />
-          <input type="text" id="inline-free-titre" class="form-input flex-1" placeholder="Titre de l'œuvre" autocomplete="off" />
-        </div>
-        <div class="px-4 md:px-6 pb-4 flex gap-2">
-          <button onclick="nextCard(false)" class="btn-secondary flex-1 justify-center text-sm py-2">Passer</button>
-          <button onclick="submitInlineFreeInput()" class="btn-primary flex-1 justify-center text-sm py-2">Vérifier</button>
-        </div>
-      </div>
+                <div id="free-input-inline" class="hidden flex-col w-full bg-white dark:bg-[#1a1814] border-t border-[#e8e4dc] dark:border-[#2d2820]">
+                  <div class="px-4 md:px-6 py-3 flex flex-col sm:flex-row gap-3">
+                    <input type="text" id="inline-free-artiste" class="form-input flex-1" placeholder="Artiste" autocomplete="off" />
+                    <input type="text" id="inline-free-titre" class="form-input flex-1" placeholder="Titre de l'œuvre" autocomplete="off" />
+                  </div>
+                  <div class="px-4 md:px-6 pb-4 flex gap-2">
+                    <button onclick="nextCard(false)" class="btn-secondary flex-1 justify-center text-sm py-2">Passer</button>
+                    <button onclick="submitInlineFreeInput()" class="btn-primary flex-1 justify-center text-sm py-2">Vérifier</button>
+                  </div>
+                </div>
   
                 <!-- QUIZ OPTIONS -->
                 <div id="quiz-options" class="bg-white dark:bg-[#1a1814]">
@@ -544,9 +541,9 @@
                   <button class="quiz-btn" id="qbtn-2" onclick="answerQuiz(2)"><span class="quiz-letter">C</span><span class="quiz-text"></span></button>
                   <button class="quiz-btn" id="qbtn-3" onclick="answerQuiz(3)"><span class="quiz-letter">D</span><span class="quiz-text"></span></button>
                   <div id="quiz-next-row" class="hidden pt-2 flex gap-2">
-  <button onclick="flipCard()" class="btn-secondary flex-1 justify-center text-sm py-2">Voir le verso</button>
-  <button onclick="quizNext()" class="btn-primary flex-1 justify-center text-sm py-2">Carte suivante →</button>
-                </div>
+                    <button onclick="flipCard()" class="btn-secondary flex-1 justify-center text-sm py-2">Voir le verso</button>
+                    <button onclick="quizNext()" class="btn-primary flex-1 justify-center text-sm py-2">Carte suivante →</button>
+                  </div>
                 </div>
                 
               </div>
@@ -590,14 +587,14 @@
                 </div>
 
                 <div class="px-4 md:px-6 py-3 md:py-4 flex flex-col sm:flex-row gap-2 md:gap-3 justify-center flex-shrink-0 bg-white dark:bg-[#1a1814] border-t border-[#e8e4dc] dark:border-[#2d2820]">
-  <button onclick="flipCard()" class="btn-secondary flex-1 sm:flex-none justify-center">
-    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mr-2"><path d="M4 8l4-4m0 0l4 4m-4-4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 
-    Voir le recto
-  </button>
-  <button id="btn-verso-acquis" onclick="nextCard(true)" class="btn-acquired flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Suivant — Acquis</button>
-  <button id="btn-verso-arevoir" onclick="nextCard(false)" class="btn-review flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v5.5M8 11v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Suivant — À revoir</button>
-  <button id="btn-verso-next-quiz" onclick="quizNext()" class="btn-primary flex-1 sm:flex-none justify-center hidden">Carte suivante →</button>
-</div>
+                  <button onclick="flipCard()" class="btn-secondary flex-1 sm:flex-none justify-center">
+                    <svg width="16" height="16" viewBox="0 0 16 16" fill="none" class="mr-2"><path d="M4 8l4-4m0 0l4 4m-4-4v8" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/></svg> 
+                    Voir le recto
+                  </button>
+                  <button id="btn-verso-acquis" onclick="nextCard(true)" class="btn-acquired flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M3 8l3.5 3.5L13 4.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"/></svg> Suivant — Acquis</button>
+                  <button id="btn-verso-arevoir" onclick="nextCard(false)" class="btn-review flex-1 sm:flex-none justify-center"><svg width="16" height="16" viewBox="0 0 16 16" fill="none"><path d="M8 3v5.5M8 11v.5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg> Suivant — À revoir</button>
+                  <button id="btn-verso-next-quiz" onclick="quizNext()" class="btn-primary flex-1 sm:flex-none justify-center hidden">Carte suivante →</button>
+                </div>
 
               </div>
             </div>
@@ -612,7 +609,6 @@
         <div class="flex justify-center mb-8"><div class="result-ring" id="result-ring"><div class="relative z-10 text-center"><div class="font-serif text-3xl font-light dark:text-[#e8e6e2]" id="result-score-display"></div><div class="text-xs mt-0.5" style="color: #a09a8f;">acquises</div></div></div></div>
         <h2 class="font-serif text-3xl font-light mb-3 dark:text-[#e8e6e2]">Session terminée</h2>
         <p class="text-sm mb-2 dark:text-[#a09a8f]" id="result-subtitle" style="color: #a09a8f; line-height: 1.7;"></p>
-        <!-- FIX 3 : Score Quiz affiché dans les résultats -->
         <div id="result-quiz-score" class="hidden mt-3 inline-flex items-center gap-2 px-4 py-2 rounded-full text-sm font-semibold" style="background: #b8860b15; color: #b8860b; border: 1px solid #e8c96e50;">
           <span id="result-quiz-text"></span>
         </div>
@@ -665,8 +661,8 @@
         <div><label class="form-label" for="f-theme">Thème *</label><input type="text" id="f-theme" class="form-input" list="dl-theme" placeholder="ex : Le statut de l'objet" required /><datalist id="dl-theme"></datalist></div>
         <div><label class="form-label" for="f-questionnement">Questionnement *</label><input type="text" id="f-questionnement" class="form-input" list="dl-questionnement" placeholder="ex : Le statut de l'objet" required /><datalist id="dl-questionnement"></datalist></div>
         <div class="sm:col-span-2"><label class="form-label" for="f-notions">Notions plastiques</label><input type="text" id="f-notions" class="form-input" placeholder="ex : Espace, Corps, Lumière..." /></div>
-        <div class="sm:col-span-2"><label class="form-label" for="f-plastique">Description Plastique</label><textarea id="f-plastique" class="form-input form-textarea" placeholder="Analyse de la forme, couleur, espace, matière…"></textarea></div>
-        <div class="sm:col-span-2"><label class="form-label" for="f-semantique">Description Sémantique</label><textarea id="f-semantique" class="form-input form-textarea" placeholder="Analyse du sens, portée, concepts…"></textarea></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-plastique">Description Plastique</label><textarea id="f-plastique" class="form-input" placeholder="Analyse de la forme, couleur, espace, matière…"></textarea></div>
+        <div class="sm:col-span-2"><label class="form-label" for="f-semantique">Description Sémantique</label><textarea id="f-semantique" class="form-input" placeholder="Analyse du sens, portée, concepts…"></textarea></div>
         <div class="sm:col-span-2"><label class="form-label" for="f-problematique">Problématique Concours (CAPES/Agrég)</label><input type="text" id="f-problematique" class="form-input" placeholder="ex : En quoi la rupture avec la perspective redéfinit-elle l'espace ?" /></div>
         <div class="sm:col-span-2"><label class="form-label" for="f-citation">Citation clé (optionnel)</label><textarea id="f-citation" class="form-input" style="min-height: 50px;" placeholder="ex : C'est le regardeur qui fait l'œuvre"></textarea></div>
         <div class="sm:col-span-2"><label class="form-label" for="f-citation-auteur">Auteur de la citation (optionnel)</label><input type="text" id="f-citation-auteur" class="form-input" placeholder="ex : Marcel Duchamp" /></div>
@@ -722,7 +718,6 @@
             <div class="text-xs mt-0.5" style="color:#a09a8f;">Choisissez parmi 4 propositions, feedback immédiat</div>
           </div>
         </label>
-        <!-- FIX 4 : Mode Révision du Jour avec saisie libre -->
         <label class="config-option flex items-center gap-3 cursor-pointer" id="opt-free-write">
           <input type="radio" name="display-mode" value="free-write" class="hidden">
           <span class="text-2xl">✍️</span>
@@ -911,7 +906,6 @@ function toggleDark() {
   state.darkMode = !state.darkMode; 
   document.body.classList.toggle('dark', state.darkMode);
   document.getElementById('dark-icon').textContent = state.darkMode ? '☀️' : '🌙';
-  // Update nav styling dynamically
   const nav = document.getElementById('app-nav');
   if (state.darkMode) {
     nav.style.background = 'rgba(15,14,11,0.92)';
@@ -1025,7 +1019,7 @@ function startTaggedSession() {
 }
 
 /* ================================================================
-   MANAGE SCREEN — FILTRES (FIX 5)
+   MANAGE SCREEN — FILTRES
 ================================================================ */
 let manageActiveFilters = { epoque: null, mouvement: null, theme: null };
 
@@ -1364,7 +1358,7 @@ function stopTimer() {
 }
 
 /* ================================================================
-   QUIZ MODE — FIX 3
+   QUIZ MODE
 ================================================================ */
 let quizCorrectIndex = -1;
 let quizAnswered = false;
@@ -1413,7 +1407,6 @@ function answerQuiz(idx) {
   quizAnswered = true; stopTimer();
   const isCorrect = idx === quizCorrectIndex;
   
-  // Comptabiliser le score quiz
   state.quizScore.total++;
   
   for (let i = 0; i < 4; i++) {
@@ -1426,10 +1419,8 @@ function answerQuiz(idx) {
     state.quizScore.correct++;
     pendingQuizAcquired = true;
     document.getElementById('quiz-next-row').classList.remove('hidden');
-    // Retourner la carte pour voir le détail
     setTimeout(() => { if (!state.isFlipped) flipCard(); }, 400);
   } else {
-    // Mauvaise réponse: afficher le modal d'erreur
     pendingQuizAcquired = false;
     const oeuvre = state.deck[state.currentIndex];
     const modeConfig = getModeConfig() || MODES.find(m => m.id === 'libre');
@@ -1452,7 +1443,6 @@ function answerQuiz(idx) {
 function closeQuizWrongModal() {
   document.getElementById('quiz-wrong-overlay').classList.remove('open');
   document.body.style.overflow = '';
-  // Flip la carte pour voir le détail
   if (!state.isFlipped) flipCard();
   document.getElementById('quiz-next-row').classList.remove('hidden');
 }
@@ -1468,7 +1458,7 @@ function clearQuizMode() {
 }
 
 /* ================================================================
-   SAISIE LIBRE — FIX 4
+   SAISIE LIBRE
 ================================================================ */
 function openFreeInputModal() {
   document.getElementById('free-input-artiste').value = '';
@@ -1489,7 +1479,6 @@ function closeFreeInputModal(skip) {
   document.getElementById('free-input-box').style.transform = 'scale(0.96)';
   document.body.style.overflow = '';
   if (skip) {
-    // Passer la carte comme "à revoir"
     nextCard(false);
   }
 }
@@ -1499,15 +1488,15 @@ function submitFreeInput() {
   const inputTitre = document.getElementById('free-input-titre').value.trim();
   const oeuvre = state.deck[state.currentIndex];
 
-  function submitInlineFreeInput() {
-  const inputArtiste = document.getElementById('inline-free-artiste').value.trim();
-  const inputTitre = document.getElementById('inline-free-titre').value.trim();
-  const oeuvre = state.deck[state.currentIndex];
+  const overlay = document.getElementById('free-input-overlay');
+  overlay.classList.remove('open');
+  overlay.style.opacity = '0';
+  overlay.style.pointerEvents = 'none';
+  document.getElementById('free-input-box').style.transform = 'scale(0.96)';
+  document.body.style.overflow = '';
 
-  // Préparer la réponse correcte
   const correctAnswer = `${oeuvre.auteur} — ${oeuvre.titre} (${oeuvre.date})`;
   
-  // Évaluation : comparaison souple (sans casse, sans accents stricts)
   const normalize = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
   const userAnswer = normalize(inputArtiste) + ' ' + normalize(inputTitre);
   const refAuteur = normalize(oeuvre.auteur);
@@ -1517,7 +1506,6 @@ function submitFreeInput() {
   const titreOk = normalize(inputTitre).includes(refTitre.slice(0, Math.floor(refTitre.length * 0.6)));
   const isClose = auteurOk && titreOk;
 
-  // Afficher le résultat
   document.getElementById('free-result-icon').textContent = isClose ? '✅' : '🔍';
   document.getElementById('free-result-title').textContent = isClose ? 'Bien vu !' : 'Vérifiez votre réponse';
   document.getElementById('free-result-answer').textContent = correctAnswer;
@@ -1533,19 +1521,14 @@ function submitFreeInput() {
   document.getElementById('free-result-box').style.transform = 'scale(1) translateY(0)';
   document.body.style.overflow = 'hidden';
 }
-  
-  // Fermer le modal de saisie
-  const overlay = document.getElementById('free-input-overlay');
-  overlay.classList.remove('open');
-  overlay.style.opacity = '0';
-  overlay.style.pointerEvents = 'none';
-  document.getElementById('free-input-box').style.transform = 'scale(0.96)';
-  document.body.style.overflow = '';
 
-  // Préparer la réponse correcte
+function submitInlineFreeInput() {
+  const inputArtiste = document.getElementById('inline-free-artiste').value.trim();
+  const inputTitre = document.getElementById('inline-free-titre').value.trim();
+  const oeuvre = state.deck[state.currentIndex];
+
   const correctAnswer = `${oeuvre.auteur} — ${oeuvre.titre} (${oeuvre.date})`;
   
-  // Évaluation : comparaison souple (sans casse, sans accents stricts)
   const normalize = s => s.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g,"").trim();
   const userAnswer = normalize(inputArtiste) + ' ' + normalize(inputTitre);
   const refAuteur = normalize(oeuvre.auteur);
@@ -1555,7 +1538,6 @@ function submitFreeInput() {
   const titreOk = normalize(inputTitre).includes(refTitre.slice(0, Math.floor(refTitre.length * 0.6)));
   const isClose = auteurOk && titreOk;
 
-  // Afficher le résultat
   document.getElementById('free-result-icon').textContent = isClose ? '✅' : '🔍';
   document.getElementById('free-result-title').textContent = isClose ? 'Bien vu !' : 'Vérifiez votre réponse';
   document.getElementById('free-result-answer').textContent = correctAnswer;
@@ -1605,7 +1587,6 @@ function renderCard() {
 
   const cardInner = document.getElementById('card-inner'); cardInner.classList.remove('is-flipped'); cardInner.removeAttribute('style'); state.isFlipped = false;
   
-  // FIX 1: Retirer l'infobulle/consigne — on ne l'affiche plus
   document.getElementById('recto-counter').textContent = `${idx + 1} / ${total}`;
   document.getElementById('session-counter').textContent = `${idx + 1} / ${total}`;
 
@@ -1660,9 +1641,8 @@ function renderCard() {
   const wrapper = document.getElementById('card-wrapper'); wrapper.style.transition = 'none'; wrapper.style.opacity = '0';
   requestAnimationFrame(() => { requestAnimationFrame(() => { wrapper.style.transition = 'opacity 0.35s ease'; wrapper.style.opacity = '1'; }); });
 
-  // Apply session modes
   clearBlindTest(); clearQuizMode(); stopTimer();
-  // Affichage conditionnel des boutons du verso selon le mode
+  
   if (sessionConfig.displayMode === 'quiz') {
     document.getElementById('btn-verso-acquis').style.display = 'none';
     document.getElementById('btn-verso-arevoir').style.display = 'none';
@@ -1675,6 +1655,8 @@ function renderCard() {
     document.getElementById('btn-verso-next-quiz').classList.add('hidden');
   }
   
+  const inlineFreeInput = document.getElementById('free-input-inline');
+
   if (sessionConfig.displayMode === 'blind') {
     const imgEl = document.getElementById('card-image');
     const doInit = () => initBlindTest();
@@ -1682,26 +1664,21 @@ function renderCard() {
     else imgEl.addEventListener('load', doInit, { once: true });
   } else if (sessionConfig.displayMode === 'quiz') {
     renderQuizOptions(oeuvre);
- const inlineFreeInput = document.getElementById('free-input-inline');
+  }
   
   if (sessionConfig.displayMode === 'free-write') {
-    // Affiche les champs de saisie intégrés et masque le bouton "Retourner la carte"
     document.getElementById('flip-btn-row').style.display = 'none';
     inlineFreeInput.classList.remove('hidden');
     inlineFreeInput.classList.add('flex');
     
-    // On vide les champs à chaque nouvelle carte
     document.getElementById('inline-free-artiste').value = '';
     document.getElementById('inline-free-titre').value = '';
     
-    // Petit focus automatique sur le champ artiste (pratique sur PC)
     setTimeout(() => document.getElementById('inline-free-artiste').focus(), 100);
   } else {
-    // Cache la zone de saisie pour les autres modes
     inlineFreeInput.classList.remove('flex');
     inlineFreeInput.classList.add('hidden');
     
-    // Restaure le bouton classique
     if (document.getElementById('btn-flip-recto')) {
       document.getElementById('flip-btn-row').style.display = 'flex';
       document.getElementById('btn-flip-recto').style.display = 'inline-flex';
@@ -1713,7 +1690,6 @@ function renderCard() {
   }
 }
 
-/* FIX 2: Lightbox depuis le recto */
 function openLightboxFromRecto() {
   const src = document.getElementById('card-image').src;
   if (src && !src.includes('placehold.co')) {
@@ -1723,7 +1699,7 @@ function openLightboxFromRecto() {
 
 function flipCard() { 
   if (sessionConfig.displayMode === 'quiz' && !quizAnswered) return;
-  if (sessionConfig.displayMode === 'free-write') return; // saisie libre ne se retourne pas manuellement
+  if (sessionConfig.displayMode === 'free-write') return;
   state.isFlipped = !state.isFlipped; 
   document.getElementById('card-inner').classList.toggle('is-flipped', state.isFlipped); 
 }
@@ -1775,7 +1751,6 @@ function showResults() {
   document.getElementById('result-ring').style.setProperty('--pct', `${pct}%`);
   document.getElementById('result-subtitle').textContent = (pct === 100) ? `Parfait !` : `Vous avez acquis ${pct}% de la session.`;
 
-  // FIX 3: Afficher le score Quiz dans les résultats
   const quizScoreEl = document.getElementById('result-quiz-score');
   const quizTextEl = document.getElementById('result-quiz-text');
   if (sessionConfig.displayMode === 'quiz' && state.quizScore.total > 0) {
