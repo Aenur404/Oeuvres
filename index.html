@@ -1665,6 +1665,8 @@ function renderCard() {
   } else if (sessionConfig.displayMode === 'quiz') {
     renderQuizOptions(oeuvre);
   }
+
+  const inlineFreeInput = document.getElementById('free-input-inline');
   
   if (sessionConfig.displayMode === 'free-write') {
     document.getElementById('flip-btn-row').style.display = 'none';
