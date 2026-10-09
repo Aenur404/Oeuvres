@@ -2,90 +2,90 @@
   {
     "id": 1,
     "auteur": "Marcel Duchamp",
-    "titre": "Fountain",
-    "date": "1917 (réplique 1964)",
-    "dimensions": "36 x 48 x 61 cm",
-    "materiaux": "Porcelaine industrielle, peinture noire",
-    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f7/Duchamp_Fountain.jpg",
-    "epoque": "Début XXe siècle",
+    "titre": "Fontaine",
+    "date": "1917",
+    "dimensions": "60 x 36 x 48 cm",
+    "materiaux": "Porcelaine, peinture",
+    "image_url": "https://upload.wikimedia.org/wikipedia/commons/f/f6/Duchamp_Fountain.jpg",
+    "epoque": "Moderne",
     "theme": "L'objet, sa matérialité et son statut",
     "questionnement": [
-      "Lycée : La matérialité de l'œuvre, la question de l'objet et du choix"
+      "Lycée : L'œuvre, l'artiste et le spectateur"
     ],
     "mouvement": [
       "Dadaïsme"
     ],
     "notions": [
       "Ready-made",
-      "Statut de l'artiste",
-      "Décontextualisation"
+      "Statut de l'œuvre",
+      "Contextualisation"
     ],
-    "description_plastique": "Objet manufacturé standard, blanc, lignes courbes et ergonomiques, posé sur un socle. L'aspect lisse et froid de la céramique est mis en valeur par une signature apparente.",
-    "description_semantique": "Remise en question radicale du savoir-faire artisanal au profit du geste intellectuel de l'artiste qui choisit l'objet. L'urinoir devient sculpture par le déplacement.",
-    "citation": "Le choix de ces 'ready-made' ne me fut jamais dicté par une délectation esthétique.",
+    "description_plastique": "Urinoir en porcelaine blanche standard, retourné, signé 'R. Mutt'. L'objet est dépouillé de sa fonction première par le geste de rotation.",
+    "description_semantique": "Remise en cause du geste créateur. L'art ne réside plus dans la 'facture' mais dans le choix et le déplacement conceptuel.",
+    "citation": "L'art est ce que nous appelons art.",
     "citation_auteur": "Marcel Duchamp",
-    "bibliographie": "Thierry de Duve, 'Au nom de l'art. Pour une archéologie de la modernité'",
-    "problematique_concours": "En quoi le ready-made modifie-t-il le statut de l'objet d'art par rapport à la matérialité de la main de l'artiste ?",
+    "bibliographie": "Thierry de Duve, 'Au nom de l'art : pour une archéologie de la modernité'",
+    "problematique_concours": "En quoi le déplacement de l'objet quotidien vers l'espace muséal opère-t-il une mutation ontologique de l'œuvre d'art ?",
     "_custom": true,
     "_edited": true
   },
   {
     "id": 2,
     "auteur": "Arman",
-    "titre": "Accumulation de cafetières",
-    "date": "1966",
-    "dimensions": "100 x 80 x 20 cm",
-    "materiaux": "Cafetières métalliques, plexiglas",
+    "titre": "Long Term Parking",
+    "date": "1982",
+    "dimensions": "19,5 m de haut",
+    "materiaux": "Béton, 60 voitures",
     "image_url": "",
-    "epoque": "Seconde moitié du XXe siècle",
+    "epoque": "Contemporain",
     "theme": "L'objet, sa matérialité et son statut",
     "questionnement": [
-      "Cycle 4 : L'objet et les œuvres, la transformation du quotidien"
+      "Cycle 4 : La matérialité de l'œuvre"
     ],
     "mouvement": [
       "Nouveau Réalisme"
     ],
     "notions": [
       "Accumulation",
-      "Objet sériel",
-      "Société de consommation"
+      "Rebut",
+      "Sculpture d'assemblage"
     ],
-    "description_plastique": "Répétition massive d'objets identiques entassés, créant un rythme visuel dense. La matérialité du métal, entre reflet et oxydation, souligne la banalité du quotidien.",
-    "description_semantique": "Critique de la société de consommation et de la standardisation des objets. La multiplication transforme l'objet individuel en une masse indistincte.",
-    "citation": "L'accumulation est un constat de la prolifération des objets.",
+    "description_plastique": "Tour de béton enfermant une accumulation verticale de véhicules automobiles, créant un monolithe aux strates hétérogènes.",
+    "description_semantique": "Mise en évidence de la société de consommation. L'objet industriel devient fossile contemporain, figé dans une temporalité géologique.",
+    "citation": "L'objet est le témoin d'une époque.",
     "citation_auteur": "Arman",
-    "bibliographie": "Benjamin Buchloh, 'Néo-avant-garde et industrie culturelle'",
-    "problematique_concours": "Comment le geste d'assemblage et d'accumulation permet-il de révéler la poétique du rebut ?",
+    "bibliographie": "Pierre Restany, 'Les Nouveaux Réalistes'",
+    "problematique_concours": "Comment l'accumulation de rebuts industriels transforme-t-elle la perception du temps et de la pérennité dans la sculpture contemporaine ?",
     "_custom": true,
     "_edited": true
   },
   {
     "id": 3,
     "auteur": "Vik Muniz",
-    "titre": "Série 'Pictures of Junk'",
+    "titre": "Wasteland (série)",
     "date": "2008",
-    "dimensions": "Variable",
-    "materiaux": "Déchets, rebuts, photographie numérique",
+    "dimensions": "Variables",
+    "materiaux": "Photographie numérique de compositions en déchets",
     "image_url": "",
-    "epoque": "XXIe siècle",
+    "epoque": "Contemporain",
     "theme": "L'objet, sa matérialité et son statut",
     "questionnement": [
-      "Lycée : La matérialité de l'image, l'objet dans la production numérique"
+      "Lycée : La matérialité de l'œuvre et la place de l'image numérique"
     ],
     "mouvement": [
-      "Art contemporain / Photographie conceptuelle"
+      "Art social, Appropriationnisme"
     ],
     "notions": [
-      "Anamorphose",
-      "Installation",
-      "Récupération"
+      "Image numérique",
+      "Transformation du quotidien",
+      "Anamorphose"
     ],
-    "description_plastique": "Assemblage monumental de détritus au sol, capturé en vue plongeante. L'image finale, recomposée par le cadrage, révèle une figure classique historique.",
-    "description_semantique": "Interrogation sur la valeur des matériaux et la persistance de l'image dans une société productrice de déchets. La matière brute est transfigurée par le regard technologique.",
-    "citation": "Je veux que les gens voient l'image, mais aussi qu'ils voient la matière qui la constitue.",
+    "description_plastique": "Compositions au sol utilisant des matériaux récupérés, photographiées en plongée totale. L'image finale est le résultat d'un assemblage réel transformé en image médiée.",
+    "description_semantique": "Interrogation sur la valeur du déchet et la médiation de l'image photographique. Le réel (rebut) devient simulacre (image d'art).",
+    "citation": "Les images sont des fenêtres, mais parfois ce sont des murs.",
     "citation_auteur": "Vik Muniz",
-    "bibliographie": "Georges Didi-Huberman, 'La ressemblance informe'",
-    "problematique_concours": "En quoi le passage de l'assemblage physique à la captation numérique modifie-t-il la perception de la matérialité de l'objet ?",
+    "bibliographie": "Georges Didi-Huberman, 'Ce que nous voyons, ce qui nous regarde'",
+    "problematique_concours": "Dans quelle mesure la photographie numérique permet-elle de réhabiliter le rebut en tant que matériau artistique plastique ?",
     "_custom": true,
     "_edited": true
   }
